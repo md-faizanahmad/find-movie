@@ -1,19 +1,25 @@
-import { getTrendingMovies } from "@/features/movies/api/getTrendingMovies";
+import Navbar from "@/components/layout/navbar/Navbar";
+import { SearchBar } from "@/components/search-bar";
+import { FilterTabs } from "@/features/movies/components/filter-tabs";
+import MovieCardSkeleton from "@/shared/skeleton/movie-card-skeleton";
 
-export default async function HomePage() {
-  const data = await getTrendingMovies();
-
+export default function HomePage() {
   return (
-    <main className="px-6 py-10">
-      <h1 className="text-2xl font-semibold mb-6">Trending Movies</h1>
+    <>
+      <Navbar />
 
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-        {data.results.map((movie) => (
-          <div key={movie.id} className="bg-zinc-900 p-2 rounded-xl">
-            <p className="text-sm font-medium line-clamp-2">{movie.title}</p>
-          </div>
-        ))}
-      </div>
-    </main>
+      <main className="max-w-7xl mx-auto px-6 py-8 space-y-6">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <SearchBar />
+          <FilterTabs />
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          {Array.from({ length: 12 }).map((_, i) => (
+            <MovieCardSkeleton key={i} />
+          ))}
+        </div>
+      </main>
+    </>
   );
 }

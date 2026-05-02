@@ -1,4 +1,4 @@
-import Navbar from "@/components/layout/navbar/Navbar";
+import { Navbar } from "@/components/layout/navbar/Navbar";
 import { SearchBar } from "@/components/search-bar";
 import { FilterTabs } from "@/features/movies/components/filter-tabs";
 import MovieCardSkeleton from "@/shared/skeleton/movie-card-skeleton";

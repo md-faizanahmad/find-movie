@@ -17,7 +17,7 @@ interface FilterTabsProps {
 
 export function FilterTabs({ active, onChange }: FilterTabsProps) {
   return (
-    <div className="w-full border-b border-zinc-800 bg-black">
+    <div className="w-full border-b border-zinc-800 bg-black text-white">
       <div className="max-w-7xl mx-auto px-6">
         <nav className="flex items-center gap-6 overflow-x-auto no-scrollbar py-1">
           {filters.map((filter) => {

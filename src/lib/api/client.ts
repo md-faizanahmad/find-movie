@@ -8,7 +8,7 @@ if (typeof window !== "undefined") {
 
 export const apiClient = axios.create({
   baseURL: env.TMDB_BASE_URL,
-  timeout: 8000,
+  timeout: 15000,
   headers: {
     Authorization: `Bearer ${env.TMDB_API_KEY}`,
     "Content-Type": "application/json",

@@ -3,9 +3,15 @@ import { MoviesContainer } from "@/features/movies/containers/movies-container";
 
 async function getInitialMovies() {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/movies?category=trending`,
-    { cache: "no-store" },
+    "http://localhost:3000/api/movies?category=trending",
+    {
+      cache: "no-store",
+    },
   );
+
+  if (!res.ok) {
+    throw new Error(`Failed to fetch: ${res.status}`);
+  }
 
   const data = await res.json();
   return data.data.results ?? [];

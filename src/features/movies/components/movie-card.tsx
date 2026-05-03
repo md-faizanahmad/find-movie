@@ -55,9 +55,9 @@ export function MovieCard({ movie }: MovieCardProps) {
           <h3 className="text-sm font-bold text-gray-900 leading-tight line-clamp-1 group-hover:text-blue-600 transition-colors">
             {movie.title}
           </h3>
-          <button className="text-gray-400 hover:text-black">
+          {/* <button className="text-gray-400 hover:text-black">
             <MoreHorizontal className="w-4 h-4" />
-          </button>
+          </button> */}
         </div>
 
         <div className="flex items-center gap-2">

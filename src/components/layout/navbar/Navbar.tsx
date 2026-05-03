@@ -25,7 +25,7 @@ export function Navbar() {
               <Film className="text-white w-5 h-5" />
             </div>
             <h1 className="text-xl font-black tracking-tighter text-gray-900 hidden sm:block">
-              CINE<span className="text-blue-600">LIST</span>
+              FIND<span className="text-blue-600">MOVIE</span>
             </h1>
           </div>
 

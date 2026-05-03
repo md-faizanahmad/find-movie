@@ -40,7 +40,7 @@ export function Navbar() {
           </div>
 
           {/* Desktop Only Nav Links */}
-          <nav className="hidden md:flex items-center gap-8 ml-4">
+          {/* <nav className="hidden md:flex items-center gap-8 ml-4">
             {navItems.map((item) => (
               <button
                 key={item.name}
@@ -53,7 +53,7 @@ export function Navbar() {
                 {item.name}
               </button>
             ))}
-          </nav>
+          </nav> */}
         </div>
       </header>
 

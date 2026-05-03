@@ -19,3 +19,6 @@ export const env = {
   TMDB_BASE_URL: getEnvVariable("TMDB_BASE_URL"),
   TMDB_IMAGE_BASE_URL: getEnvVariable("TMDB_IMAGE_BASE_URL"),
 };
+console.log("ENV CHECK:", {
+  TMDB_API_KEY: process.env.TMDB_API_KEY ? "EXISTS" : "MISSING",
+});

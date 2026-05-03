@@ -1,7 +1,6 @@
 import { MovieCategory } from "@/@types/movie-category.types";
 import { Movie, PaginatedResponse } from "@/@types/movie.types";
 import { apiClient } from "@/lib/api/client";
-import { env } from "@/lib/config/env";
 
 interface GetMoviesParams {
   category: MovieCategory;
@@ -29,24 +28,32 @@ export async function getMovies({
 }: GetMoviesParams): Promise<PaginatedResponse<Movie>> {
   const endpoint = resolveEndpoint(category);
 
-  const response = await apiClient.get(endpoint, {
-    params: {
-      api_key: env.TMDB_API_KEY,
-      ...(category !== "latest" && { page }),
-    },
-  });
+  try {
+    const response = await apiClient.get(endpoint, {
+      params: category !== "latest" ? { page } : undefined,
+    });
 
-  const data = response.data;
+    const data = response.data;
 
-  // 🔥 Normalize "latest" to match PaginatedResponse
-  if (category === "latest") {
+    if (category === "latest") {
+      return {
+        page: 1,
+        results: data ? [data] : [],
+        total_pages: 1,
+        total_results: data ? 1 : 0,
+      };
+    }
+
+    return data;
+  } catch (error) {
+    console.error(`TMDb failed for ${category}`, error);
+
+    // ✅ fallback for SSR — but DON'T hide error completely
     return {
       page: 1,
-      results: data ? [data] : [],
+      results: [],
       total_pages: 1,
-      total_results: data ? 1 : 0,
+      total_results: 0,
     };
   }
-
-  return data;
 }

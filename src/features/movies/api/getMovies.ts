@@ -8,7 +8,7 @@ interface GetMoviesParams {
   page?: number;
 }
 
-function resolveEndpoint(category: MovieCategory) {
+function resolveEndpoint(category: MovieCategory): string {
   switch (category) {
     case "trending":
       return "/trending/movie/day";
@@ -17,7 +17,7 @@ function resolveEndpoint(category: MovieCategory) {
     case "upcoming":
       return "/movie/upcoming";
     case "latest":
-      return "/movie/latest"; // ⚠️ not paginated
+      return "/movie/latest";
     default:
       return "/trending/movie/day";
   }
@@ -26,7 +26,7 @@ function resolveEndpoint(category: MovieCategory) {
 export async function getMovies({
   category,
   page = 1,
-}: GetMoviesParams): Promise<PaginatedResponse<Movie> | Movie> {
+}: GetMoviesParams): Promise<PaginatedResponse<Movie>> {
   const endpoint = resolveEndpoint(category);
 
   const response = await apiClient.get(endpoint, {
@@ -36,5 +36,17 @@ export async function getMovies({
     },
   });
 
-  return response.data;
+  const data = response.data;
+
+  // 🔥 Normalize "latest" to match PaginatedResponse
+  if (category === "latest") {
+    return {
+      page: 1,
+      results: data ? [data] : [],
+      total_pages: 1,
+      total_results: data ? 1 : 0,
+    };
+  }
+
+  return data;
 }

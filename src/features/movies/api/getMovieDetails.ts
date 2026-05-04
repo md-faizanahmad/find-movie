@@ -43,6 +43,9 @@ export async function getMovieDetails(
       runtime: data.runtime,
       release_date: data.release_date,
       vote_average: data.vote_average,
+      credits: data.credits,
+      videos: data.videos,
+      images: data.images,
     };
 
     return movie;

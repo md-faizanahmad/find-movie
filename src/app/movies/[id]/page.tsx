@@ -3,6 +3,9 @@ import { MovieInfo } from "@/features/movies/components/MovieInfo";
 import { MovieMeta } from "@/features/movies/components/MovieMeta";
 import { notFound } from "next/navigation";
 import { getMovieDetails } from "@/features/movies/api/getMovieDetails";
+import { MovieTrailer } from "@/features/movies/components/MovieTrailer";
+import { MovieCast } from "@/features/movies/components/MovieCast";
+import { MovieGallery } from "@/features/movies/components/MovieGallery";
 
 interface Props {
   params: Promise<{
@@ -42,6 +45,11 @@ export default async function MovieDetailsPage({ params }: Props) {
         release_date={movie.release_date}
         vote_average={movie.vote_average}
       />
+      <MovieTrailer videos={movie.videos?.results || []} />
+
+      <MovieCast cast={movie.credits?.cast || []} />
+
+      <MovieGallery backdrops={movie.images?.backdrops || []} />
     </div>
   );
 }

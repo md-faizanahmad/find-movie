@@ -22,6 +22,7 @@ export default async function MovieDetailsPage({ params }: Props) {
     { cache: "no-store" },
   );
 
+  console.log(res.json);
   if (!res.ok) {
     notFound();
   }

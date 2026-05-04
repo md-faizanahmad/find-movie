@@ -17,10 +17,9 @@ export default async function MovieDetailsPage({ params }: Props) {
   }
 
   // const movie = await getMovieDetails(params.id);
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/movies/${params.id}`,
-    { cache: "no-store" },
-  );
+  const res = await fetch(`/api/movies/${params.id}`, {
+    cache: "no-store",
+  });
 
   console.log(res.json);
   if (!res.ok) {

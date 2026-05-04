@@ -58,16 +58,20 @@
 // }
 // app/movies/[id]/page.tsx
 
+// app/movies/[id]/page.tsx
+
 interface Props {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
-export default function MovieDetailsPage({ params }: Props) {
+export default async function MovieDetailsPage({ params }: Props) {
+  const { id } = await params; // ✅ critical fix
+
   return (
     <div className="min-h-screen bg-black text-white flex items-center justify-center">
-      <h1 className="text-3xl font-bold">Movie Page Working: {params.id}</h1>
+      <h1 className="text-3xl font-bold">Movie Page Working: {id}</h1>
     </div>
   );
 }

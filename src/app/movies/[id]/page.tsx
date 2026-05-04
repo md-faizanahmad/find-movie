@@ -14,8 +14,9 @@ interface Props {
 }
 
 export default async function MovieDetailsPage({ params }: Props) {
-  const { id } = await params; // ✅ FIXED
+  const { id } = await params;
 
+  // Validation: TMDB IDs are always numeric
   if (!/^\d+$/.test(id)) {
     notFound();
   }
@@ -26,30 +27,45 @@ export default async function MovieDetailsPage({ params }: Props) {
     notFound();
   }
 
+  // Find the trailer key to pass to the Hero for the video background
+  const trailerVideo = movie.videos?.results?.find(
+    (v) => v.type === "Trailer" && v.site === "YouTube",
+  );
+
   return (
-    <div className="bg-black min-h-screen text-white">
+    <main className="bg-black min-h-screen text-white selection:bg-yellow-500/30">
+      {/* Hero Section with Video Background Support */}
       <MovieHero
         title={movie.title}
         backdrop_path={movie.backdrop_path}
         tagline={movie.tagline}
+        trailerKey={trailerVideo?.key}
       />
 
-      <MovieInfo
-        poster_path={movie.poster_path}
-        overview={movie.overview}
-        genres={movie.genres.map((g) => g.name)}
-      />
+      {/* Primary Details */}
+      <div className="max-w-7xl mx-auto space-y-4">
+        <MovieInfo
+          poster_path={movie.poster_path}
+          overview={movie.overview}
+          genres={movie.genres.map((g) => g.name)}
+        />
 
-      <MovieMeta
-        runtime={movie.runtime}
-        release_date={movie.release_date}
-        vote_average={movie.vote_average}
-      />
-      <MovieTrailer videos={movie.videos?.results || []} />
+        <MovieMeta
+          runtime={movie.runtime}
+          release_date={movie.release_date}
+          vote_average={movie.vote_average}
+        />
+      </div>
 
-      <MovieCast cast={movie.credits?.cast || []} />
+      {/* Media & Credits Sections */}
+      <div className="max-w-7xl mx-auto space-y-12 pb-20">
+        <MovieCast cast={movie.credits?.cast || []} />
 
-      <MovieGallery backdrops={movie.images?.backdrops || []} />
-    </div>
+        {/* We keep MovieTrailer here as well for a dedicated viewing area */}
+        <MovieTrailer videos={movie.videos?.results || []} />
+
+        <MovieGallery backdrops={movie.images?.backdrops || []} />
+      </div>
+    </main>
   );
 }

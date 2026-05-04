@@ -3,6 +3,7 @@ import { MovieInfo } from "@/features/movies/components/MovieInfo";
 import { MovieMeta } from "@/features/movies/components/MovieMeta";
 import { notFound } from "next/navigation";
 import { getMovieDetails } from "@/features/movies/api/getMovieDetails";
+import { MovieDetails } from "@/@types/movie.details.types";
 
 interface Props {
   params: {
@@ -25,7 +26,7 @@ export default async function MovieDetailsPage({ params }: Props) {
     notFound();
   }
 
-  const movie = await res.json();
+  const movie: MovieDetails = await res.json();
   console.log("MOVIE DATA:", movie);
 
   if (!movie) {

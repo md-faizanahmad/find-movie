@@ -18,7 +18,7 @@ export async function getMovieDetails(
       KEY: process.env.TMDB_API_KEY ? "SET" : "MISSING",
     });
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_TMDB_BASE_URL}/movie/${id}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&append_to_response=credits,videos,images`,
+      `${process.env.TMDB_BASE_URL}/movie/${id}?api_key=${process.env.TMDB_API_KEY}&append_to_response=credits,videos,images`,
       {
         next: { revalidate: 3600 }, // ✅ cache for 1 hour (SSR optimization)
       },

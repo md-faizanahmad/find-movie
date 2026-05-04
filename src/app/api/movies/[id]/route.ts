@@ -1,15 +1,17 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { getMovieDetails } from "@/features/movies/api/getMovieDetails";
 
 export async function GET(
-  _req: Request,
-  { params }: { params: { id: string } },
+  _req: NextRequest,
+  context: { params: Promise<{ id: string }> },
 ) {
-  if (!/^\d+$/.test(params.id)) {
+  const { id } = await context.params; // ✅ critical fix
+
+  if (!/^\d+$/.test(id)) {
     return NextResponse.json({ error: "Invalid ID" }, { status: 400 });
   }
 
-  const movie = await getMovieDetails(params.id);
+  const movie = await getMovieDetails(id);
 
   if (!movie) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });

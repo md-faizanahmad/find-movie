@@ -1,14 +1,10 @@
+import { Genre } from "@/@types/movie.details.types";
 import Image from "next/image";
 
-interface Genre {
-  id: number;
-  name: string;
-}
-
 interface Props {
-  poster_path: string | null;
+  poster_path: string;
   overview: string;
-  genres: Genre[];
+  genres: string[];
 }
 
 const POSTER_BASE = "https://image.tmdb.org/t/p/w500";
@@ -17,15 +13,15 @@ export function MovieInfo({ poster_path, overview, genres }: Props) {
   return (
     <div className="flex flex-col md:flex-row gap-8 p-8">
       {poster_path && (
-        <div className="relative w-64 flex-shrink-0">
+        <div className="relative w-64 shrink-0">
           <Image
             src={`${POSTER_BASE}${poster_path}`}
             alt="Movie Poster"
-            width={256} // Matching w-64 (64 * 4px)
-            height={384} // Maintaining 2:3 aspect ratio
+            width={256}
+            height={384}
             className="rounded-xl shadow-lg object-cover"
             placeholder="blur"
-            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" // Optional: simple grey pixel
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
           />
         </div>
       )}
@@ -37,13 +33,8 @@ export function MovieInfo({ poster_path, overview, genres }: Props) {
         </div>
 
         <div className="flex gap-2 flex-wrap">
-          {genres.map((g) => (
-            <span
-              key={g.id}
-              className="px-3 py-1 bg-gray-800 hover:bg-gray-700 transition-colors text-white rounded-full text-sm border border-gray-700"
-            >
-              {g.name}
-            </span>
+          {genres.map((name) => (
+            <span key={name}>{name}</span>
           ))}
         </div>
       </div>

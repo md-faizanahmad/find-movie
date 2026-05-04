@@ -1,24 +1,14 @@
 // features/movies/api/getMovieDetails.ts
 
-import { MovieDetails } from "@/@types/movie.details.types";
+import {
+  MovieDetails,
+  TMDBMovieDetailsResponse,
+} from "@/@types/movie.details.types";
 
-type TMDBGenre = {
-  id: number;
-  name: string;
-};
-
-type TMDBMovieDetailsResponse = {
-  title: string;
-  backdrop_path: string | null;
-  tagline: string | null;
-  poster_path: string | null;
-  overview: string;
-  genres: TMDBGenre[];
-  runtime: number;
-  release_date: string;
-  vote_average: number;
-};
-
+/**
+ * Fetches movie details from TMDB and transforms
+ * raw API response into a clean UI-friendly model.
+ */
 export async function getMovieDetails(
   id: string,
 ): Promise<MovieDetails | null> {
@@ -26,18 +16,21 @@ export async function getMovieDetails(
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_TMDB_BASE_URL}/movie/${id}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&append_to_response=credits,videos,images`,
       {
-        next: { revalidate: 3600 }, // ✅ caching
+        next: { revalidate: 3600 }, // ✅ cache for 1 hour (SSR optimization)
       },
     );
 
+    // ❌ If TMDB responds with error (404, 401, etc.)
     if (!res.ok) {
+      console.error("TMDB request failed:", res.status);
       return null;
     }
 
+    // ✅ Strictly typed response
     const data: TMDBMovieDetailsResponse = await res.json();
 
-    // ✅ transform here (NOT in page)
-    return {
+    // ✅ Transform API → UI model (IMPORTANT: keeps UI clean)
+    const movie: MovieDetails = {
       title: data.title,
       backdrop_path: data.backdrop_path ?? "",
       tagline: data.tagline ?? "",
@@ -48,6 +41,8 @@ export async function getMovieDetails(
       release_date: data.release_date,
       vote_average: data.vote_average,
     };
+
+    return movie;
   } catch (error) {
     console.error("Movie fetch failed:", error);
     return null;

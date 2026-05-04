@@ -15,7 +15,17 @@ export default async function MovieDetailsPage({ params }: Props) {
     notFound();
   }
 
-  const movie = await getMovieDetails(params.id);
+  // const movie = await getMovieDetails(params.id);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/movies/${params.id}`,
+    { cache: "no-store" },
+  );
+
+  if (!res.ok) {
+    notFound();
+  }
+
+  const movie = await res.json();
   console.log("MOVIE DATA:", movie);
 
   if (!movie) {

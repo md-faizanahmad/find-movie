@@ -13,11 +13,6 @@ export async function getMovieDetails(
   id: string,
 ): Promise<MovieDetails | null> {
   try {
-    console.log("FETCHING MOVIE ID:", id);
-    console.log("ENV CHECK:", {
-      BASE: process.env.TMDB_BASE_URL,
-      KEY: process.env.TMDB_API_KEY ? "SET" : "MISSING",
-    });
     const res = await fetch(
       `${process.env.TMDB_BASE_URL}/movie/${id}?api_key=${process.env.TMDB_API_KEY}&append_to_response=credits,videos,images`,
 
@@ -28,10 +23,7 @@ export async function getMovieDetails(
     );
 
     // ❌ If TMDB responds with error (404, 401, etc.)
-    if (!res.ok) {
-      console.error("TMDB request failed:", res.status);
-      return null;
-    }
+
     if (!res.ok) {
       const error = await res.text();
       console.error("TMDB ERROR:", res.status, error);

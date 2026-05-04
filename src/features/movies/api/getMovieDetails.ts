@@ -13,14 +13,17 @@ export async function getMovieDetails(
   id: string,
 ): Promise<MovieDetails | null> {
   try {
+    console.log("FETCHING MOVIE ID:", id);
     console.log("ENV CHECK:", {
       BASE: process.env.TMDB_BASE_URL,
       KEY: process.env.TMDB_API_KEY ? "SET" : "MISSING",
     });
     const res = await fetch(
       `${process.env.TMDB_BASE_URL}/movie/${id}?api_key=${process.env.TMDB_API_KEY}&append_to_response=credits,videos,images`,
+
       {
-        next: { revalidate: 3600 }, // ✅ cache for 1 hour (SSR optimization)
+        // next: { revalidate: 3600 }, // ✅ cache for 1 hour (SSR optimization)
+        cache: "no-store",
       },
     );
 
@@ -29,7 +32,11 @@ export async function getMovieDetails(
       console.error("TMDB request failed:", res.status);
       return null;
     }
-
+    if (!res.ok) {
+      const error = await res.text();
+      console.error("TMDB ERROR:", res.status, error);
+      return null;
+    }
     // ✅ Strictly typed response
     const data: TMDBMovieDetailsResponse = await res.json();
 

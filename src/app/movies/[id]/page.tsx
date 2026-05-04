@@ -16,11 +16,17 @@ export default async function MovieDetailsPage({ params }: Props) {
   }
 
   const movie = await getMovieDetails(params.id);
+  console.log("MOVIE DATA:", movie);
 
+  if (!movie) {
+    console.log("MOVIE IS NULL → triggering 404");
+    notFound();
+  }
   if (!movie) {
     notFound();
   }
 
+  console.log("ENV PAGE:", process.env.TMDB_BASE_URL);
   return (
     <div className="bg-black min-h-screen text-white">
       <MovieHero

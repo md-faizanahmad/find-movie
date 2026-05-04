@@ -13,7 +13,7 @@ export function MovieGallery({ backdrops }: Props) {
   if (!backdrops?.length) return null;
 
   return (
-    <section className="px-4 md:px-8 mt-8 md:mt-12 mb-10 group/section">
+    <section className="px-4 md:px-8 mt-8 md:mt-12 mb-10 select-none">
       <div className="flex items-center justify-between mb-4 md:mb-6">
         <h2 className="text-lg md:text-2xl font-bold text-white tracking-tight border-l-4 border-yellow-500 pl-3">
           Scenes
@@ -23,31 +23,32 @@ export function MovieGallery({ backdrops }: Props) {
         </span>
       </div>
 
-      {/* Carousel Container: No scrollbars, native snapping */}
+      {/* Swipeable Container */}
       <div
         className="flex gap-3 md:gap-5 overflow-x-auto pb-4 
-                   snap-x snap-mandatory scroll-smooth
+                   snap-x snap-mandatory scroll-smooth cursor-grab active:cursor-grabbing
                    [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
         {backdrops.slice(0, 15).map((img, i) => (
           <div
             key={i}
-            className="relative w-[85vw] md:w-112.5 aspect-video shrink-0 
+            className="relative w-[85vw] md:w-[450px] aspect-video shrink-0 
                        snap-start rounded-xl md:rounded-2xl overflow-hidden 
-                       border border-white/10 shadow-xl group cursor-pointer"
+                       border border-white/10 shadow-xl group"
           >
             <Image
               src={`${IMAGE_BASE}${img.file_path}`}
               alt={`Scene ${i + 1}`}
               fill
+              draggable={false} // Prevents ghost image during drag
               className="object-cover transition-transform duration-700 group-hover:scale-105"
               sizes="(max-width: 768px) 85vw, 450px"
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
             />
 
-            {/* Hover Effects: Gradient + Zoom Icon */}
-            <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            {/* Hover UI */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
             <div className="absolute inset-0 flex items-center justify-center translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
               <div className="bg-yellow-500 p-3 rounded-full shadow-lg">
@@ -69,8 +70,8 @@ export function MovieGallery({ backdrops }: Props) {
           </div>
         ))}
 
-        {/* End Spacer for cleaner scrolling */}
-        <div className="shrink-0 w-4 md:w-8" aria-hidden="true" />
+        {/* Padding for the end of the scroll */}
+        <div className="shrink-0 w-4 md:w-8" />
       </div>
     </section>
   );

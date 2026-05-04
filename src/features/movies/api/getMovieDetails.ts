@@ -13,6 +13,10 @@ export async function getMovieDetails(
   id: string,
 ): Promise<MovieDetails | null> {
   try {
+    console.log("ENV CHECK:", {
+      BASE: process.env.TMDB_BASE_URL,
+      KEY: process.env.TMDB_API_KEY ? "SET" : "MISSING",
+    });
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_TMDB_BASE_URL}/movie/${id}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&append_to_response=credits,videos,images`,
       {

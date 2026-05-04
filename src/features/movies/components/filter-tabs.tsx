@@ -43,7 +43,7 @@ export function FilterTabs({ active, onChange }: FilterTabsProps) {
                 {/* Active Indicator */}
                 <span
                   className={cn(
-                    "absolute bottom-0 left-0 right-0 h-[2px] rounded-full transition-all",
+                    "absolute bottom-0 left-0 right-0 h-0.5 rounded-full transition-all",
                     isActive
                       ? "bg-brand-primary"
                       : "bg-transparent group-hover:bg-zinc-700",

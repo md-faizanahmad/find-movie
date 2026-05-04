@@ -30,10 +30,6 @@ export default async function MovieDetailsPage({ params }: Props) {
   console.log("MOVIE DATA:", movie);
 
   if (!movie) {
-    console.log("MOVIE IS NULL → triggering 404");
-    notFound();
-  }
-  if (!movie) {
     notFound();
   }
 

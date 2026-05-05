@@ -51,7 +51,7 @@ export function MediaRow({ title, items, href = "#" }: Props) {
           {/* Visual "More" Card at the end */}
           <Link
             href={href}
-            className="flex min-w-35 flex-none items-center justify-center rounded-xl border border-neutral-800 bg-neutral-900/50 transition-colors hover:bg-neutral-800 sm:min-w-[180px]"
+            className="flex min-w-35 flex-none items-center justify-center rounded-xl border border-neutral-800 bg-neutral-900/50 transition-colors hover:bg-neutral-800 sm:min-w-45"
           >
             <span className="text-sm font-bold text-neutral-500">
               View More

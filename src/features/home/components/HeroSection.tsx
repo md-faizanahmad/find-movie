@@ -19,19 +19,19 @@ export function HeroSection({ backdropPath, isLoading = false }: Props) {
 
   if (isLoading) {
     return (
-      <div className="relative h-[70vh] md:h-[95vh] w-full overflow-hidden">
+      <div className="relative h-[65vh] md:h-[85vh] w-full overflow-hidden">
         <Skeleton
           variant="rectangular"
           width="100%"
           height="100%"
-          sx={{ bgcolor: "#0a0a0a" }}
+          sx={{ bgcolor: "grey.900" }}
         />
       </div>
     );
   }
 
   return (
-    <section className="relative h-[80vh] md:h-screen w-full overflow-hidden bg-black">
+    <section className="relative h-[70vh] md:h-[90vh] w-full overflow-hidden bg-neutral-950">
       {/* Background Image with Layered Overlays */}
       <div className="absolute inset-0 transition-opacity duration-1000">
         <Image
@@ -39,50 +39,38 @@ export function HeroSection({ backdropPath, isLoading = false }: Props) {
           alt="Featured Content"
           fill
           priority
-          className={`object-cover object-top transition-all duration-1000 brightness-[0.6] ${
-            imageLoaded ? "scale-100 blur-0" : "scale-110 blur-2xl"
+          className={`object-cover object-top transition-all duration-700 brightness-75 ${
+            imageLoaded ? "scale-100 blur-0" : "scale-105 blur-lg"
           }`}
           onLoadingComplete={() => setImageLoaded(true)}
         />
 
-        {/* Cinematic Gradient Masks */}
-        {/* Bottom-up: Darker and taller to blend with the negative margin rows */}
-        <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent" />
-        {/* Left-to-right: Deepens the 'text safe zone' */}
-        <div className="absolute inset-0 hidden bg-linear-to-r from-black/90 via-black/20 to-transparent md:block" />
+        {/* Cinematic Gradient Mask (The "Netflix/Prime" Secret) */}
+        <div className="absolute inset-0 bg-linear-to-t from-neutral-950 via-neutral-950/20 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-r from-neutral-950/80 via-transparent to-transparent hidden md:block" />
       </div>
 
       {/* Content Container */}
-      <div className="relative z-10 flex h-full w-full flex-col items-start justify-center px-6 pt-20 md:px-16 lg:px-24">
-        <div className="max-w-4xl animate-in fade-in slide-in-from-bottom-10 duration-1000 ease-out">
-          {/* Refined Badge */}
-          <div className="mb-6 flex items-center gap-3">
-            <span className="h-px w-8 bg-red-600 md:w-12" />
-            <span className="text-xs font-black uppercase tracking-[0.3em] text-red-500 md:text-sm">
-              Featured Selection
-            </span>
-          </div>
+      <div className="relative z-10 flex h-full w-full flex-col items-start justify-end px-6 pb-12 md:px-16 md:pb-24 lg:px-24">
+        <div className="max-w-3xl animate-in fade-in slide-in-from-bottom-8 duration-1000">
+          <span className="mb-4 inline-block rounded-full bg-blue-600/20 px-3 py-1 text-xs font-bold tracking-widest text-red-400 uppercase border border-blue-500/30">
+            Find Your Favourite
+          </span>
 
-          <h1 className="mb-6 text-5xl font-black tracking-tighter text-white md:text-7xl lg:text-8xl">
-            The <span className="text-red-600">Ultimate</span>{" "}
-            <br className="hidden md:block" />
-            Cinematic Experience
+          <h1 className="mb-4 text-4xl font-extrabold tracking-tight text-white md:text-6xl lg:text-7xl">
+            Experience the <span className="text-red-600">Ultimate</span> Story
           </h1>
 
-          <p className="mb-10 max-w-2xl text-lg font-medium leading-relaxed text-neutral-400 md:text-2xl">
-            Dive into thousands of award-winning movies and originals. Your
-            journey through the best of cinema starts right here.
+          <p className="mb-8 max-w-xl text-lg text-neutral-300 md:text-xl font-light leading-relaxed">
+            Stream thousands of titles instantly. From award-winning originals
+            to timeless classics, your next favorite story starts here.
           </p>
 
-          {/* Search Bar Wrapper - Positioned for Visibility */}
-          <div className="w-full max-w-2xl drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+          <div className="w-full max-w-lg">
             <SearchBar />
           </div>
         </div>
       </div>
-
-      {/* Bottom Edge Fade - Ensures a smooth transition to the rows */}
-      <div className="absolute bottom-0 left-0 h-32 w-full bg-linear-to-t from-black to-transparent" />
     </section>
   );
 }

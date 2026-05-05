@@ -5,7 +5,7 @@ const API_KEY = process.env.TMDB_API_KEY;
 export async function fetchFromTMDB(endpoint: string) {
   const res = await fetch(
     `https://api.themoviedb.org/3${endpoint}?api_key=${API_KEY}`,
-    { next: { revalidate: 60 } },
+    { next: { revalidate: 16000 } },
   );
 
   if (!res.ok) {

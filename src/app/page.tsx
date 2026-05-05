@@ -1,23 +1,46 @@
-import { Navbar } from "@/components/layout/navbar/Navbar";
-import { MoviesContainer } from "@/features/movies/containers/movies-container";
-import { getMovies } from "@/features/movies/api/getMovies";
-import { TMDBMovie } from "@/@types/movie.types";
+// import { Navbar } from "@/components/layout/navbar/Navbar";
+// import { MoviesContainer } from "@/features/movies/containers/movies-container";
+// import { getMovies } from "@/features/movies/api/getMovies";
+// import { TMDBMovie } from "@/@types/movie.types";
 
-async function getInitialMovies(): Promise<TMDBMovie[]> {
-  const data = await getMovies({ category: "trending" });
-  return data.results ?? [];
-}
+// async function getInitialMovies(): Promise<TMDBMovie[]> {
+//   const data = await getMovies({ category: "trending" });
+//   return data.results ?? [];
+// }
+
+// export default async function HomePage() {
+//   const movies = await getInitialMovies();
+
+//   return (
+//     <>
+//       <Navbar />
+
+//       <main className="max-w-7xl mx-auto px-6 py-8">
+//         <MoviesContainer initialMovies={movies} />
+//       </main>
+//     </>
+//   );
+// }
+// app/page.tsx
+
+import { fetchFromTMDB } from "@/lib/tmdb";
+import { HeroSection } from "@/features/home/components/HeroSection";
+import { MediaRow } from "@/features/home/components/MediaRow";
 
 export default async function HomePage() {
-  const movies = await getInitialMovies();
+  const trendingMovies = await fetchFromTMDB("/trending/movie/week");
+  const popularMovies = await fetchFromTMDB("/movie/popular");
+  const trendingTV = await fetchFromTMDB("/trending/tv/week");
+
+  const heroMovie = trendingMovies.results[0];
 
   return (
-    <>
-      <Navbar />
+    <main className="bg-black min-h-screen">
+      <HeroSection backdropPath={heroMovie?.backdrop_path} />
 
-      <main className="max-w-7xl mx-auto px-6 py-8">
-        <MoviesContainer initialMovies={movies} />
-      </main>
-    </>
+      <MediaRow title="Trending Movies" items={trendingMovies.results} />
+      <MediaRow title="Popular Movies" items={popularMovies.results} />
+      <MediaRow title="Trending TV Shows" items={trendingTV.results} />
+    </main>
   );
 }

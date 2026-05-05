@@ -19,58 +19,66 @@ export function HeroSection({ backdropPath, isLoading = false }: Props) {
 
   if (isLoading) {
     return (
-      <div className="relative h-[65vh] md:h-[85vh] w-full overflow-hidden">
+      <div className="relative h-[70vh] md:h-[90vh] w-full overflow-hidden">
         <Skeleton
           variant="rectangular"
           width="100%"
           height="100%"
-          sx={{ bgcolor: "grey.900" }}
+          sx={{ bgcolor: "neutral.900" }}
         />
       </div>
     );
   }
 
   return (
-    <section className="relative h-[70vh] md:h-[90vh] w-full overflow-hidden bg-neutral-950">
-      {/* Background Image with Layered Overlays */}
-      <div className="absolute inset-0 transition-opacity duration-1000">
+    <section className="relative h-[85vh] w-full overflow-hidden bg-black md:h-[100vh]">
+      {/* Background Image Layer */}
+      <div className="absolute inset-0 z-0">
         <Image
           src={imageUrl}
-          alt="Featured Content"
+          alt="Featured"
           fill
           priority
-          className={`object-cover object-top transition-all duration-700 brightness-75 ${
-            imageLoaded ? "scale-100 blur-0" : "scale-105 blur-lg"
+          className={`object-cover object-top transition-all duration-1000 brightness-[0.5] ${
+            imageLoaded ? "scale-100 blur-0" : "scale-110 blur-2xl"
           }`}
           onLoadingComplete={() => setImageLoaded(true)}
         />
 
-        {/* Cinematic Gradient Mask (The "Netflix/Prime" Secret) */}
-        <div className="absolute inset-0 bg-linear-to-t from-neutral-950 via-neutral-950/20 to-transparent" />
-        <div className="absolute inset-0 bg-linear-to-r from-neutral-950/80 via-transparent to-transparent hidden md:block" />
+        {/* Layered Cinematic Gradients */}
+        <div className="absolute inset-0 bg-linear-to-t from-black via-black/20 to-transparent" />
+        <div className="absolute inset-0 hidden bg-linear-to-r from-black/60 via-transparent to-transparent md:block" />
       </div>
 
-      {/* Content Container */}
-      <div className="relative z-10 flex h-full w-full flex-col items-start justify-end px-6 pb-12 md:px-16 md:pb-24 lg:px-24">
-        <div className="max-w-3xl animate-in fade-in slide-in-from-bottom-8 duration-1000">
-          <span className="mb-4 inline-block rounded-full bg-blue-600/20 px-3 py-1 text-xs font-bold tracking-widest text-red-400 uppercase border border-blue-500/30">
-            Find Your Favourite
-          </span>
+      {/* Content Layer - Adjusted to justify-center to avoid SearchBar overlap */}
+      <div className="relative z-10 flex h-full w-full flex-col items-start justify-center px-6 md:px-16 lg:px-24">
+        <div className="max-w-4xl animate-in fade-in slide-in-from-bottom-12 duration-1000">
+          <div className="mb-4 flex items-center gap-2">
+            <span className="h-px w-8 bg-red-600" />
+            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-red-500 md:text-xs">
+              Exclusive Premiere
+            </span>
+          </div>
 
-          <h1 className="mb-4 text-4xl font-extrabold tracking-tight text-white md:text-6xl lg:text-7xl">
-            Experience the <span className="text-red-600">Ultimate</span> Story
+          <h1 className="mb-4 text-5xl font-black tracking-tighter text-white md:text-7xl lg:text-8xl">
+            The <span className="text-red-600">Ultimate</span> <br />{" "}
+            Storytelling.
           </h1>
 
-          <p className="mb-8 max-w-xl text-lg text-neutral-300 md:text-xl font-light leading-relaxed">
-            Stream thousands of titles instantly. From award-winning originals
-            to timeless classics, your next favorite story starts here.
+          <p className="mb-10 max-w-xl text-base font-medium leading-relaxed text-neutral-400 md:text-xl md:leading-loose">
+            Experience the next generation of cinema. Stream award-winning
+            originals and blockbuster hits in stunning quality.
           </p>
 
-          <div className="w-full max-w-lg">
+          {/* SearchBar Container */}
+          <div className="w-full max-w-2xl">
             <SearchBar />
           </div>
         </div>
       </div>
+
+      {/* Bottom Fade: Ensures the MediaRow transition is seamless */}
+      <div className="absolute bottom-0 h-40 w-full bg-linear-to-t from-black to-transparent" />
     </section>
   );
 }

@@ -23,14 +23,14 @@
 // }
 // app/page.tsx
 
-import { fetchFromTMDB } from "@/lib/tmdb";
 import { HeroSection } from "@/features/home/components/HeroSection";
 import { MediaRow } from "@/features/home/components/MediaRow";
+import { fetchFromAPI } from "@/lib/tmdb";
 
 export default async function HomePage() {
-  const trendingMovies = await fetchFromTMDB("/trending/movie/week");
-  const popularMovies = await fetchFromTMDB("/movie/popular");
-  const trendingTV = await fetchFromTMDB("/trending/tv/week");
+  const trendingMovies = await fetchFromAPI("/trending/movie/week");
+  const popularMovies = await fetchFromAPI("/movie/popular");
+  const trendingTV = await fetchFromAPI("/trending/tv/week");
 
   const heroMovie = trendingMovies.results[0];
 

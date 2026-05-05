@@ -3,7 +3,7 @@ export function SearchBar() {
     <input
       type="text"
       placeholder="Search movies, TV shows..."
-      className="w-[400px] px-4 py-3 rounded-md bg-white text-black"
+      className="w-100 px-4 py-3 rounded-md bg-white text-black"
     />
   );
 }

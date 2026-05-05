@@ -54,7 +54,7 @@ export default async function HomePage() {
           The negative margin-top (-mt-24) pulls the rows over the hero gradient 
           for a modern, layered cinematic feel.
       */}
-      <div className="relative z-20 -mt-16 space-y-4 md:-mt-32 md:space-y-8 lg:-mt-48">
+      <div className="relative z-20 -mt-8 space-y-4 md:-mt-32 md:space-y-8 lg:-mt-48">
         <MediaRow
           title="Trending Now"
           items={trending?.results || []}
@@ -80,8 +80,8 @@ export default async function HomePage() {
 
       {/* Background Ambient Glow (Optional - Premium Touch) */}
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-        <div className="absolute -top-[10%] -left-[10%] h-[40%] w-[40%] rounded-full bg-blue-900/10 blur-[120px]" />
-        <div className="absolute top-[40%] -right-[10%] h-[30%] w-[30%] rounded-full bg-indigo-900/5 blur-[100px]" />
+        <div className="absolute top-[-10%] left-[-10%] h-[40%] w-[40%] rounded-full bg-blue-900/10 blur-[120px]" />
+        <div className="absolute top-[40%] right-[-10%] h-[30%] w-[30%] rounded-full bg-indigo-900/5 blur-[100px]" />
       </div>
     </main>
   );

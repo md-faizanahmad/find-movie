@@ -58,7 +58,8 @@ export function HeroSection({ backdropPath, isLoading = false }: Props) {
           </span>
 
           <h1 className="mb-4 text-4xl font-extrabold tracking-tight text-white md:text-6xl lg:text-7xl">
-            Experience the <span className="text-black">Ultimate</span> Story
+            Experience the <span className="text-green-900">Ultimate</span>{" "}
+            Story
           </h1>
 
           <p className="mb-8 max-w-xl text-lg text-neutral-300 md:text-xl font-light leading-relaxed">

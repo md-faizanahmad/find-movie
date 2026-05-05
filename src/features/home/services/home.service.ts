@@ -8,7 +8,7 @@ import { getBollywoodMovies } from "@/features/movies/api/getBollywoodMovies";
 import { getSouthMovies } from "@/features/movies/api/getSouthMovies";
 import { getIndianTVShows } from "@/features/movies/api/getIndianTVShows";
 import { mergeAndSort } from "@/lib/utils/mergeAndSort";
-
+import { getHollywoodTVShows } from "@/features/movies/api/getHollywoodTVShows";
 /* -------------------------------------------------------------------------- */
 /*                                NORMALIZED TYPE                             */
 /* -------------------------------------------------------------------------- */
@@ -65,6 +65,7 @@ export async function getHomeData() {
       malayalamRes,
       kannadaRes,
       tvRes,
+      hollywoodTVRes,
     ] = await Promise.all([
       getTrendingMovies(),
       getBollywoodMovies(),
@@ -73,12 +74,14 @@ export async function getHomeData() {
       getSouthMovies({ language: "ml" }),
       getSouthMovies({ language: "kn" }),
       getIndianTVShows(),
+      getHollywoodTVShows(),
     ]);
 
     /* ---------------------------- Normalize Movies --------------------------- */
 
     const trending = (trendingRes.results ?? []).map(mapMovie);
     const bollywood = (bollywoodRes.results ?? []).map(mapMovie);
+    const hollywoodTV = (hollywoodTVRes.results ?? []).map(mapTV);
 
     /* ---------------------------- South Merge Logic -------------------------- */
 
@@ -102,6 +105,7 @@ export async function getHomeData() {
       bollywood,
       southIndian,
       indianTV,
+      hollywoodTV,
     };
   } catch (error) {
     console.error("getHomeData failed:", error);
@@ -112,6 +116,7 @@ export async function getHomeData() {
       bollywood: [],
       southIndian: [],
       indianTV: [],
+      hollywoodTV: [],
     };
   }
 }

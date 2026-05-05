@@ -6,7 +6,6 @@
 import { HeroSection } from "@/features/home/components/HeroSection";
 import { MediaRow } from "@/features/home/components/MediaRow";
 import { getHomeData } from "@/features/home/services/home.service";
-import { getMovies } from "@/features/movies/api/getMovies";
 
 // async function getInitialMovies(): Promise<TMDBMovie[]> {
 //   const data = await getMovies({ category: "trending" });
@@ -26,11 +25,9 @@ import { getMovies } from "@/features/movies/api/getMovies";
 //     </>
 //   );
 // }
-
-// src/app/page.tsx
-
 export default async function HomePage() {
-  const { trending, bollywood, southIndian, indianTV } = await getHomeData();
+  const { trending, bollywood, southIndian, indianTV, hollywoodTV } =
+    await getHomeData();
 
   const heroMovie = trending?.[0] || null;
 
@@ -41,10 +38,10 @@ export default async function HomePage() {
         isLoading={!heroMovie}
       />
 
-      <div className="relative z-20 -mt-5 pb-20 md:-mt-10 lg:-mt-10">
+      <div className="relative z-20 -mt-5 pb-20 md:-mt-15 lg:-mt-15">
         <div className="space-y-2 md:space-y-6">
           <MediaRow
-            title="Trending Now"
+            title="Hollywood"
             items={trending}
             href="/movies/category/trending"
           />
@@ -65,6 +62,11 @@ export default async function HomePage() {
             title="Indian TV Shows"
             items={indianTV}
             href="/tv/indian"
+          />
+          <MediaRow
+            title="Hollywood TV Shows"
+            items={hollywoodTV}
+            href="/tv/hollywood"
           />
         </div>
       </div>

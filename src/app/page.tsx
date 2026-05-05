@@ -3,6 +3,10 @@
 // import { getMovies } from "@/features/movies/api/getMovies";
 // import { TMDBMovie } from "@/@types/movie.types";
 
+import { HeroSection } from "@/features/home/components/HeroSection";
+import { MediaRow } from "@/features/home/components/MediaRow";
+import { getMovies } from "@/features/movies/api/getMovies";
+
 // async function getInitialMovies(): Promise<TMDBMovie[]> {
 //   const data = await getMovies({ category: "trending" });
 //   return data.results ?? [];
@@ -21,26 +25,23 @@
 //     </>
 //   );
 // }
-// app/page.tsx
-
-import { HeroSection } from "@/features/home/components/HeroSection";
-import { MediaRow } from "@/features/home/components/MediaRow";
-import { fetchFromAPI } from "@/lib/tmdb";
 
 export default async function HomePage() {
-  const trendingMovies = await fetchFromAPI("/trending/movie/week");
-  const popularMovies = await fetchFromAPI("/movie/popular");
-  const trendingTV = await fetchFromAPI("/trending/tv/week");
+  const [trending, topRated, upcoming] = await Promise.all([
+    getMovies({ category: "trending" }),
+    getMovies({ category: "top_rated" }),
+    getMovies({ category: "upcoming" }),
+  ]);
 
-  const heroMovie = trendingMovies.results[0];
+  const heroMovie = trending.results[0];
 
   return (
     <main className="bg-black min-h-screen">
-      <HeroSection backdropPath={heroMovie?.backdrop_path} />
+      <HeroSection backdropPath={heroMovie?.backdrop_path ?? null} />
 
-      <MediaRow title="Trending Movies" items={trendingMovies.results} />
-      <MediaRow title="Popular Movies" items={popularMovies.results} />
-      <MediaRow title="Trending TV Shows" items={trendingTV.results} />
+      <MediaRow title="Trending" items={trending.results} />
+      <MediaRow title="Top Rated" items={topRated.results} />
+      <MediaRow title="Upcoming" items={upcoming.results} />
     </main>
   );
 }

@@ -10,8 +10,10 @@ export async function GET(
   { params }: { params: { path: string[] } },
 ) {
   const path = params.path.join("/");
+  const searchParams = req.nextUrl.searchParams.toString();
 
-  const url = `${BASE_URL}/${path}?api_key=${API_KEY}`;
+  //   const url = `${BASE_URL}/${path}?api_key=${API_KEY}`;
+  const url = `${BASE_URL}/${path}?api_key=${API_KEY}&${searchParams}`;
 
   try {
     const res = await fetch(url, {

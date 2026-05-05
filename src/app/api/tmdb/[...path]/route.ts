@@ -7,17 +7,19 @@ const BASE_URL = "https://api.themoviedb.org/3";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { path: string[] } },
+  context: { params: Promise<{ path: string[] }> },
 ) {
-  const path = params.path.join("/");
+  const { path } = await context.params; // ✅ IMPORTANT
+
+  const endpoint = path.join("/");
+
   const searchParams = req.nextUrl.searchParams.toString();
 
-  //   const url = `${BASE_URL}/${path}?api_key=${API_KEY}`;
-  const url = `${BASE_URL}/${path}?api_key=${API_KEY}&${searchParams}`;
+  const url = `${BASE_URL}/${endpoint}?api_key=${API_KEY}&${searchParams}`;
 
   try {
     const res = await fetch(url, {
-      next: { revalidate: 6000 }, // caching
+      next: { revalidate: 60 },
     });
 
     if (!res.ok) {
@@ -30,7 +32,7 @@ export async function GET(
     const data = await res.json();
 
     return NextResponse.json(data);
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 },

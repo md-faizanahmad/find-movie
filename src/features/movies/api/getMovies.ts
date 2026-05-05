@@ -1,5 +1,5 @@
 import { MovieCategory } from "@/@types/movie-category.types";
-import { Movie, PaginatedResponse } from "@/@types/movie.types";
+import { TMDBMovie, PaginatedResponse } from "@/@types/movie.types";
 import { apiClient } from "@/lib/api/client";
 
 interface GetMoviesParams {
@@ -25,7 +25,7 @@ function resolveEndpoint(category: MovieCategory): string {
 export async function getMovies({
   category,
   page = 1,
-}: GetMoviesParams): Promise<PaginatedResponse<Movie>> {
+}: GetMoviesParams): Promise<PaginatedResponse<TMDBMovie>> {
   const endpoint = resolveEndpoint(category);
 
   try {

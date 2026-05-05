@@ -14,13 +14,13 @@ export function MediaRow({ title, items, href = "#" }: Props) {
   return (
     <section className="group/row py-6 md:py-10">
       <div className="flex items-end justify-between px-6 mb-5 md:px-12 lg:px-16">
-        <h2 className="text-xl font-bold tracking-tight text-white md:text-2xl lg:text-3xl">
+        <h2 className="text-xl font-bold tracking-tight text-red-800 md:text-2xl lg:text-3xl">
           {title}
         </h2>
 
         <Link
           href={href}
-          className="flex items-center gap-1 text-xs font-bold uppercase tracking-widest text-neutral-400 transition-colors hover:text-blue-500 md:text-sm"
+          className="flex items-center gap-1 text-xs font-bold uppercase tracking-widest text-gray-500 transition-colors hover:text-red-500 md:text-sm"
         >
           Explore All
           <ChevronRight

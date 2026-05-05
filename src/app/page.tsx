@@ -47,8 +47,8 @@ export default async function HomePage() {
           -mt-20 on mobile and -mt-40 on desktop pulls rows up.
           Padding-bottom ensures the last row isn't cut off.
       */}
-      <div className="relative z-20 -mt-5 pb-20 md:-mt-20 lg:-mt-20">
-        <div className="space-y-2 md:space-y-6">
+      <div className="relative z-20 -mt-5 pb-20 md:-mt-10 lg:-mt-10">
+        <div className="space-y-2 md:space-y-6 bg-amber-50">
           <MediaRow
             title="Trending Now"
             items={trending?.results || []}

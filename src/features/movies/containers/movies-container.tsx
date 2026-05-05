@@ -3,17 +3,17 @@
 import { useState } from "react";
 import { FilterTabs } from "../components/filter-tabs";
 import MovieCardSkeleton from "@/shared/skeleton/movie-card-skeleton";
-import { Movie } from "@/@types/movie.types";
+import { TMDBMovie } from "@/@types/movie.types";
 import { MovieCategory } from "@/@types/movie-category.types";
 import { MovieCard } from "../components/movie-card";
 
 interface MoviesContainerProps {
-  initialMovies: Movie[];
+  initialMovies: TMDBMovie[];
 }
 
 export function MoviesContainer({ initialMovies }: MoviesContainerProps) {
   const [category, setCategory] = useState<MovieCategory>("trending");
-  const [movies, setMovies] = useState<Movie[]>(initialMovies);
+  const [movies, setMovies] = useState<TMDBMovie[]>(initialMovies);
   const [loading, setLoading] = useState(false);
 
   async function fetchMovies(nextCategory: MovieCategory) {

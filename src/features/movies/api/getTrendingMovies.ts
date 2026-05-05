@@ -1,4 +1,4 @@
-import { Movie, PaginatedResponse } from "@/@types/movie.types";
+import { TMDBMovie, PaginatedResponse } from "@/@types/movie.types";
 import { apiClient } from "@/lib/api/client";
 import { env } from "@/lib/config/env";
 
@@ -8,11 +8,11 @@ interface GetTrendingMoviesParams {
 
 export async function getTrendingMovies(
   params: GetTrendingMoviesParams = {},
-): Promise<PaginatedResponse<Movie>> {
+): Promise<PaginatedResponse<TMDBMovie>> {
   const { page = 1 } = params;
 
   try {
-    const response = await apiClient.get<PaginatedResponse<Movie>>(
+    const response = await apiClient.get<PaginatedResponse<TMDBMovie>>(
       "/trending/movie/day",
       {
         params: {

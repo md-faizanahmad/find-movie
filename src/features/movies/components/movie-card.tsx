@@ -2,11 +2,11 @@
 
 import Image from "next/image";
 import { Star, Play } from "lucide-react";
-import { Movie } from "@/@types/movie.types";
 import Link from "next/link";
+import { TMDBMovie } from "@/@types/movie.types";
 
 interface MovieCardProps {
-  movie: Movie;
+  movie: TMDBMovie;
 }
 
 // ✅ Client-safe constant (NO env usage here)

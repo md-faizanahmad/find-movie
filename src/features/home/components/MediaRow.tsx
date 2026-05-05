@@ -1,21 +1,64 @@
+// features/home/components/MediaRow.tsx
 import { TMDBMovie } from "@/@types/movie.types";
-import { MovieCard } from "@/features/movies/components/movie-card";
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
+import { MediaCard } from "./MediaCard";
 
 interface Props {
   title: string;
   items: TMDBMovie[];
+  href?: string; // Add link to the full category
 }
 
-export function MediaRow({ title, items }: Props) {
+export function MediaRow({ title, items, href = "#" }: Props) {
   return (
-    <div className="px-6 py-8">
-      <h2 className="text-xl font-semibold mb-4 text-white">{title}</h2>
+    <section className="group/row py-6 md:py-10">
+      <div className="flex items-end justify-between px-6 mb-5 md:px-12 lg:px-16">
+        <h2 className="text-xl font-bold tracking-tight text-white md:text-2xl lg:text-3xl">
+          {title}
+        </h2>
 
-      <div className="flex gap-4 overflow-x-scroll">
-        {items.map((item) => (
-          <MovieCard key={item.id} movie={item} />
-        ))}
+        <Link
+          href={href}
+          className="flex items-center gap-1 text-xs font-bold uppercase tracking-widest text-neutral-400 transition-colors hover:text-blue-500 md:text-sm"
+        >
+          Explore All
+          <ChevronRight
+            size={16}
+            className="transition-transform group-hover/row:translate-x-1"
+          />
+        </Link>
       </div>
-    </div>
+
+      {/* Horizontal Scroll Area */}
+      <div className="relative">
+        <div
+          className="
+          flex gap-3 overflow-x-auto px-6 pb-4 
+          scrollbar-hide md:gap-5 md:px-12 lg:px-16
+          [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden
+        "
+        >
+          {items.map((item) => (
+            <div
+              key={item.id}
+              className="min-w-35 flex-none sm:min-w-45 md:min-w-55 lg:min-w-65"
+            >
+              <MediaCard movie={item} />
+            </div>
+          ))}
+
+          {/* Visual "More" Card at the end */}
+          <Link
+            href={href}
+            className="flex min-w-35 flex-none items-center justify-center rounded-xl border border-neutral-800 bg-neutral-900/50 transition-colors hover:bg-neutral-800 sm:min-w-[180px]"
+          >
+            <span className="text-sm font-bold text-neutral-500">
+              View More
+            </span>
+          </Link>
+        </div>
+      </div>
+    </section>
   );
 }

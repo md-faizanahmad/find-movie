@@ -1,9 +1,9 @@
 import { Navbar } from "@/components/layout/navbar/Navbar";
 import { MoviesContainer } from "@/features/movies/containers/movies-container";
 import { getMovies } from "@/features/movies/api/getMovies";
-import { Movie } from "@/@types/movie.types";
+import { TMDBMovie } from "@/@types/movie.types";
 
-async function getInitialMovies(): Promise<Movie[]> {
+async function getInitialMovies(): Promise<TMDBMovie[]> {
   const data = await getMovies({ category: "trending" });
   return data.results ?? [];
 }

@@ -3,6 +3,7 @@
 import { Search, Home, TrendingUp, Star, Calendar, Film } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 import { useState } from "react";
+import Link from "next/link";
 
 export function Navbar() {
   const [active, setActive] = useState("Home");
@@ -20,14 +21,16 @@ export function Navbar() {
       <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
           {/* Logo */}
-          <div className="flex items-center gap-2 min-w-fit">
-            <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
-              <Film className="text-white w-5 h-5" />
+          <Link href="/">
+            <div className="flex items-center gap-2 min-w-fit">
+              <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
+                <Film className="text-white w-5 h-5" />
+              </div>
+              <h1 className="text-xl font-black tracking-tighter text-gray-900 hidden sm:block">
+                FIND<span className="text-blue-600">MOVIE</span>
+              </h1>
             </div>
-            <h1 className="text-xl font-black tracking-tighter text-gray-900 hidden sm:block">
-              FIND<span className="text-blue-600">MOVIE</span>
-            </h1>
-          </div>
+          </Link>
 
           {/* Search Bar - Responsive width */}
           <div className="flex-1 max-w-md relative group">

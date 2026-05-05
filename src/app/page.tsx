@@ -5,6 +5,7 @@
 
 import { HeroSection } from "@/features/home/components/HeroSection";
 import { MediaRow } from "@/features/home/components/MediaRow";
+import { getHomeData } from "@/features/home/services/home.service";
 import { getMovies } from "@/features/movies/api/getMovies";
 
 // async function getInitialMovies(): Promise<TMDBMovie[]> {
@@ -26,48 +27,49 @@ import { getMovies } from "@/features/movies/api/getMovies";
 //   );
 // }
 
-export default async function HomePage() {
-  const [trending, topRated, upcoming] = await Promise.all([
-    getMovies({ category: "trending" }),
-    getMovies({ category: "top_rated" }),
-    getMovies({ category: "upcoming" }),
-  ]);
+// src/app/page.tsx
 
-  const heroMovie = trending?.results?.[0] || null;
+export default async function HomePage() {
+  const { trending, bollywood, southIndian, indianTV } = await getHomeData();
+
+  const heroMovie = trending?.[0] || null;
 
   return (
     <main className="relative min-h-screen bg-black selection:bg-red-600/30">
       <HeroSection
-        backdropPath={heroMovie?.backdrop_path ?? null}
+        backdropPath={heroMovie?.backdrop ?? null}
         isLoading={!heroMovie}
       />
 
-      {/* 
-          Z-20 keeps this above the Hero image.
-          -mt-20 on mobile and -mt-40 on desktop pulls rows up.
-          Padding-bottom ensures the last row isn't cut off.
-      */}
       <div className="relative z-20 -mt-5 pb-20 md:-mt-10 lg:-mt-10">
-        <div className="space-y-2 md:space-y-6 bg-amber-50">
+        <div className="space-y-2 md:space-y-6">
           <MediaRow
             title="Trending Now"
-            items={trending?.results || []}
+            items={trending}
             href="/movies/category/trending"
           />
+
           <MediaRow
-            title="Critics' Choice"
-            items={topRated?.results || []}
-            href="/movies/category/top-rated"
+            title="Bollywood"
+            items={bollywood}
+            href="/movies/category/bollywood"
           />
+
           <MediaRow
-            title="Anticipated Releases"
-            items={upcoming?.results || []}
-            href="/movies/category/upcoming"
+            title="South Indian"
+            items={southIndian}
+            href="/movies/category/south"
+          />
+
+          <MediaRow
+            title="Indian TV Shows"
+            items={indianTV}
+            href="/tv/indian"
           />
         </div>
       </div>
 
-      {/* Premium Ambient Background */}
+      {/* Ambient Background */}
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
         <div className="absolute top-[-10%] left-[-10%] h-[50%] w-[50%] rounded-full bg-red-900/5 blur-[120px]" />
         <div className="absolute bottom-[-10%] right-[-10%] h-[50%] w-[50%] rounded-full bg-blue-900/5 blur-[120px]" />

@@ -1,19 +1,20 @@
-// features/home/components/MediaRow.tsx
-import { TMDBMovie } from "@/@types/movie.types";
+// src/features/home/components/MediaRow.tsx
+
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { MediaCard } from "./MediaCard";
+import { Media } from "../services/home.service";
 
 interface Props {
   title: string;
-  items: TMDBMovie[];
-  href?: string; // Add link to the full category
+  items: Media[];
+  href?: string;
 }
 
 export function MediaRow({ title, items, href = "#" }: Props) {
   return (
     <section className="group/row py-6 md:py-10">
-      <div className="flex items-end justify-between px-6 mb-5 md:px-12 lg:px-16">
+      <div className="mb-5 flex items-end justify-between px-6 md:px-12 lg:px-16">
         <h2 className="text-xl font-bold tracking-tight text-red-800 md:text-2xl lg:text-3xl">
           {title}
         </h2>
@@ -30,7 +31,6 @@ export function MediaRow({ title, items, href = "#" }: Props) {
         </Link>
       </div>
 
-      {/* Horizontal Scroll Area */}
       <div className="relative">
         <div
           className="
@@ -44,11 +44,10 @@ export function MediaRow({ title, items, href = "#" }: Props) {
               key={item.id}
               className="min-w-35 flex-none sm:min-w-45 md:min-w-55 lg:min-w-65"
             >
-              <MediaCard movie={item} />
+              <MediaCard item={item} />
             </div>
           ))}
 
-          {/* Visual "More" Card at the end */}
           <Link
             href={href}
             className="flex min-w-35 flex-none items-center justify-center rounded-xl border border-neutral-800 bg-neutral-900/50 transition-colors hover:bg-neutral-800 sm:min-w-45"

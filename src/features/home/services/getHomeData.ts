@@ -15,11 +15,17 @@ import { mergeAndSort } from "@/lib/utils/mergeAndSort";
 
 export interface Media {
   id: number;
+
+  mediaType: "movie" | "tv";
+
   title: string;
+
   poster: string | null;
   backdrop: string | null;
+
   rating: number;
   popularity: number;
+
   releaseDate: string;
 }
 
@@ -30,11 +36,16 @@ export interface Media {
 function mapMovie(movie: TMDBMovie): Media {
   return {
     id: movie.id,
+    mediaType: "movie",
+
     title: movie.title ?? "",
+
     poster: movie.poster_path ?? null,
     backdrop: movie.backdrop_path ?? null,
+
     rating: movie.vote_average ?? 0,
     popularity: movie.popularity ?? 0,
+
     releaseDate: movie.release_date ?? "",
   };
 }
@@ -42,11 +53,16 @@ function mapMovie(movie: TMDBMovie): Media {
 function mapTV(tv: TMDBTV): Media {
   return {
     id: tv.id,
+    mediaType: "tv",
+
     title: tv.name ?? "",
+
     poster: tv.poster_path ?? null,
     backdrop: tv.backdrop_path ?? null,
+
     rating: tv.vote_average ?? 0,
     popularity: tv.popularity ?? 0,
+
     releaseDate: tv.first_air_date ?? "",
   };
 }

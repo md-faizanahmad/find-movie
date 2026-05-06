@@ -15,6 +15,7 @@ export function PeopleHeroSlider({ people }: Props) {
   const [active, setActive] = useState(0);
 
   useEffect(() => {
+    if (!people.length) return;
     const interval = setInterval(() => {
       setActive((prev) => (prev + 1) % people.length);
     }, 5000);
@@ -23,10 +24,9 @@ export function PeopleHeroSlider({ people }: Props) {
   }, [people.length]);
 
   return (
-    <div className="absolute inset-0">
+    <div className="relative h-full w-full">
       {people.map((person, index) => {
         const isActive = index === active;
-
         const imageUrl = person.profile_path
           ? `${IMAGE_BASE_URL}${person.profile_path}`
           : null;
@@ -34,8 +34,8 @@ export function PeopleHeroSlider({ people }: Props) {
         return (
           <div
             key={person.id}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
-              isActive ? "opacity-100" : "opacity-0"
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              isActive ? "opacity-100 z-10" : "opacity-0 z-0"
             }`}
           >
             {imageUrl ? (
@@ -43,8 +43,9 @@ export function PeopleHeroSlider({ people }: Props) {
                 src={imageUrl}
                 alt={person.name}
                 fill
-                priority
-                className="object-cover"
+                priority={index === 0}
+                className="object-cover object-top" // People profiles look better with top-alignment
+                sizes="100vw"
               />
             ) : (
               <div className="h-full w-full bg-neutral-900" />

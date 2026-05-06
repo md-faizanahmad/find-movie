@@ -17,33 +17,20 @@ export default async function HomePage() {
 
       <div className="relative z-20 -mt-5 pb-20 md:-mt-6 lg:-mt-6">
         <div className="space-y-2 md:space-y-6">
-          <MediaRow
-            title="Hollywood"
-            items={trending}
-            href="/movies/category/trending"
-          />
+          <MediaRow title="Hollywood" items={trending} href="/movies" />
 
-          <MediaRow
-            title="Bollywood"
-            items={bollywood}
-            href="/movies/category/bollywood"
-          />
+          <MediaRow title="Bollywood" items={bollywood} href="/movies" />
 
-          <MediaRow
-            title="South Indian"
-            items={southIndian}
-            href="/movies/category/south"
-          />
-
-          <MediaRow
-            title="Indian TV Shows"
-            items={indianTV}
-            href="/tv/indian"
-          />
+          <MediaRow title="South Indian" items={southIndian} href="/movies" />
           <MediaRow
             title="Hollywood TV Shows"
             items={hollywoodTV}
             href="/tv/hollywood"
+          />
+          <MediaRow
+            title="Indian TV Shows"
+            items={indianTV}
+            href="/tv/indian"
           />
         </div>
       </div>

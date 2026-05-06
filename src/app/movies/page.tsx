@@ -32,9 +32,9 @@ export default async function MoviesPage({ searchParams }: Props) {
       <section className="relative z-20 -mt-24 space-y-10 px-4 pb-20 md:px-8 lg:px-16 max-w-450 mx-auto">
         {/* Discovery Header (Results Info + Filters) */}
         <header className="flex flex-col gap-8 border-b border-white/10 pb-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             {/* Title & Badge */}
-            <div className="space-y-2">
+            <div className="space-y-2 mb-4">
               <div className="flex items-center gap-3">
                 <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter italic">
                   Explore

@@ -28,9 +28,9 @@ export function Navbar() {
       href: "/tv",
     },
     {
-      name: "Actors",
+      name: "People",
       icon: Users,
-      href: "/actors",
+      href: "/people",
     },
   ];
 

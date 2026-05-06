@@ -1,9 +1,12 @@
+"use client";
+
 // src/features/home/components/MediaRow.tsx
 
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { MediaCard } from "./MediaCard";
 import { Media } from "../services/home.service";
+import { useRef } from "react";
 
 interface Props {
   title: string;
@@ -12,6 +15,19 @@ interface Props {
 }
 
 export function MediaRow({ title, items, href = "#" }: Props) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: "left" | "right") => {
+    if (!scrollRef.current) return;
+
+    const amount = 400;
+
+    scrollRef.current.scrollBy({
+      left: direction === "left" ? -amount : amount,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <section className="group/row py-6 md:py-10">
       <div className="mb-5 flex items-end justify-between px-6 md:px-12 lg:px-16">
@@ -32,17 +48,44 @@ export function MediaRow({ title, items, href = "#" }: Props) {
       </div>
 
       <div className="relative">
+        {/* Desktop Arrows */}
+        <button
+          onClick={() => scroll("left")}
+          className="absolute left-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-black/70 p-2 text-white backdrop-blur transition hover:bg-black md:flex"
+        >
+          <ChevronLeft size={22} />
+        </button>
+
+        <button
+          onClick={() => scroll("right")}
+          className="absolute right-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-black/70 p-2 text-white backdrop-blur transition hover:bg-black md:flex"
+        >
+          <ChevronRight size={22} />
+        </button>
+
+        {/* Scroll Container */}
         <div
+          ref={scrollRef}
           className="
-          flex gap-3 overflow-x-auto px-6 pb-4 
-          scrollbar-hide md:gap-5 md:px-12 lg:px-16
-          [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden
-        "
+            flex gap-3 overflow-x-auto scroll-smooth px-6 pb-4
+            snap-x snap-mandatory
+            scrollbar-hide
+            md:gap-5 md:px-12 lg:px-16
+            [-ms-overflow-style:none]
+            [scrollbar-width:none]
+            [&::-webkit-scrollbar]:hidden
+          "
         >
           {items.map((item) => (
             <div
               key={item.id}
-              className="min-w-35 flex-none sm:min-w-45 md:min-w-55 lg:min-w-65"
+              className="
+                min-w-35 flex-none
+                snap-start
+                sm:min-w-45
+                md:min-w-55
+                lg:min-w-65
+              "
             >
               <MediaCard item={item} />
             </div>
@@ -50,7 +93,13 @@ export function MediaRow({ title, items, href = "#" }: Props) {
 
           <Link
             href={href}
-            className="flex min-w-35 flex-none items-center justify-center rounded-xl border border-neutral-800 bg-neutral-900/50 transition-colors hover:bg-neutral-800 sm:min-w-45"
+            className="
+              flex min-w-35 flex-none snap-start
+              items-center justify-center rounded-xl
+              border border-neutral-800 bg-neutral-900/50
+              transition-colors hover:bg-neutral-800
+              sm:min-w-45
+            "
           >
             <span className="text-sm font-bold text-neutral-500">
               View More

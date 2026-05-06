@@ -16,52 +16,62 @@ interface Props {
 
 export default async function TVShowsPage({ searchParams }: Props) {
   const params = await searchParams;
-
   const language = params.language || "en";
-
   const sort = params.sort || "popularity.desc";
-
   const page = Number(params.page || 1);
 
-  const tvShows = await discoverTVShows({
-    language,
-    sortBy: sort,
-    page,
-  });
-
+  const tvShows = await discoverTVShows({ language, sortBy: sort, page });
   const hasResults = tvShows.results.length > 0;
 
   return (
-    <main className="min-h-screen bg-black text-white">
+    // Fixed overflow-x-hidden to prevent horizontal scroll on mobile
+    <main className="min-h-screen bg-black text-white overflow-x-hidden">
       <TVHero shows={tvShows.results.slice(0, 5)} />
 
-      <section className="relative z-20 -mt-20 space-y-6 px-4 pb-20 md:px-8 lg:px-12">
-        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <TVRegionFilter />
+      {/* 
+          1. Increased margin-top slightly to -mt-16 to avoid search bar overlap 
+          2. Added z-index to ensure dropdowns float correctly
+      */}
+      <section className="relative z-30 -mt-16 space-y-8 px-4 pb-20 md:px-8 lg:px-12 max-w-500 mx-auto">
+        {/* Align Filter and Sorting in a better row */}
+        <div className="flex flex-wrap items-center justify-between gap-4 bg-neutral-900/80 backdrop-blur-md p-3 md:p-4 rounded-2xl border border-white/5 shadow-2xl">
+          <div className="flex flex-1 items-center gap-2 min-w-0">
+            <TVRegionFilter />
+            {/* Divider hidden on very small screens if needed */}
+            <div className="w-[1px] h-6 bg-white/10 mx-1 hidden sm:block" />
+            <TVSortDropdown />
+          </div>
 
-          <TVSortDropdown />
-        </div>
-
-        <div className="flex items-center justify-between mt-8 md:mt-0 lg:mt-0">
-          <div>
-            <h2 className="text-2xl font-bold">TV Shows</h2>
-
-            <p className="text-sm text-black  lg:text-neutral-400  md:text-neutral-400 ">
-              {tvShows.total_results.toLocaleString()} titles found
+          <div className="hidden md:block text-right">
+            <p className="text-xs font-bold uppercase tracking-widest text-neutral-500">
+              {tvShows.total_results.toLocaleString()} Results
             </p>
           </div>
         </div>
 
+        {/* Mobile-only results text - fixed text-black to text-neutral-400 */}
+        <div className="md:hidden">
+          <h2 className="text-xl font-bold italic uppercase tracking-tighter">
+            TV Series
+          </h2>
+          <p className="text-sm text-neutral-400">
+            {tvShows.total_results.toLocaleString()} titles found
+          </p>
+        </div>
+
+        {/* Results Logic */}
         {hasResults ? (
-          <>
+          <div className="space-y-10">
             <TVGrid shows={tvShows.results} />
 
-            <TVPagination
-              currentPage={tvShows.page}
-              totalPages={tvShows.total_pages}
-              language={language}
-            />
-          </>
+            <div className="pt-6 border-t border-white/5">
+              <TVPagination
+                currentPage={tvShows.page}
+                totalPages={tvShows.total_pages}
+                language={language}
+              />
+            </div>
+          </div>
         ) : (
           <TVEmptyState />
         )}

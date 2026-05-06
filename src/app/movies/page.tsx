@@ -33,7 +33,7 @@ export default async function MoviesPage({ searchParams }: Props) {
           1. -mt-16 provides enough space so the filters don't cover the Hero search bar.
           2. z-30 ensures dropdown menus appear above the movie cards.
       */}
-      <section className="relative z-30 -mt-16 space-y-8 px-4 pb-20 md:px-8 lg:px-12 max-w-500 mx-auto">
+      <section className="relative z-30 -mt-12 space-y-8 px-4 pb-20 md:px-8 lg:px-12 max-w-500 mx-auto">
         {/* Unified Filter/Sort Bar */}
         <div className="flex flex-wrap items-center justify-between gap-4 bg-neutral-900/80 backdrop-blur-md p-3 md:p-4 rounded-2xl border border-white/5 shadow-2xl">
           <div className="flex flex-1 items-center gap-2 min-w-0">

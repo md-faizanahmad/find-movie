@@ -15,7 +15,7 @@ export default async function HomePage() {
         isLoading={!heroMovie}
       />
 
-      <div className="relative z-20 -mt-5 pb-20 md:-mt-8 lg:-mt-8">
+      <div className="relative z-20 -mt-5 pb-20 md:-mt-6 lg:-mt-6">
         <div className="space-y-2 md:space-y-6">
           <MediaRow
             title="Hollywood"

@@ -7,23 +7,36 @@ interface Props {
 
 export function DiscoverHero({ movies }: Props) {
   return (
-    <section className="relative h-[85vh] overflow-hidden mt-14">
-      <DiscoverHeroSlider movies={movies} />
+    <section className="relative h-[80vh] md:h-[90vh] w-full overflow-hidden bg-black">
+      {/* 1. The Background Slider */}
+      <div className="absolute inset-0 z-0">
+        <DiscoverHeroSlider movies={movies} />
+      </div>
 
-      <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-black/30" />
+      {/* 2. Cinematic Overlays */}
+      {/* Top Vignette (to blend with Nav) */}
+      <div className="absolute inset-0 z-10 bg-linear-to-b from-black via-transparent to-transparent opacity-80" />
+      {/* Bottom Blackout (to blend with Content) */}
+      <div className="absolute inset-0 z-10 bg-linear-to-t from-black via-black/20 to-transparent" />
+      {/* Overall Darken for Text Readability */}
+      <div className="absolute inset-0 z-10 bg-black/30" />
 
-      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center px-4 text-center">
-        <h1 className="max-w-4xl text-4xl font-black md:text-6xl lg:text-7xl">
-          Discover Movies From Around The World
-        </h1>
+      {/* 3. Content Container */}
+      <div className="relative z-20 flex h-full flex-col items-center justify-center px-6 text-center pt-16 md:pt-20">
+        <div className="max-w-5xl space-y-4">
+          <h1 className="text-4xl font-black tracking-tighter sm:text-5xl md:text-7xl lg:text-8xl uppercase italic leading-[0.9]">
+            Discover Movies <br className="hidden md:block" />
+            <span className="text-red-600">Around The World</span>
+          </h1>
 
-        <p className="mt-4 max-w-2xl text-sm text-neutral-300 md:text-lg">
-          Explore trending Hollywood, Bollywood, Korean, Japanese, Spanish,
-          Tamil, Telugu, and global cinema.
-        </p>
+          <p className="mx-auto max-w-xl text-balance text-sm font-medium text-neutral-300 md:text-xl md:leading-relaxed">
+            Explore trending Hollywood, Bollywood, Korean, Japanese, and global
+            cinema in one place.
+          </p>
 
-        <div className="mt-8 w-full max-w-2xl">
-          <DiscoverSearch />
+          <div className="mx-auto mt-10 w-full max-w-2xl transform transition-all hover:scale-[1.01] active:scale-[0.99]">
+            <DiscoverSearch />
+          </div>
         </div>
       </div>
     </section>

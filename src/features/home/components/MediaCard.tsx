@@ -26,7 +26,7 @@ export function MediaCard({ item }: MediaCardProps) {
       className="group block w-full min-w-0 outline-none"
     >
       {/* Poster */}
-      <div className="relative aspect-[2/3] w-full overflow-hidden rounded-xl bg-neutral-900 ring-offset-black transition-all duration-500 group-hover:ring-2 group-hover:ring-red-600/80 group-hover:ring-offset-2 md:group-hover:ring-offset-4">
+      <div className="relative aspect-2/3 w-full overflow-hidden rounded-xl bg-neutral-900 ring-offset-black transition-all duration-500 group-hover:ring-2 group-hover:ring-red-600/80 group-hover:ring-offset-2 md:group-hover:ring-offset-4">
         {imageUrl ? (
           <Image
             src={imageUrl}

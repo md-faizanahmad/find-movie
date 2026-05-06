@@ -30,6 +30,11 @@ export type TMDBMovieDetailsResponse = {
   runtime: number;
   release_date: string;
   vote_average: number;
+  name?: string;
+
+  first_air_date?: string;
+
+  episode_run_time?: number[];
 
   // 🔥 REQUIRED (because of append_to_response)
 
@@ -62,17 +67,6 @@ export type Genre = {
   name: string;
 };
 
-// export type MovieDetails = {
-//   title: string;
-//   backdrop_path: string;
-//   tagline: string;
-//   poster_path: string;
-//   overview: string;
-//   genres: Genre[];
-//   runtime: number;
-//   release_date: string;
-//   vote_average: number;
-// };
 export type CastMember = {
   id: number;
   name: string;

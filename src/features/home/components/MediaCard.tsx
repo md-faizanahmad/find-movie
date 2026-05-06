@@ -20,7 +20,7 @@ export function MediaCard({ item }: MediaCardProps) {
 
   return (
     <Link
-      href={`/movies/${item.id}`} // ⚠️ we'll fix this later for TV
+      href={`/${item.mediaType}/${item.id}`} // ⚠️ we'll fix this later for TV
       className="group block w-35 flex-none outline-none md:w-50 lg:w-60"
     >
       {/* Image Container */}

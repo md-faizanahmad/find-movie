@@ -7,7 +7,7 @@ interface Props {
 
 export function DiscoverHero({ movies }: Props) {
   return (
-    <section className="relative h-[85vh] overflow-hidden">
+    <section className="relative h-[85vh] overflow-hidden mt-10">
       <DiscoverHeroSlider movies={movies} />
 
       <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-black/30" />

@@ -25,7 +25,7 @@ export function Navbar() {
     {
       name: "TV Shows",
       icon: Tv,
-      href: "/tv-shows",
+      href: "/tv",
     },
     {
       name: "Actors",

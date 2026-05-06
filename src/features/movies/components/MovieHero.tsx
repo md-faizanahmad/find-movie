@@ -25,14 +25,14 @@ export function MovieHero({
   if (!backdrop_path) return null;
 
   return (
-    <section className="relative h-[60vh] md:h-[80vh] w-full overflow-hidden bg-black mt-15">
+    <section className="relative h-[60vh] md:h-[80vh] w-full overflow-hidden bg-black ">
       {/* 1. Backdrop Image */}
       <Image
         src={`${BACKDROP_BASE}${backdrop_path}`}
         alt={title}
         fill
         priority
-        className={`object-cover transition-opacity duration-1000 ${
+        className={`object-cover transition-opacity duration-1000 mt-19 ${
           isVideoLoaded ? "opacity-0" : "opacity-100"
         }`}
         sizes="100vw"

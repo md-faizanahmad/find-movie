@@ -4,6 +4,7 @@ import { DiscoverHero } from "@/features/discover/components/DiscoverHero";
 import { MovieGrid } from "@/features/discover/components/MovieGrid";
 import { RegionFilter } from "@/features/discover/components/RegionFilter";
 import { SortDropdown } from "@/features/discover/components/SortDropdown";
+import Link from "next/link";
 
 interface Props {
   searchParams: Promise<{
@@ -39,6 +40,25 @@ export default async function MoviesPage({ searchParams }: Props) {
         </div>
 
         <MovieGrid movies={movies.results} />
+        <div className="flex justify-center gap-4 pt-10">
+          {page > 1 && (
+            <Link
+              href={`/movies?language=${language}&page=${page - 1}`}
+              className="rounded-xl bg-neutral-900 px-5 py-3"
+            >
+              Previous
+            </Link>
+          )}
+
+          {page < movies.total_pages && (
+            <Link
+              href={`/movies?language=${language}&page=${page + 1}`}
+              className="rounded-xl bg-red-600 px-5 py-3"
+            >
+              Next
+            </Link>
+          )}
+        </div>
       </section>
     </main>
   );

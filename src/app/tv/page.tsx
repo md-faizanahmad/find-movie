@@ -32,7 +32,7 @@ export default async function TVShowsPage({ searchParams }: Props) {
           1. Increased margin-top slightly to -mt-16 to avoid search bar overlap 
           2. Added z-index to ensure dropdowns float correctly
       */}
-      <section className="relative z-30 -mt-12 space-y-8 px-4 pb-20 md:px-8 lg:px-12 max-w-500 mx-auto">
+      <section className="relative z-30 -mt-2 space-y-8 px-4 pb-20 md:px-8 lg:px-12 max-w-500 mx-auto">
         {/* Align Filter and Sorting in a better row */}
         <div className="flex flex-wrap items-center justify-between gap-4 bg-neutral-900/80 backdrop-blur-md p-3 md:p-4 rounded-2xl border border-white/5 shadow-2xl">
           <div className="flex flex-1 items-center gap-2 min-w-0">

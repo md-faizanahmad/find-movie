@@ -29,7 +29,7 @@ export function MediaRow({ title, items, href = "#" }: Props) {
   };
 
   return (
-    <section className="group/row py-6 md:py-10">
+    <section className="group/row py-6 px-6 md:py-10 md:px-6">
       <div className="mb-5 flex items-end justify-between px-6 md:px-12 lg:px-16">
         <h2 className="text-xl font-bold tracking-tight text-red-800 md:text-2xl lg:text-3xl">
           {title}

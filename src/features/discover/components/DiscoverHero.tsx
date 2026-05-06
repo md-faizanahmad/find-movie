@@ -2,7 +2,7 @@ import { DiscoverHeroSlider } from "./DiscoverHeroSlider";
 import { DiscoverSearch } from "./DiscoverSearch";
 
 interface Props {
-  movies: any[];
+  movies: Movie;
 }
 
 export function DiscoverHero({ movies }: Props) {

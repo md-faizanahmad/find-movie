@@ -49,7 +49,8 @@ export function MovieGrid({ movies }: Props) {
                       sm:grid-cols-3 
                       md:grid-cols-4 md:gap-x-6 
                       lg:grid-cols-5 
-                      xl:grid-cols-6 
+                      xl:grid-cols-5
+                      xl:gap-3
                       2xl:grid-cols-8 
                       max-w-500 mx-auto"
       >

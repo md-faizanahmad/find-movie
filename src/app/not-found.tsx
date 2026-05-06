@@ -43,14 +43,14 @@ export default function NotFound() {
             <Home size={20} />
             Go Home
           </Link>
-
+          {/* 
           <button
             onClick={() => window.history.back()}
             className="flex items-center gap-2 px-8 py-4 bg-neutral-900 text-white rounded-full font-bold border border-white/10 transition-colors hover:bg-neutral-800"
           >
             <MoveLeft size={20} />
             Go Back
-          </button>
+          </button> */}
         </div>
       </div>
 

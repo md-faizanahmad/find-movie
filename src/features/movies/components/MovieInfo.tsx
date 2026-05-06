@@ -7,11 +7,13 @@ interface Props {
 }
 
 const POSTER_BASE = "https://image.tmdb.org/t/p/w500";
+const BLUR_DATA =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=";
 
 export function MovieInfo({ poster_path, overview, genres }: Props) {
   return (
-    <section className="flex flex-col md:flex-row gap-10 p-8">
-      {/* Poster Container */}
+    <section className="flex flex-col md:flex-row gap-10 p-8 bg-amber-50">
+      {/* Poster Section */}
       {poster_path && (
         <div className="mx-auto md:mx-0 w-64 shrink-0 transition-transform duration-300 hover:scale-[1.02]">
           <Image
@@ -20,38 +22,42 @@ export function MovieInfo({ poster_path, overview, genres }: Props) {
             width={256}
             height={384}
             className="rounded-2xl shadow-2xl object-cover border border-white/10"
-            priority={false}
             placeholder="blur"
-            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+            blurDataURL={BLUR_DATA}
           />
         </div>
       )}
 
-      {/* Details Container */}
+      {/* Details Section */}
       <div className="flex flex-col justify-center space-y-8">
         <div className="space-y-3">
-          <h2 className="text-2xl font-bold text-white tracking-tight">
+          <h2 className="text-2xl font-bold text-red-700 tracking-tight">
             Overview
           </h2>
-          <p className="text-gray-400 leading-relaxed text-lg max-w-3xl">
+          <p className="text-gray-600 leading-relaxed text-lg max-w-3xl">
             {overview || "No overview available."}
           </p>
         </div>
 
-        {/* Genre Badges */}
+        {/* Genre List */}
         <div className="flex gap-2 flex-wrap">
           {genres.map((name) => (
-            <span
-              key={name}
-              className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 
-                         text-gray-300 text-sm font-medium hover:bg-white/10 
-                         transition-colors cursor-default"
-            >
-              {name}
-            </span>
+            <GenreBadge key={name} name={name} />
           ))}
         </div>
       </div>
     </section>
+  );
+}
+
+function GenreBadge({ name }: { name: string }) {
+  return (
+    <span
+      className="px-4 py-1.5 rounded-full bg-white border border-gray-200 
+                     text-gray-700 text-sm font-medium hover:bg-gray-50 
+                     transition-colors cursor-default shadow-sm"
+    >
+      {name}
+    </span>
   );
 }

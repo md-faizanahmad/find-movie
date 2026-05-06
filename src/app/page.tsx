@@ -1,30 +1,7 @@
-// import { Navbar } from "@/components/layout/navbar/Navbar";
-// import { MoviesContainer } from "@/features/movies/containers/movies-container";
-// import { getMovies } from "@/features/movies/api/getMovies";
-// import { TMDBMovie } from "@/@types/movie.types";
-
 import { HeroSection } from "@/features/home/components/HeroSection";
 import { MediaRow } from "@/features/home/components/MediaRow";
 import { getHomeData } from "@/features/home/services/home.service";
 
-// async function getInitialMovies(): Promise<TMDBMovie[]> {
-//   const data = await getMovies({ category: "trending" });
-//   return data.results ?? [];
-// }
-
-// export default async function HomePage() {
-//   const movies = await getInitialMovies();
-
-//   return (
-//     <>
-//       <Navbar />
-
-//       <main className="max-w-7xl mx-auto px-6 py-8">
-//         <MoviesContainer initialMovies={movies} />
-//       </main>
-//     </>
-//   );
-// }
 export default async function HomePage() {
   const { trending, bollywood, southIndian, indianTV, hollywoodTV } =
     await getHomeData();
@@ -38,7 +15,7 @@ export default async function HomePage() {
         isLoading={!heroMovie}
       />
 
-      <div className="relative z-20 -mt-5 pb-20 md:-mt-15 lg:-mt-15">
+      <div className="relative z-20 -mt-5 pb-20 md:-mt-8 lg:-mt-8">
         <div className="space-y-2 md:space-y-6">
           <MediaRow
             title="Hollywood"

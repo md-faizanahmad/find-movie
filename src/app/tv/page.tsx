@@ -42,11 +42,11 @@ export default async function TVShowsPage({ searchParams }: Props) {
           <TVSortDropdown />
         </div>
 
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mt-8 md:mt-0 lg:mt-0">
           <div>
             <h2 className="text-2xl font-bold">TV Shows</h2>
 
-            <p className="text-sm text-neutral-400">
+            <p className="text-sm text-black  lg:text-neutral-400  md:text-neutral-400 ">
               {tvShows.total_results.toLocaleString()} titles found
             </p>
           </div>

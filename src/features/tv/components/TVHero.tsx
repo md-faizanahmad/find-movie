@@ -7,7 +7,7 @@ interface Props {
 
 export function TVHero({ shows }: Props) {
   return (
-    <section className="relative h-[85vh] overflow-hidden mt-10">
+    <section className="relative h-[85vh] overflow-hidden mt-14">
       <TVHeroSlider shows={shows} />
 
       <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-black/20" />

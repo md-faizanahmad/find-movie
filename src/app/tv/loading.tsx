@@ -1,0 +1,15 @@
+import { TVLoadingSkeleton } from "@/features/tv/components/TVLoadingSkeleton";
+
+export default function Loading() {
+  return (
+    <main className="min-h-screen bg-black px-4 py-10 text-white md:px-8 lg:px-12">
+      <div className="mb-8 space-y-3">
+        <div className="h-10 w-64 animate-pulse rounded bg-neutral-900" />
+
+        <div className="h-4 w-40 animate-pulse rounded bg-neutral-900" />
+      </div>
+
+      <TVLoadingSkeleton />
+    </main>
+  );
+}

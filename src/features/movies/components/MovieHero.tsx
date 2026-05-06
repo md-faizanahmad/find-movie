@@ -25,7 +25,7 @@ export function MovieHero({
   if (!backdrop_path) return null;
 
   return (
-    <section className="relative h-[60vh] md:h-[80vh] w-full overflow-hidden bg-black">
+    <section className="relative h-[60vh] md:h-[80vh] w-full overflow-hidden bg-black mt-8">
       {/* 1. Backdrop Image */}
       <Image
         src={`${BACKDROP_BASE}${backdrop_path}`}

@@ -43,7 +43,7 @@ export default async function PeoplePage({ searchParams }: Props) {
 
       <section className="relative z-20 -mt-20 space-y-8 px-4 pb-20 md:px-8 lg:px-12">
         {/* Responsive Header & Filters Container */}
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div className="flex flex-col gap-6 mt-4 md:flex-row md:items-end md:justify-between">
           {/* Left Side: Title and TOTAL Count */}
           <div className="space-y-1">
             <h2 className="text-2xl font-black uppercase tracking-tighter md:text-4xl">

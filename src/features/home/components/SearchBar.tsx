@@ -1,62 +1,134 @@
 "use client";
 
-import { Search } from "lucide-react"; // Using lucide-react for a premium thin-stroke icon
+import Image from "next/image";
+import Link from "next/link";
+import { Search, Loader2 } from "lucide-react";
+import { useEffect, useState } from "react";
+
+import { TMDBSearchResult } from "@/@types/search.types";
+
+const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w185";
 
 export function SearchBar() {
-  return (
-    <form
-      role="search"
-      aria-label="Site search"
-      onSubmit={(e) => e.preventDefault()}
-      className="group relative w-full max-w-2xl"
-    >
-      <div className="relative flex items-center">
-        {/* Search Icon - Positioned Absolutely */}
-        <div className="absolute left-4 z-20 text-neutral-400 transition-colors group-focus-within:text-blue-500">
-          <Search size={20} strokeWidth={2.5} />
-        </div>
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState<TMDBSearchResult[]>([]);
+  const [loading, setLoading] = useState(false);
 
-        {/* The Input Field */}
+  useEffect(() => {
+    const delayDebounce = setTimeout(async () => {
+      if (!query.trim()) {
+        setResults([]);
+        return;
+      }
+
+      try {
+        setLoading(true);
+
+        const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
+
+        const data = await res.json();
+
+        setResults(data.results || []);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    }, 400);
+
+    return () => clearTimeout(delayDebounce);
+  }, [query]);
+
+  return (
+    <div className="relative w-full max-w-2xl">
+      {/* Input */}
+      <div className="relative">
+        <Search
+          className="absolute top-1/2 left-4 z-10 -translate-y-1/2 text-neutral-400"
+          size={20}
+        />
+
         <input
           type="search"
-          name="q"
-          id="search-input"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
           placeholder="Search movies, TV shows, actors..."
-          aria-label="Search movies and TV shows"
-          aria-required="false"
           className="
-            w-full rounded-xl border border-white/10 
-            bg-neutral-900/60 py-4 pr-6 pl-12 
-            text-base font-medium text-white 
-            placeholder-neutral-500 backdrop-blur-md 
-            transition-all duration-300
-            
-            /* Focus State - Prime/Netflix Inspired */
-            focus:border-blue-500/50 focus:bg-neutral-900/80 focus:ring-4 focus:ring-blue-500/20 focus:outline-none
-            
-            /* Responsive Sizing */
-            md:py-5 md:text-lg
-            
-            /* Mobile Optimization */
-            appearance-none
+            w-full rounded-2xl border border-white/10
+            bg-neutral-900/80 py-4 pr-6 pl-12
+            text-white placeholder:text-neutral-500
+            backdrop-blur-xl outline-none
+            transition-all
+            focus:border-blue-500/50
+            focus:ring-4 focus:ring-blue-500/20
           "
         />
 
-        {/* Keyboard Shortcut Indicator (Desktop Only) */}
-        <div className="absolute right-4 hidden items-center space-x-1 md:flex">
-          <kbd className="flex h-6 items-center rounded border border-neutral-700 bg-neutral-800 px-1.5 font-sans text-[10px] font-medium text-neutral-400">
-            ⌘
-          </kbd>
-          <kbd className="flex h-6 items-center rounded border border-neutral-700 bg-neutral-800 px-1.5 font-sans text-[10px] font-medium text-neutral-400">
-            K
-          </kbd>
-        </div>
+        {loading && (
+          <Loader2
+            className="absolute top-1/2 right-4 -translate-y-1/2 animate-spin text-neutral-400"
+            size={18}
+          />
+        )}
       </div>
 
-      {/* Hidden Submit for Screen Readers */}
-      <button type="submit" className="sr-only">
-        Search
-      </button>
-    </form>
+      {/* Results */}
+      {results.length > 0 && (
+        <div
+          className="
+            absolute top-full z-50 mt-3
+            max-h-[70vh] w-full overflow-y-auto
+            rounded-2xl border border-white/10
+            bg-neutral-950/95 backdrop-blur-xl
+            shadow-2xl
+          "
+        >
+          {results.map((item) => {
+            const title = item.title || item.name;
+
+            const image = item.poster_path || item.profile_path;
+
+            const href =
+              item.media_type === "movie"
+                ? `/movie/${item.id}`
+                : item.media_type === "tv"
+                  ? `/tv/${item.id}`
+                  : `/person/${item.id}`;
+
+            return (
+              <Link
+                key={`${item.media_type}-${item.id}`}
+                href={href}
+                className="
+                  flex items-center gap-4
+                  border-b border-white/5
+                  p-4 transition-colors
+                  hover:bg-white/5
+                "
+              >
+                <div className="relative h-20 w-14 overflow-hidden rounded-lg bg-neutral-800">
+                  {image ? (
+                    <Image
+                      src={`${IMAGE_BASE_URL}${image}`}
+                      alt={title || "media"}
+                      fill
+                      className="object-cover"
+                    />
+                  ) : null}
+                </div>
+
+                <div className="min-w-0 flex-1">
+                  <h3 className="truncate font-semibold text-white">{title}</h3>
+
+                  <p className="mt-1 text-sm capitalize text-neutral-400">
+                    {item.media_type}
+                  </p>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      )}
+    </div>
   );
 }

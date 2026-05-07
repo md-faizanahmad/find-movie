@@ -5,6 +5,7 @@ import { MovieGrid } from "@/features/discover/components/MovieGrid";
 import { RegionFilter } from "@/features/discover/components/RegionFilter";
 import { SortDropdown } from "@/features/discover/components/SortDropdown";
 import { Pagination } from "@/shared/Pagination";
+import { ResultCounter } from "@/shared/ResultCounter";
 
 interface Props {
   searchParams: Promise<{
@@ -36,28 +37,23 @@ export default async function MoviesPage({ searchParams }: Props) {
       <section className="relative z-30 -mt-12 space-y-8 px-4 pb-20 md:px-8 lg:px-12 max-w-500 mx-auto">
         {/* Unified Filter/Sort Bar */}
         <div className="flex flex-col gap-4 p-4  shadow-2xl md:flex-row md:items-center md:justify-between md:p-3">
-          {/* Filter Group: Stacks on mobile, inline on desktop */}
-          <div className="flex flex-col gap-3 w-full sm:flex-row sm:items-center md:w-auto md:flex-1">
-            {/* Region Filter - Priority 1 */}
+          {/* Filter Group */}
+          <div className="flex flex-col gap-3 w-full sm:flex-row sm:items-center md:w-auto md:flex-1 order-2 md:order-1">
             <div className="w-full sm:w-auto">
               <RegionFilter />
             </div>
-
-            {/* Vertical Divider: Hidden on mobile stack, shown on horizontal layout */}
             <div className="hidden sm:block w-px h-6 bg-white/10 mx-1" />
-
-            {/* Sort Dropdown - Priority 2 */}
-            <div className="w-full sm:w-auto mb-1">
+            <div className="w-full sm:w-auto">
               <SortDropdown />
             </div>
           </div>
 
-          {/* Results Count: Hidden on small mobile, shown from md up */}
-          <div className="hidden md:block shrink-0">
-            <div className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-xl border border-white/5">
+          {/* Results Count - Now visible on mobile with counting effect */}
+          <div className="shrink-0 order-1 md:order-2">
+            <div className="flex items-center justify-center md:justify-end gap-2 px-4 py-2 bg-white/5 rounded-xl border border-white/5 md:bg-transparent md:border-none md:px-0">
               <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
               <p className="text-[10px] font-black uppercase tracking-[0.2em] text-neutral-400">
-                {movies.total_results.toLocaleString()} Movies
+                <ResultCounter total={movies.total_results} /> Movies Found
               </p>
             </div>
           </div>

@@ -36,6 +36,7 @@ export function TVHero({ shows }: Props) {
       {/* 1. Background TV Slider */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 z-10 bg-linear-to-b from-black via-transparent to-transparent opacity-90" />
+        <div className="absolute inset-0 z-10 bg-linear-to-b from-black via-transparent to-transparent opacity-90" />
         <TVHeroSlider shows={shows} />
       </div>
 

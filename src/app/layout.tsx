@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/navbar/Navbar";
@@ -12,6 +12,15 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+// Viewport settings for mobile optimization and theme coloring
+export const viewport: Viewport = {
+  themeColor: "#000000",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false, // Prevents accidental zooming on mobile search inputs
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://find-movie-gamma.vercel.app"),
@@ -32,7 +41,16 @@ export const metadata: Metadata = {
     "cinema",
     "latest movies",
     "FindMovie",
+    "watch trailers",
+    "actor biographies",
+    "movie discovery",
   ],
+
+  // Essential for browser tab & bookmark styling
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png", // Recommended size 180x180
+  },
 
   openGraph: {
     title: "FindMovie – Discover Trending Movies & Details",
@@ -42,10 +60,10 @@ export const metadata: Metadata = {
     siteName: "FindMovie",
     images: [
       {
-        url: "/og-image.png", // you should create this later
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "FindMovie – Discover Movies",
+        alt: "FindMovie – Movie Discovery Platform",
       },
     ],
     locale: "en_US",
@@ -57,11 +75,19 @@ export const metadata: Metadata = {
     title: "FindMovie – Discover Movies",
     description: "Explore trending movies, ratings, and detailed insights.",
     images: ["/og-image.png"],
+    creator: "@yourhandle", // Add your Twitter handle
   },
 
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
@@ -73,11 +99,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="bg-black text-white selection:bg-red-600/30 min-h-screen font-sans antialiased overflow-x-hidden">
         <Navbar />
-        {children}
+        {/* Added a container wrapper to ensure footer-push works if you add a footer later */}
+        <main className="grow">{children}</main>
       </body>
     </html>
   );

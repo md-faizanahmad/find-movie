@@ -77,7 +77,7 @@ export function Navbar() {
           </nav>
 
           {/* Profile Placeholder */}
-          <div className="hidden h-8 w-8 rounded-full border border-neutral-700 bg-neutral-800 md:block" />
+          {/* <div className="hidden h-8 w-8 rounded-full border border-neutral-700 bg-neutral-800 md:block" /> */}
         </div>
       </header>
 

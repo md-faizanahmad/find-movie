@@ -29,6 +29,9 @@ const strongAdultKeywords = [
   "nudity",
   "uncensored",
   "18+",
+  "sex play",
+  "sex, party and lies",
+  "how to have sex",
 ];
 
 const mediumAdultKeywords = [
@@ -37,6 +40,7 @@ const mediumAdultKeywords = [
   "sensual",
   "sexual",
   "sex",
+  "sex play",
   "affair",
   "mistress",
   "lust",
@@ -45,6 +49,8 @@ const mediumAdultKeywords = [
   "desire",
   "passion",
   "provocative",
+  "sex, party and lies",
+  "how to have sex",
 ];
 
 const suspiciousGenres = [

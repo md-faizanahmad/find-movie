@@ -13,11 +13,11 @@ export function PersonHero({ person }: Props) {
 
   return (
     <section className="relative overflow-hidden border-b border-white/5 bg-neutral-950">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black" />
+      <div className="absolute inset-0 bg-linear-to-b from-transparent via-black/40 to-black" />
 
       <div className="relative mx-auto flex max-w-7xl flex-col gap-10 px-4 py-24 md:flex-row md:items-end md:px-8 lg:px-12">
         {/* Image */}
-        <div className="relative mx-auto aspect-[2/3] w-60 overflow-hidden rounded-3xl border border-white/10 bg-neutral-900 md:mx-0 md:w-80">
+        <div className="relative mx-auto aspect-2/3 w-60 overflow-hidden rounded-3xl border border-white/10 bg-neutral-900 md:mx-0 md:w-80">
           {imageUrl ? (
             <Image
               src={imageUrl}

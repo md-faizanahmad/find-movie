@@ -17,7 +17,7 @@ export function PersonGallery({ images }: Props) {
         {images.slice(0, 8).map((image, index) => (
           <div
             key={index}
-            className="relative aspect-[2/3] overflow-hidden rounded-2xl"
+            className="relative aspect-2/3 overflow-hidden rounded-2xl"
           >
             <Image
               src={`${IMAGE_BASE_URL}/w500${image.file_path}`}

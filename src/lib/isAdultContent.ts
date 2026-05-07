@@ -32,6 +32,17 @@ const strongAdultKeywords = [
   "sex play",
   "sex, party and lies",
   "how to have sex",
+  "phone sex",
+  "Safe sex",
+  "Sex",
+  "Sex & More",
+  "the sex trip",
+  "Sex Rider: Wet Highway",
+  "Charmsukh",
+  "Palang Tod",
+  "Shanthi Appuram Nithya",
+  "Kunwari Dulhan",
+  "GGS - Ganteng-Ganteng Sange",
 ];
 
 const mediumAdultKeywords = [
@@ -51,6 +62,12 @@ const mediumAdultKeywords = [
   "provocative",
   "sex, party and lies",
   "how to have sex",
+  "phone sex",
+  "Charmsukh",
+  "Palang Tod",
+  "Shanthi Appuram Nithya",
+  "Kunwari Dulhan",
+  "GGS - Ganteng-Ganteng Sange",
 ];
 
 const suspiciousGenres = [

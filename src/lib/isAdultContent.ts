@@ -43,6 +43,7 @@ const strongAdultKeywords = [
   "Shanthi Appuram Nithya",
   "Kunwari Dulhan",
   "GGS - Ganteng-Ganteng Sange",
+  "Hot Girls Wanted",
 ];
 
 const mediumAdultKeywords = [
@@ -68,6 +69,7 @@ const mediumAdultKeywords = [
   "Shanthi Appuram Nithya",
   "Kunwari Dulhan",
   "GGS - Ganteng-Ganteng Sange",
+  "Hot Girls Wanted",
 ];
 
 const suspiciousGenres = [

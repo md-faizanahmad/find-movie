@@ -21,7 +21,7 @@ export function TVHeroSlider({ shows }: Props) {
   }, [shows.length]);
 
   return (
-    <div className="absolute inset-0">
+    <div className="absolute inset-0 z-0 bg-neutral-950">
       {shows.map((show, index) => {
         const isActive = index === active;
 
@@ -29,15 +29,17 @@ export function TVHeroSlider({ shows }: Props) {
           <div
             key={show.id}
             className={`absolute top-2 inset-0 transition-opacity duration-1000 ${
-              isActive ? "opacity-100" : "opacity-0"
+              isActive ? "opacity-100" : "opacity-0 z-0"
             }`}
           >
             <Image
               src={`${IMAGE_BASE_URL}${show.backdrop_path}`}
               alt={show.name}
               fill
-              priority
-              className="object-cover"
+              className="object-cover object-top md:object-[center_25%]"
+              priority={index === 0} // Only prioritize the first slide
+              sizes="100vw"
+              quality={90}
             />
           </div>
         );

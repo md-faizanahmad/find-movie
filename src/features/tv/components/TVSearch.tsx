@@ -29,7 +29,7 @@ export function TVSearch() {
     params.delete("page");
 
     startTransition(() => {
-      router.push(`/tv-shows?${params.toString()}`);
+      router.push(`/tv?${params.toString()}`);
     });
   }
 

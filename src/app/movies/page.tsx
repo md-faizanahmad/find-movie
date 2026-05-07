@@ -35,15 +35,15 @@ export default async function MoviesPage({ searchParams }: Props) {
       */}
       <section className="relative z-30 -mt-12 space-y-8 px-4 pb-20 md:px-8 lg:px-12 max-w-500 mx-auto">
         {/* Unified Filter/Sort Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-4 bg-neutral-900/80 backdrop-blur-md p-3 md:p-4 rounded-2xl border border-white/5 shadow-2xl">
+        <div className="flex flex-wrap items-center justify-between gap-4  p-3 md:p-4 rounded-2xl border border-white/5 shadow-2xl">
           <div className="flex flex-1 items-center gap-2 min-w-0">
             <RegionFilter />
             {/* Divider for desktop */}
-            <div className="hidden sm:block w-px h-6 bg-white/10 mx-1" />
-            <SortDropdown />
           </div>
 
           <div className="hidden md:block">
+            <div className="hidden sm:block w-px h-6 bg-white/10 " />
+            <SortDropdown />
             <p className="text-xs font-bold uppercase tracking-widest text-neutral-500">
               {movies.total_results.toLocaleString()} Movies
             </p>

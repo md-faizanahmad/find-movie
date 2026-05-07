@@ -58,7 +58,7 @@ export default async function TVShowsPage({ searchParams }: Props) {
 
       <section className="relative z-30 mx-auto -mt-8 max-w-500 space-y-8 px-4 pb-20 md:px-8 lg:px-12">
         {/* Filter Bar */}
-        <div className="flex flex-col gap-4 p-4 rounded-2xl bg-neutral-900/50 backdrop-blur-md border border-white/5 shadow-2xl md:flex-row md:items-center md:justify-between md:p-3">
+        <div className="flex flex-col gap-4 p-4  shadow-2xl md:flex-row md:items-center md:justify-between md:p-3">
           {/* 1. Filter Group: Stacks on mobile, inline on desktop */}
           <div className="flex flex-col gap-3 w-full sm:flex-row sm:items-center md:w-auto md:flex-1 order-1">
             {/* Region Filter - Priority 1 */}
@@ -70,7 +70,7 @@ export default async function TVShowsPage({ searchParams }: Props) {
             <div className="hidden sm:block w-px h-6 bg-white/10 mx-1" />
 
             {/* Sort Dropdown - Priority 2 */}
-            <div className="w-full sm:w-auto">
+            <div className="w-full sm:w-auto mb-2">
               <TVSortDropdown />
             </div>
           </div>

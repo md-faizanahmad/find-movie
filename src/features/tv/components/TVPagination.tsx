@@ -39,7 +39,7 @@ export function TVPagination({
       params.set("query", query);
     }
 
-    return `/tv-shows?${params.toString()}`;
+    return `/tv?${params.toString()}`;
   }
 
   return (

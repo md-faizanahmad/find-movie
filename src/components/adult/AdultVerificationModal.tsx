@@ -36,7 +36,7 @@ export function AdultVerificationModal({
   };
 
   return (
-    <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/80 p-4 backdrop-blur-md">
+    <div className="fixed inset-0 z-999 flex items-center justify-center bg-black/80 p-4 backdrop-blur-md">
       <div className="w-full max-w-md rounded-2xl border border-white/10 bg-neutral-950 p-6 shadow-2xl">
         <div className="mb-6 text-center">
           <div className="mb-3 inline-flex rounded-full bg-red-600 px-3 py-1 text-sm font-bold text-white">

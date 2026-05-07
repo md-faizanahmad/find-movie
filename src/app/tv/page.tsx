@@ -58,21 +58,33 @@ export default async function TVShowsPage({ searchParams }: Props) {
 
       <section className="relative z-30 mx-auto -mt-8 max-w-500 space-y-8 px-4 pb-20 md:px-8 lg:px-12">
         {/* Filter Bar */}
-        <div className="mb-2 flex flex-wrap items-center justify-between gap-4 p-3 shadow-2xl md:p-4">
-          {/* Filters */}
-          <div className="flex min-w-0 flex-1 items-center gap-2">
-            <TVRegionFilter />
+        <div className="flex flex-col gap-4 p-4 rounded-2xl bg-neutral-900/50 backdrop-blur-md border border-white/5 shadow-2xl md:flex-row md:items-center md:justify-between md:p-3">
+          {/* 1. Filter Group: Stacks on mobile, inline on desktop */}
+          <div className="flex flex-col gap-3 w-full sm:flex-row sm:items-center md:w-auto md:flex-1 order-1">
+            {/* Region Filter - Priority 1 */}
+            <div className="w-full sm:w-auto">
+              <TVRegionFilter />
+            </div>
 
-            <div className="mx-1 hidden h-6 w-px bg-white/10 sm:block" />
+            {/* Vertical Divider: Hidden on mobile stack */}
+            <div className="hidden sm:block w-px h-6 bg-white/10 mx-1" />
 
-            <TVSortDropdown />
+            {/* Sort Dropdown - Priority 2 */}
+            <div className="w-full sm:w-auto">
+              <TVSortDropdown />
+            </div>
           </div>
 
-          {/* Results */}
-          <div className="hidden md:block text-right">
-            <p className="text-xs font-bold uppercase tracking-widest text-neutral-500">
-              <ResultCounter total={tvShows.total_results} /> Results
-            </p>
+          {/* 2. Results Count: Status bar at bottom on mobile, side on desktop */}
+          <div className="shrink-0 order-2 md:order-2">
+            <div className="flex items-center justify-center md:justify-end gap-2 px-4 py-2 bg-white/5 rounded-xl border border-white/5 md:bg-transparent md:border-none md:px-0">
+              {/* Animated blue pulse for TV */}
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse shadow-[0_0_8px_rgba(59,130,246,0.8)]" />
+
+              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-neutral-400">
+                <ResultCounter total={tvShows.total_results} /> Series Found
+              </p>
+            </div>
           </div>
         </div>
 

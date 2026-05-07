@@ -44,7 +44,7 @@ export function PeopleHeroSlider({ people }: Props) {
                 alt={person.name}
                 fill
                 priority={index === 0}
-                className="object-cover object-top" // People profiles look better with top-alignment
+                className="object-fill object-top" // People profiles look better with top-alignment
                 sizes="100vw"
               />
             ) : (

@@ -16,8 +16,8 @@ export function PeopleHero({ people }: Props) {
       </div>
 
       {/* Cinematic Overlays - Ensuring top nav area is dark and bottom is clear */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-b from-black via-transparent to-transparent opacity-80" />
-      <div className="absolute inset-0 z-10 bg-gradient-to-t from-black via-black/20 to-transparent" />
+      <div className="absolute inset-0 z-10 bg-linear-to-b from-black via-transparent to-transparent opacity-80" />
+      <div className="absolute inset-0 z-10 bg-linear-to-t from-black via-black/20 to-transparent" />
       <div className="absolute inset-0 z-10 bg-black/30" />
 
       {/* Content Layer - Added padding-top to avoid nav overlap */}

@@ -1,22 +1,20 @@
 // app/people/page.tsx
 
 import { getPopularPeople } from "@/features/people/api/getPopularPeople";
-
 import { searchPeople } from "@/features/people/api/searchPeople";
 
 import { PeopleEmptyState } from "@/features/people/components/PeopleEmptyState";
-
+import { PeopleFilters } from "@/features/people/components/PeopleFilters";
 import { PeopleGrid } from "@/features/people/components/PeopleGrid";
-
 import { PeopleHero } from "@/features/people/components/PeopleHero";
-
 import { PeoplePagination } from "@/features/people/components/PeoplePagination";
+import { TMDBPerson } from "@/features/people/types/person.types";
 
 interface Props {
   searchParams: Promise<{
     page?: string;
-
     q?: string;
+    department?: string;
   }>;
 }
 
@@ -27,18 +25,29 @@ export default async function PeoplePage({ searchParams }: Props) {
 
   const query = params.q || "";
 
-  // Dynamic fetch
+  const department = params.department || "";
+
+  // Fetch people
   const people = query
     ? await searchPeople(query, page)
     : await getPopularPeople(page);
 
-  const hasResults = people.results.length > 0;
+  // Department filtering
+  const filteredPeople = people.results.filter((person: TMDBPerson) =>
+    department ? person.known_for_department === department : true,
+  );
+
+  const hasResults = filteredPeople.length > 0;
 
   return (
     <main className="min-h-screen bg-black text-white">
+      {/* Hero */}
       <PeopleHero people={people.results.slice(0, 5)} />
 
       <section className="relative z-20 -mt-20 space-y-6 px-4 pb-20 md:px-8 lg:px-12">
+        {/* Filters */}
+        <PeopleFilters />
+
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -47,7 +56,7 @@ export default async function PeoplePage({ searchParams }: Props) {
             </h2>
 
             <p className="text-sm text-neutral-400">
-              {people.total_results.toLocaleString()} people found
+              {filteredPeople.length.toLocaleString()} people found
             </p>
           </div>
         </div>
@@ -55,7 +64,7 @@ export default async function PeoplePage({ searchParams }: Props) {
         {/* Results */}
         {hasResults ? (
           <>
-            <PeopleGrid people={people.results} />
+            <PeopleGrid people={filteredPeople} />
 
             <PeoplePagination
               page={page}

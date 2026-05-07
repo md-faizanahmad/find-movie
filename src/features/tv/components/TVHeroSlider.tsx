@@ -28,7 +28,7 @@ export function TVHeroSlider({ shows }: Props) {
         return (
           <div
             key={show.id}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
+            className={`absolute top-2 inset-0 transition-opacity duration-1000 ${
               isActive ? "opacity-100" : "opacity-0"
             }`}
           >

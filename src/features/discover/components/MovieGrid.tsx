@@ -63,6 +63,7 @@ export function MovieGrid({ movies }: Props) {
                 title: movie.title,
                 poster: movie.poster_path,
                 backdrop: movie.backdrop_path,
+                adult: movie.adult,
                 rating: movie.vote_average,
                 popularity: movie.popularity,
                 releaseDate: movie.release_date,

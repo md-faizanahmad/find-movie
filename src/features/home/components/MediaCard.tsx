@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Star, PlayCircle } from "lucide-react";
+import { useState } from "react";
 
 import { Media } from "../services/home.service";
 
@@ -14,17 +15,36 @@ interface MediaCardProps {
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p";
 
 export function MediaCard({ item }: MediaCardProps) {
+  const [adultUnlocked, setAdultUnlocked] = useState(() => {
+    if (typeof window === "undefined") {
+      return false;
+    }
+
+    return localStorage.getItem("adult-unlocked") === "true";
+  });
+
   const imageUrl = item.poster ? `${IMAGE_BASE_URL}/w500${item.poster}` : null;
 
   const year = item.releaseDate
     ? new Date(item.releaseDate).getFullYear()
     : "TBD";
 
-  return (
-    <Link
-      href={`/${item.mediaType}/${item.id}`}
-      className="group block w-full min-w-0 outline-none"
-    >
+  const isLocked = item.adult && !adultUnlocked;
+
+  const handleUnlock = () => {
+    const email = prompt("Enter your email");
+
+    const confirmed = confirm("Confirm you are 18+");
+
+    if (email && confirmed) {
+      localStorage.setItem("adult-unlocked", "true");
+
+      setAdultUnlocked(true);
+    }
+  };
+
+  const CardContent = (
+    <>
       {/* Poster */}
       <div className="relative aspect-2/3 w-full overflow-hidden rounded-xl bg-neutral-900 ring-offset-black transition-all duration-500 group-hover:ring-2 group-hover:ring-red-600/80 group-hover:ring-offset-2 md:group-hover:ring-offset-4">
         {imageUrl ? (
@@ -39,7 +59,9 @@ export function MediaCard({ item }: MediaCardProps) {
               (max-width: 1024px) 25vw,
               16vw
             "
-            className="object-cover transition-all duration-700 ease-out group-hover:scale-105 group-hover:brightness-50"
+            className={`object-cover transition-all duration-700 ease-out ${
+              !isLocked ? "group-hover:scale-105 group-hover:brightness-50" : ""
+            } ${isLocked ? "scale-110 blur-xl" : ""}`}
           />
         ) : (
           <div className="flex h-full items-center justify-center text-neutral-700">
@@ -57,9 +79,30 @@ export function MediaCard({ item }: MediaCardProps) {
         </div>
 
         {/* Hover Play */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-          <PlayCircle className="text-white drop-shadow-2xl" size={44} />
-        </div>
+        {!isLocked && (
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <PlayCircle className="text-white drop-shadow-2xl" size={44} />
+          </div>
+        )}
+
+        {/* Adult Overlay */}
+        {isLocked && (
+          <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-black/70 backdrop-blur-sm">
+            <div className="mb-3 rounded-full bg-red-600 px-3 py-1 text-xs font-bold text-white">
+              18+
+            </div>
+
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                handleUnlock();
+              }}
+              className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-black transition hover:scale-105"
+            >
+              Unlock Content
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Info */}
@@ -76,6 +119,23 @@ export function MediaCard({ item }: MediaCardProps) {
           <span className="uppercase tracking-widest">{item.mediaType}</span>
         </div>
       </div>
+    </>
+  );
+
+  if (isLocked) {
+    return (
+      <div className="group block w-full min-w-0 outline-none">
+        {CardContent}
+      </div>
+    );
+  }
+
+  return (
+    <Link
+      href={`/${item.mediaType}/${item.id}`}
+      className="group block w-full min-w-0 outline-none"
+    >
+      {CardContent}
     </Link>
   );
 }

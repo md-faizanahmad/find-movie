@@ -13,15 +13,6 @@ import { getHollywoodTVShows } from "@/features/movies/api/getHollywoodTVShows";
 /*                                NORMALIZED TYPE                             */
 /* -------------------------------------------------------------------------- */
 
-// export interface Media {
-//   id: number;
-//   title: string;
-//   poster: string | null;
-//   backdrop: string | null;
-//   rating: number;
-//   popularity: number;
-//   releaseDate: string;
-// }
 export interface Media {
   id: number;
 
@@ -35,6 +26,7 @@ export interface Media {
   rating: number;
   popularity: number;
 
+  adult?: boolean;
   releaseDate: string;
 }
 

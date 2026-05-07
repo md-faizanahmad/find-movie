@@ -1,15 +1,50 @@
-const adultKeywords = [
+const strongAdultKeywords = [
   "porn",
   "porno",
   "pornographic",
-  "erotic",
-  "nudity",
-  "explicit sex",
-  "sexual content",
-  "escort",
-  "stripper",
-  "brothel",
   "xxx",
+  "nsfw",
+  "adult film",
+  "hardcore",
+  "softcore",
+  "onlyfans",
+  "camgirl",
+  "camgirls",
+  "cam model",
+  "escort",
+  "brothel",
+  "stripper",
+  "strip club",
+  "sex tape",
+  "sexual content",
+  "explicit sex",
+  "group sex",
+  "bdsm",
+  "fetish",
+  "orgy",
+  "milf",
+  "anal",
+  "blowjob",
+  "nude",
+  "nudity",
+  "uncensored",
+  "18+",
+];
+
+const mediumAdultKeywords = [
+  "erotic",
+  "seduction",
+  "sensual",
+  "sexual",
+  "sex",
+  "affair",
+  "mistress",
+  "lust",
+  "intimate",
+  "temptation",
+  "desire",
+  "passion",
+  "provocative",
 ];
 
 const suspiciousGenres = [
@@ -21,26 +56,35 @@ export function isAdultContent(movie: any) {
     ${movie.title || ""}
     ${movie.original_title || ""}
     ${movie.overview || ""}
-  `.toLowerCase();
+  `
+    .toLowerCase()
+    .replace(/\s+/g, " ");
 
-  const keywordMatches = adultKeywords.filter((word) =>
+  const strongMatches = strongAdultKeywords.filter((word) =>
     text.includes(word),
   ).length;
 
-  const hasSuspiciousGenre = movie.genre_ids?.some((id: number) =>
-    suspiciousGenres.includes(id),
-  );
+  const mediumMatches = mediumAdultKeywords.filter((word) =>
+    text.includes(word),
+  ).length;
+
+  const hasSuspiciousGenre =
+    movie.genre_ids?.some((id: number) => suspiciousGenres.includes(id)) ||
+    false;
 
   /*
-    RULES:
-    - TMDB adult flag always true
-    - OR multiple adult keywords
-    - OR 1 keyword + suspicious genre
+    DETECTION RULES
+
+    1. TMDB adult flag = always adult
+    2. ANY strong keyword = adult
+    3. 2+ medium keywords = adult
+    4. 1 medium keyword + romance genre = adult
   */
 
   return (
     movie.adult === true ||
-    keywordMatches >= 2 ||
-    (keywordMatches >= 1 && hasSuspiciousGenre)
+    strongMatches >= 1 ||
+    mediumMatches >= 2 ||
+    (mediumMatches >= 1 && hasSuspiciousGenre)
   );
 }

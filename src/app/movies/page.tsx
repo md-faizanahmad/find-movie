@@ -35,18 +35,31 @@ export default async function MoviesPage({ searchParams }: Props) {
       */}
       <section className="relative z-30 -mt-12 space-y-8 px-4 pb-20 md:px-8 lg:px-12 max-w-500 mx-auto">
         {/* Unified Filter/Sort Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-4  p-3 md:p-4 rounded-2xl border border-white/5 shadow-2xl">
-          <div className="flex flex-1 items-center gap-2 min-w-0">
-            <RegionFilter />
-            {/* Divider for desktop */}
+        <div className="flex flex-col gap-4 p-4 rounded-2xl bg-neutral-900/50 backdrop-blur-md border border-white/5 shadow-2xl md:flex-row md:items-center md:justify-between md:p-3">
+          {/* Filter Group: Stacks on mobile, inline on desktop */}
+          <div className="flex flex-col gap-3 w-full sm:flex-row sm:items-center md:w-auto md:flex-1">
+            {/* Region Filter - Priority 1 */}
+            <div className="w-full sm:w-auto">
+              <RegionFilter />
+            </div>
+
+            {/* Vertical Divider: Hidden on mobile stack, shown on horizontal layout */}
+            <div className="hidden sm:block w-px h-6 bg-white/10 mx-1" />
+
+            {/* Sort Dropdown - Priority 2 */}
+            <div className="w-full sm:w-auto">
+              <SortDropdown />
+            </div>
           </div>
 
-          <div className="hidden md:block">
-            <div className="hidden sm:block w-px h-6 bg-white/10 " />
-            <SortDropdown />
-            <p className="text-xs font-bold uppercase tracking-widest text-neutral-500">
-              {movies.total_results.toLocaleString()} Movies
-            </p>
+          {/* Results Count: Hidden on small mobile, shown from md up */}
+          <div className="hidden md:block shrink-0">
+            <div className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-xl border border-white/5">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
+              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-neutral-400">
+                {movies.total_results.toLocaleString()} Movies
+              </p>
+            </div>
           </div>
         </div>
 

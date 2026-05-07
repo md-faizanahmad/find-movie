@@ -45,7 +45,7 @@ export function MovieHero({
               <iframe
                 src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1&mute=1&controls=0&loop=1&playlist=${trailerKey}&modestbranding=1&rel=0&iv_load_policy=3&enablejsapi=1`}
                 allow="autoplay; encrypted-media"
-                className="w-full h-full object-cover scale-[1.3] brightness-[0.7]"
+                className="w-full h-full object-cover scale-[1.3] brightness-[0.7] object-top md:object-[center_25%]"
                 onLoad={() => setIsVideoLoaded(true)}
               />
             </div>

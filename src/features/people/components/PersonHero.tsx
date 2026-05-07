@@ -22,7 +22,7 @@ export function PersonHero({ person }: Props) {
   return (
     <section className="relative overflow-hidden border-b border-white/10 bg-neutral-950 pb-12 pt-24 md:pb-20 md:pt-36">
       {/* 1. Action Bar: Floating Back Button */}
-      <nav className="absolute top-6 left-4 z-50 md:top-10 md:left-12">
+      <nav className="absolute top-6 left-4 z-10 md:top-10 md:left-12">
         <button
           onClick={() => router.back()}
           className="group flex items-center gap-2 rounded-full border border-white/10 bg-black/40 px-4 py-2 text-white backdrop-blur-md transition-all hover:bg-red-600 hover:border-red-600 active:scale-95 md:px-5 md:py-2.5"

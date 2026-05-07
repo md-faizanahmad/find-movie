@@ -1,21 +1,13 @@
 // app/tv-shows/page.tsx
 
 import { discoverTVShows } from "@/features/tv/api/discoverTVShows";
-
 import { searchTVShows } from "@/features/tv/api/searchTVShows";
-
 import { TVGrid } from "@/features/tv/components/TVGrid";
-
 import { TVPagination } from "@/features/tv/components/TVPagination";
-
 import { TVEmptyState } from "@/features/tv/components/TVEmptyState";
-
 import { TVHero } from "@/features/tv/components/TVHero";
-
 import { TVRegionFilter } from "@/features/tv/components/TVRegionFilter";
-
 import { TVSortDropdown } from "@/features/tv/components/TVSortDropdown";
-
 import { ResultCounter } from "@/shared/ResultCounter";
 
 interface Props {
@@ -32,13 +24,9 @@ interface Props {
 
 export default async function TVShowsPage({ searchParams }: Props) {
   const params = await searchParams;
-
   const language = params.language || "en";
-
   const sort = params.sort || "popularity.desc";
-
   const query = params.query || "";
-
   const page = Number(params.page || 1);
 
   // Dynamic Fetch

@@ -79,9 +79,11 @@ const suspiciousGenres = [
 export function isAdultContent(movie: any) {
   const text = `
     ${movie.title || ""}
-    ${movie.original_title || ""}
-    ${movie.overview || ""}
+${movie.original_title || ""}
+${movie.name || ""}
+${movie.original_name || ""}
   `
+
     .toLowerCase()
     .replace(/\s+/g, " ");
 

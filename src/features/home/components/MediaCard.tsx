@@ -85,10 +85,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-
 import { Star, PlayCircle } from "lucide-react";
 import { useState } from "react";
-
 import { Media } from "../services/home.service";
 import { AdultVerificationModal } from "@/components/adult/AdultVerificationModal";
 

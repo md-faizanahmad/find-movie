@@ -9,23 +9,19 @@ import { getSouthMovies } from "@/features/movies/api/getSouthMovies";
 import { getIndianTVShows } from "@/features/movies/api/getIndianTVShows";
 import { mergeAndSort } from "@/lib/utils/mergeAndSort";
 import { getHollywoodTVShows } from "@/features/movies/api/getHollywoodTVShows";
+import { isAdultContent } from "@/lib/isAdultContent";
 /* -------------------------------------------------------------------------- */
 /*                                NORMALIZED TYPE                             */
 /* -------------------------------------------------------------------------- */
 
 export interface Media {
   id: number;
-
   mediaType: "movie" | "tv";
-
   title: string;
-
   poster: string | null;
   backdrop: string | null;
-
   rating: number;
   popularity: number;
-
   adult?: boolean;
   releaseDate: string;
 }
@@ -37,16 +33,13 @@ function mapMovie(movie: TMDBMovie): Media {
   return {
     id: movie.id,
     mediaType: "movie",
-
     title: movie.title ?? "",
-
     poster: movie.poster_path ?? null,
     backdrop: movie.backdrop_path ?? null,
-
     rating: movie.vote_average ?? 0,
     popularity: movie.popularity ?? 0,
-
     releaseDate: movie.release_date ?? "",
+    adult: isAdultContent(movie),
   };
 }
 
@@ -54,15 +47,12 @@ function mapTV(tv: TMDBTV): Media {
   return {
     id: tv.id,
     mediaType: "tv",
-
     title: tv.name ?? "",
-
     poster: tv.poster_path ?? null,
     backdrop: tv.backdrop_path ?? null,
-
     rating: tv.vote_average ?? 0,
     popularity: tv.popularity ?? 0,
-
+    adult: isAdultContent(tv),
     releaseDate: tv.first_air_date ?? "",
   };
 }

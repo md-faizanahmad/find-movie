@@ -39,7 +39,7 @@ export function Pagination({ page, totalPages, language, query }: Props) {
       aria-label="Pagination"
     >
       {/* Buttons */}
-      <div className="order-2 flex items-center justify-center gap-3 md:order-1">
+      <div className="order-2 flex  w-full items-center justify-center gap-3 sm:w-auto md:order-1">
         {/* Previous */}
         <Link
           href={buildUrl(prevPage)}

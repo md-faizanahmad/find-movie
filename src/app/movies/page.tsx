@@ -53,7 +53,7 @@ export default async function MoviesPage({ searchParams }: Props) {
   const hasResults = movies.results.length > 0;
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-black text-white mt-8">
+    <main className="min-h-screen overflow-x-hidden bg-black text-white ">
       <DiscoverHero movies={movies.results.slice(0, 5)} />
 
       <section className="relative z-30 mx-auto -mt-10 max-w-500 space-y-8 px-4 pb-20 md:px-8 lg:px-12">

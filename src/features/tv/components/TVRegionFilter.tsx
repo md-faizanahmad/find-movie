@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 import { cn } from "@/lib/utils/cn";
 
@@ -16,9 +16,18 @@ const REGIONS = [
 ];
 
 export function TVRegionFilter() {
+  const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const activeLanguage = searchParams.get("language") || "en";
+  const activeLanguage = searchParams.get("with_original_language") || "en";
+
+  const createQueryString = (value: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+
+    params.set("with_original_language", value);
+
+    return `${pathname}?${params.toString()}`;
+  };
 
   return (
     <div className="-mx-4 overflow-x-auto px-4 scrollbar-hide md:mx-0 md:px-0">
@@ -29,10 +38,10 @@ export function TVRegionFilter() {
           return (
             <Link
               key={region.value}
-              href={`/tv-shows?language=${region.value}`}
+              href={createQueryString(region.value)}
+              scroll={false}
               className={cn(
                 "whitespace-nowrap rounded-full border px-3 py-2 text-[11px] font-semibold tracking-wide transition-all duration-300 md:px-4 md:text-sm",
-
                 isActive
                   ? "border-red-600 bg-red-600 text-white shadow-[0_0_20px_rgba(220,38,38,0.35)]"
                   : "border-white/10 bg-white/5 text-neutral-300 hover:border-red-600/40 hover:bg-red-600 hover:text-white",

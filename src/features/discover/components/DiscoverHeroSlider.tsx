@@ -29,7 +29,7 @@ export function DiscoverHeroSlider({ movies }: Props) {
         return (
           <div
             key={movie.id}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            className={`absolute top-2 inset-0 transition-opacity duration-1000 ease-in-out ${
               isActive ? "opacity-100 z-10" : "opacity-0 z-0"
             }`}
           >

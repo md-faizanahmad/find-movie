@@ -34,6 +34,7 @@ export function DiscoverHero({ movies }: Props) {
   return (
     <section className="relative h-[80vh] md:h-[90vh] w-full overflow-hidden bg-black">
       <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-10 bg-linear-to-b from-black via-transparent to-transparent opacity-80" />
         <DiscoverHeroSlider movies={movies} />
       </div>
 

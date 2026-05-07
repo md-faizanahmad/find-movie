@@ -37,7 +37,7 @@ export function Navbar() {
   return (
     <>
       {/* TOP BAR */}
-      <header className="fixed top-0 z-50 w-full border-b border-white/5 bg-black/60 backdrop-blur-xl">
+      <header className="fixed top-0 z-50  w-full border-b border-white/5 bg-black/60 backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 md:px-12">
           {/* Logo */}
           <Link href="/" className="group">

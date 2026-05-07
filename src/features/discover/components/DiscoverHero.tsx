@@ -38,8 +38,8 @@ export function DiscoverHero({ movies }: Props) {
       </div>
 
       {/* Cinematic Overlays */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-b from-black via-transparent to-transparent opacity-80" />
-      <div className="absolute inset-0 z-10 bg-gradient-to-t from-black via-black/50 to-transparent" />
+      <div className="absolute inset-0 z-10 bg-linear-to-b from-black via-transparent to-transparent opacity-80" />
+      <div className="absolute inset-0 z-10 bg-linear-to-t from-black via-black/50 to-transparent" />
       <div className="absolute inset-0 z-10 bg-black/20" />
 
       {/* Content Container */}

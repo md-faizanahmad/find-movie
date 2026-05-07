@@ -13,32 +13,37 @@ export function DiscoverHeroSlider({ movies }: Props) {
   const [active, setActive] = useState(0);
 
   useEffect(() => {
+    if (!movies?.length) return;
     const interval = setInterval(() => {
       setActive((prev) => (prev + 1) % movies.length);
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [movies.length]);
+  }, [movies?.length]);
 
   return (
-    <div className="absolute inset-0">
+    <div className="absolute inset-0 z-0 bg-neutral-950">
       {movies.map((movie, index) => {
         const isActive = index === active;
 
         return (
           <div
             key={movie.id}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
-              isActive ? "opacity-100" : "opacity-0"
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              isActive ? "opacity-100 z-10" : "opacity-0 z-0"
             }`}
           >
-            <Image
-              src={`${IMAGE_BASE_URL}${movie.backdrop_path}`}
-              alt={movie.title}
-              fill
-              priority
-              className="object-cover"
-            />
+            {movie.backdrop_path && (
+              <Image
+                src={`${IMAGE_BASE_URL}${movie.backdrop_path}`}
+                alt={movie.title}
+                fill
+                priority={index === 0} // Only prioritize the first slide
+                className="object-cover object-top md:object-[center_25%]"
+                sizes="100vw"
+                quality={90}
+              />
+            )}
           </div>
         );
       })}

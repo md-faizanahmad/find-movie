@@ -1,17 +1,57 @@
 "use client";
 
+import { useState, useTransition } from "react";
+
+import { useRouter, useSearchParams } from "next/navigation";
+
 import { Search } from "lucide-react";
 
 export function DiscoverSearch() {
+  const router = useRouter();
+
+  const searchParams = useSearchParams();
+
+  const [isPending, startTransition] = useTransition();
+
+  const [query, setQuery] = useState(searchParams.get("query") || "");
+
+  function handleSearch() {
+    const params = new URLSearchParams(searchParams.toString());
+
+    if (query.trim()) {
+      params.set("query", query);
+    } else {
+      params.delete("query");
+    }
+
+    // reset pagination on new search
+    params.delete("page");
+
+    startTransition(() => {
+      router.push(`/movies?${params.toString()}`);
+    });
+  }
+
   return (
     <div className="flex items-center overflow-hidden rounded-2xl border border-white/10 bg-white/10 backdrop-blur-xl">
       <input
         type="text"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            handleSearch();
+          }
+        }}
         placeholder="Search movies, actors, genres..."
         className="w-full bg-transparent px-5 py-4 text-white outline-none placeholder:text-neutral-400"
       />
 
-      <button className="px-5 text-white">
+      <button
+        onClick={handleSearch}
+        disabled={isPending}
+        className="px-5 text-white"
+      >
         <Search />
       </button>
     </div>

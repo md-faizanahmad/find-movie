@@ -2,54 +2,75 @@ import Link from "next/link";
 
 interface Props {
   page: number;
+
   totalPages: number;
-  language: string;
+
+  language?: string;
+
+  query?: string;
 }
 
-export function Pagination({ page, totalPages, language }: Props) {
+export function Pagination({ page, totalPages, language, query }: Props) {
   const prevPage = page > 1 ? page - 1 : 1;
+
   const nextPage = page < totalPages ? page + 1 : totalPages;
+
+  function buildUrl(targetPage: number) {
+    const params = new URLSearchParams();
+
+    params.set("page", String(targetPage));
+
+    // Keep language filter
+    if (language) {
+      params.set("language", language);
+    }
+
+    // Keep search query
+    if (query) {
+      params.set("query", query);
+    }
+
+    return `/movies?${params.toString()}`;
+  }
 
   return (
     <nav
-      className="flex flex-col items-center justify-center gap-4 pt-10 pb-8 md:flex-row md:gap-8"
+      className="flex flex-col items-center justify-center gap-4 pb-8 pt-10 md:flex-row md:gap-8"
       aria-label="Pagination"
     >
-      {/* Container for Buttons: Side-by-side on mobile */}
-      <div className="flex items-center justify-center gap-3 order-2 md:order-1">
-        {/* Previous Button */}
+      {/* Buttons */}
+      <div className="order-2 flex items-center justify-center gap-3 md:order-1">
+        {/* Previous */}
         <Link
-          href={`/movies?language=${language}&page=${prevPage}`}
-          className={`group flex items-center justify-center rounded-full transition-all border
-            w-12 h-12 md:w-auto md:h-auto md:px-6 md:py-3
-            ${
-              page <= 1
-                ? "pointer-events-none border-neutral-800 text-neutral-700"
-                : "border-neutral-700 bg-neutral-900 text-white hover:bg-neutral-800 active:scale-95 shadow-lg"
-            }`}
+          href={buildUrl(prevPage)}
+          className={`group flex h-12 w-12 items-center justify-center rounded-full border transition-all md:h-auto md:w-auto md:px-6 md:py-3 ${
+            page <= 1
+              ? "pointer-events-none border-neutral-800 text-neutral-700"
+              : "border-neutral-700 bg-neutral-900 text-white shadow-lg hover:bg-neutral-800 active:scale-95"
+          }`}
         >
           <ChevronLeftIcon />
-          <span className="hidden md:inline font-semibold ml-2">Previous</span>
+
+          <span className="ml-2 hidden font-semibold md:inline">Previous</span>
         </Link>
 
-        {/* Next Button */}
+        {/* Next */}
         <Link
-          href={`/movies?language=${language}&page=${nextPage}`}
-          className={`group flex items-center justify-center rounded-full transition-all flex-1 md:flex-none
-            px-8 py-3 md:px-10
-            ${
-              page >= totalPages
-                ? "pointer-events-none bg-neutral-800 text-neutral-600"
-                : "bg-red-600 text-white hover:bg-red-700 shadow-lg shadow-red-600/20 active:scale-95"
-            }`}
+          href={buildUrl(nextPage)}
+          className={`group flex flex-1 items-center justify-center rounded-full px-8 py-3 transition-all md:flex-none md:px-10 ${
+            page >= totalPages
+              ? "pointer-events-none bg-neutral-800 text-neutral-600"
+              : "bg-red-600 text-white shadow-lg shadow-red-600/20 hover:bg-red-700 active:scale-95"
+          }`}
         >
-          <span className="font-semibold text-base mr-1">Next Page</span>
+          <span className="mr-1 text-base font-semibold">Next Page</span>
+
           <ChevronRightIcon />
         </Link>
       </div>
 
-      {/* Page Status: Appears above buttons on mobile for quick context */}
-      <div className="text-sm font-medium text-neutral-500 order-1 md:order-2">
+      {/* Status */}
+      <div className="order-1 text-sm font-medium text-neutral-500 md:order-2">
         Page <span className="text-white">{page}</span>
         <span className="mx-1">of</span>
         <span className="text-white">{totalPages.toLocaleString()}</span>

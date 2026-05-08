@@ -23,7 +23,7 @@ export async function tmdbFetch<T>(
       revalidate,
     },
   });
-
+  console.log(`${TMDB_BASE_URL}${endpoint}`);
   if (!response.ok) {
     throw new Error(`TMDB request failed: ${response.status}`);
   }

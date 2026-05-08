@@ -25,6 +25,11 @@ export async function tmdbFetch<T>(
   });
   console.log(`${TMDB_BASE_URL}${endpoint}`);
   if (!response.ok) {
+    const error = await response.text();
+    console.error("TMDB ERROR:", error);
+    throw new Error(`TMDB request failed: ${response.status}`);
+  }
+  if (!response.ok) {
     throw new Error(`TMDB request failed: ${response.status}`);
   }
 

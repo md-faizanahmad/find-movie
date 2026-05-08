@@ -7,24 +7,20 @@ import { searchMulti } from "@/features/search/services/search.service";
 import { SearchBar } from "@/components/search-bar";
 
 interface Props {
-  searchParams: Promise<{
+  searchParams: {
     q?: string;
-  }>;
+  };
 }
 
 export default async function SearchPage({ searchParams }: Props) {
-  const params = await searchParams;
-
-  const query = params.q || "";
+  const query = searchParams.q || "";
 
   const results = query ? await searchMulti(query) : [];
 
   return (
     <main className="min-h-screen bg-black px-4 py-24">
       <div className="mx-auto max-w-7xl">
-        {/* Top Actions */}
         <div className="mb-10 flex flex-col gap-6">
-          {/* Back Button */}
           <Link
             href="/"
             className="
@@ -37,10 +33,8 @@ export default async function SearchPage({ searchParams }: Props) {
             Back to Home
           </Link>
 
-          {/* Search Bar */}
           <SearchBar />
 
-          {/* Heading */}
           {query ? (
             <div>
               <h1 className="text-3xl font-bold text-white">Search Results</h1>
@@ -63,7 +57,6 @@ export default async function SearchPage({ searchParams }: Props) {
           )}
         </div>
 
-        {/* Results */}
         <SearchGrid results={results} query={query} />
       </div>
     </main>

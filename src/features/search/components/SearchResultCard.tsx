@@ -29,7 +29,7 @@ export function SearchResultCard({ item }: Props) {
         hover:bg-neutral-900/70
       "
     >
-      <div className="relative aspect-[2/3] overflow-hidden bg-neutral-800">
+      <div className="relative aspect-2/3 overflow-hidden bg-neutral-800">
         {item.image ? (
           <Image
             src={`${IMAGE_BASE_URL}${item.image}`}

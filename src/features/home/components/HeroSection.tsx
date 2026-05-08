@@ -31,7 +31,7 @@ export function HeroSection({ backdropPath, isLoading = false }: Props) {
   }
 
   return (
-    <section className="relative h-[85vh] w-full  lg:mt-16 md:mt-16 overflow-hidden bg-black md:h-screen">
+    <section className="relative h-[85vh] w-full  lg:mt-13 md:mt-13 overflow-hidden bg-black md:h-screen">
       {/* Background Image Layer */}
       <div className="absolute inset-0 z-0">
         <Image

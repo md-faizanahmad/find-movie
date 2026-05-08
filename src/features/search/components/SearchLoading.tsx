@@ -18,7 +18,7 @@ export function SearchLoading() {
             bg-neutral-900/40
           "
         >
-          <div className="aspect-[2/3] bg-neutral-800" />
+          <div className="aspect-2/3 bg-neutral-800" />
 
           <div className="space-y-2 p-3">
             <div className="h-4 rounded bg-neutral-700" />

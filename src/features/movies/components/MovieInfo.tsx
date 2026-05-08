@@ -1,63 +1,256 @@
+// import Image from "next/image";
+
+// interface Props {
+//   poster_path: string | null;
+//   overview: string;
+//   genres: string[];
+// }
+
+// const POSTER_BASE = "https://image.tmdb.org/t/p/w500";
+// const BLUR_DATA =
+//   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=";
+
+// export function MovieInfo({ poster_path, overview, genres }: Props) {
+//   return (
+//     <section className="flex flex-col md:flex-row gap-10 p-8 bg-amber-50">
+//       {/* Poster Section */}
+//       {poster_path && (
+//         <div className="mx-auto md:mx-0 w-64 shrink-0 transition-transform duration-300 hover:scale-[1.02]">
+//           <Image
+//             src={`${POSTER_BASE}${poster_path}`}
+//             alt="Movie Poster"
+//             width={256}
+//             height={384}
+//             className="rounded-2xl shadow-2xl object-cover border border-white/10"
+//             placeholder="blur"
+//             blurDataURL={BLUR_DATA}
+//           />
+//         </div>
+//       )}
+
+//       {/* Details Section */}
+//       <div className="flex flex-col justify-center space-y-8">
+//         <div className="space-y-3">
+//           <h2 className="text-2xl font-bold text-red-700 tracking-tight">
+//             Overview
+//           </h2>
+//           <p className="text-gray-600 leading-relaxed text-lg max-w-3xl">
+//             {overview || "No overview available."}
+//           </p>
+//         </div>
+
+//         {/* Genre List */}
+//         <div className="flex gap-2 flex-wrap">
+//           {genres.map((name) => (
+//             <GenreBadge key={name} name={name} />
+//           ))}
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
+
+// function GenreBadge({ name }: { name: string }) {
+//   return (
+//     <span
+//       className="px-4 py-1.5 rounded-full bg-white border border-gray-200
+//                      text-gray-700 text-sm font-medium hover:bg-gray-50
+//                      transition-colors cursor-default shadow-sm"
+//     >
+//       {name}
+//     </span>
+//   );
+// }
 import Image from "next/image";
+import {
+  Star,
+  Clock,
+  Calendar,
+  Globe,
+  Zap,
+  Activity,
+  Info,
+} from "lucide-react";
 
 interface Props {
+  title: string;
+  tagline?: string | null;
   poster_path: string | null;
   overview: string;
   genres: string[];
+  runtime: number;
+  release_date: string;
+  vote_average: number;
+  status?: string;
+  original_language?: string;
+  popularity?: number;
 }
 
 const POSTER_BASE = "https://image.tmdb.org/t/p/w500";
 const BLUR_DATA =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=";
 
-export function MovieInfo({ poster_path, overview, genres }: Props) {
+export function MovieInfo({
+  title,
+  tagline,
+  poster_path,
+  overview,
+  genres,
+  runtime,
+  release_date,
+  vote_average,
+  status,
+  original_language,
+  popularity,
+}: Props) {
   return (
-    <section className="flex flex-col md:flex-row gap-10 p-8 bg-amber-50">
-      {/* Poster Section */}
-      {poster_path && (
-        <div className="mx-auto md:mx-0 w-64 shrink-0 transition-transform duration-300 hover:scale-[1.02]">
-          <Image
-            src={`${POSTER_BASE}${poster_path}`}
-            alt="Movie Poster"
-            width={256}
-            height={384}
-            className="rounded-2xl shadow-2xl object-cover border border-white/10"
-            placeholder="blur"
-            blurDataURL={BLUR_DATA}
+    <section className="flex flex-col lg:flex-row gap-8 lg:gap-16 p-6 md:p-12 bg-black text-white rounded-3xl border border-white/5 shadow-2xl">
+      {/* Left Column: Poster & Quick Stats */}
+      <div className="mx-auto lg:mx-0 w-full max-w-[320px] lg:max-w-95 shrink-0 space-y-6">
+        {poster_path && (
+          <div className="relative aspect-2/3 overflow-hidden rounded-2xl border border-white/10 shadow-2xl transition-transform duration-500 hover:scale-[1.01]">
+            <Image
+              src={`${POSTER_BASE}${poster_path}`}
+              alt={title}
+              fill
+              className="object-cover"
+              placeholder="blur"
+              blurDataURL={BLUR_DATA}
+              sizes="(max-width: 768px) 100vw, 380px"
+            />
+          </div>
+        )}
+
+        {/* Popularity Card - Mobile First Highlight */}
+        {popularity && (
+          <div className="group relative overflow-hidden rounded-2xl bg-neutral-900/50 p-4 border border-white/5 transition-colors hover:bg-red-600/5">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-500 mb-1">
+                  Trend Score
+                </p>
+                <p className="text-2xl font-black italic tracking-tighter text-white">
+                  {Math.round(popularity).toLocaleString()}
+                </p>
+              </div>
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-600/10 text-red-600">
+                <Zap size={24} className="fill-current" />
+              </div>
+            </div>
+            {/* Simple visual bar for popularity impact */}
+            <div className="mt-3 h-1 w-full overflow-hidden rounded-full bg-neutral-800">
+              <div className="h-full bg-red-600 w-[75%]" />
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Right Column: Detailed Info */}
+      <div className="flex-1 space-y-10">
+        <div className="space-y-4">
+          <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter leading-[0.85] italic">
+            {title}
+          </h1>
+
+          {tagline && (
+            <p className="text-red-600 font-bold text-lg md:text-2xl italic tracking-tight">
+              &ldquo;{tagline}&rdquo;
+            </p>
+          )}
+
+          {/* Core Row: Rating, Time, Year */}
+          <div className="flex flex-wrap gap-4 pt-4">
+            <CoreBadge
+              icon={
+                <Star className="fill-yellow-500 text-yellow-500" size={16} />
+              }
+              value={`${vote_average.toFixed(1)}`}
+            />
+            <CoreBadge
+              icon={<Clock size={16} className="text-neutral-400" />}
+              value={`${runtime} min`}
+            />
+            <CoreBadge
+              icon={<Calendar size={16} className="text-neutral-400" />}
+              value={new Date(release_date).getFullYear().toString()}
+            />
+          </div>
+        </div>
+
+        {/* Technical Specs Row: Status & Language */}
+        <div className="flex flex-wrap gap-6 py-6 border-y border-white/5">
+          <Spec
+            icon={<Activity size={14} />}
+            label="Production Status"
+            value={status || "Released"}
+          />
+          <Spec
+            icon={<Globe size={14} />}
+            label="Original Language"
+            value={original_language?.toUpperCase() || "EN"}
+          />
+          <Spec
+            icon={<Info size={14} />}
+            label="Release Date"
+            value={new Date(release_date).toLocaleDateString()}
           />
         </div>
-      )}
 
-      {/* Details Section */}
-      <div className="flex flex-col justify-center space-y-8">
-        <div className="space-y-3">
-          <h2 className="text-2xl font-bold text-red-700 tracking-tight">
+        {/* Overview */}
+        <div className="space-y-4">
+          <h2 className="text-sm font-black uppercase tracking-[0.3em] text-red-600">
             Overview
           </h2>
-          <p className="text-gray-600 leading-relaxed text-lg max-w-3xl">
-            {overview || "No overview available."}
+          <p className="text-neutral-400 leading-relaxed text-base md:text-xl font-light tracking-wide italic">
+            {overview || "Plot summary coming soon."}
           </p>
         </div>
 
-        {/* Genre List */}
-        <div className="flex gap-2 flex-wrap">
-          {genres.map((name) => (
-            <GenreBadge key={name} name={name} />
-          ))}
+        {/* Genres */}
+        <div className="space-y-4 pt-4">
+          <div className="flex flex-wrap gap-2">
+            {genres.map((name) => (
+              <span
+                key={name}
+                className="px-4 py-2 rounded-lg bg-neutral-900 border border-white/5 text-neutral-400 text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all cursor-default"
+              >
+                {name}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-function GenreBadge({ name }: { name: string }) {
+function CoreBadge({ icon, value }: { icon: React.ReactNode; value: string }) {
   return (
-    <span
-      className="px-4 py-1.5 rounded-full bg-white border border-gray-200 
-                     text-gray-700 text-sm font-medium hover:bg-gray-50 
-                     transition-colors cursor-default shadow-sm"
-    >
-      {name}
-    </span>
+    <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900 border border-white/5">
+      {icon}
+      <span className="text-sm font-black italic uppercase">{value}</span>
+    </div>
+  );
+}
+
+function Spec({
+  icon,
+  label,
+  value,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+}) {
+  return (
+    <div className="flex items-center gap-3">
+      <div className="text-neutral-600">{icon}</div>
+      <div>
+        <p className="text-[9px] uppercase font-bold text-neutral-500 tracking-widest mb-0.5">
+          {label}
+        </p>
+        <p className="text-xs font-black uppercase text-white">{value}</p>
+      </div>
+    </div>
   );
 }

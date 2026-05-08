@@ -46,10 +46,23 @@ export default async function DetailsPage({ params }: Props) {
       />
 
       <div className="mx-auto max-w-7xl space-y-4">
-        <MovieInfo
+        {/* <MovieInfo
           poster_path={media.poster_path}
           overview={media.overview}
           genres={media.genres.map((g) => g.name)}
+        /> */}
+        <MovieInfo
+          title={media.title}
+          tagline={media.tagline}
+          poster_path={media.poster_path}
+          overview={media.overview}
+          genres={media.genres.map((g) => g.name)}
+          runtime={media.runtime}
+          release_date={media.release_date}
+          vote_average={media.vote_average}
+          status={media.status}
+          original_language={media.original_language}
+          popularity={media.popularity}
         />
 
         <MovieMeta

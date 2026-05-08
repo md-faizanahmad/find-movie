@@ -6,22 +6,20 @@ export function SearchEmpty({ query }: Props) {
   return (
     <div
       className="
-        absolute top-full z-50 mt-3
-        w-full rounded-2xl
-        border border-white/10
-        bg-neutral-950/95
-        p-8 text-center
-        backdrop-blur-xl
+        flex min-h-[50vh] flex-col
+        items-center justify-center
+        text-center
       "
     >
-      <p className="text-sm font-medium text-neutral-300">No results found</p>
+      <h2 className="text-2xl font-bold text-white">No results found</h2>
 
-      <p className="mt-2 text-sm text-neutral-500">
-        Try searching for another movie, TV show, or actor.
+      <p className="mt-3 max-w-md text-neutral-400">
+        We couldn’t find anything for
+        <span className="mx-1 font-medium text-white">&quot;{query}&quot;</span>
       </p>
 
-      <p className="mt-4 truncate text-xs text-neutral-600">
-        &quot;{query}&quot;
+      <p className="mt-2 text-sm text-neutral-500">
+        Try searching another movie, TV show, or actor.
       </p>
     </div>
   );

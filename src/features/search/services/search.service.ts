@@ -2,39 +2,31 @@ import { tmdbFetch } from "@/lib/tmdb/tmdbFetch";
 
 export interface SearchResult {
   id: number;
-
   media_type: "movie" | "tv" | "person";
-
   title: string;
-
   image: string | null;
-
   year?: string;
 }
 
 interface TMDBSearchResponse {
-  results: {
+  results?: {
     id: number;
-
     media_type: string;
-
     adult?: boolean;
-
     title?: string;
-
     name?: string;
-
     poster_path?: string;
-
     profile_path?: string;
-
     release_date?: string;
-
     first_air_date?: string;
   }[];
 }
 
 export async function searchMulti(query: string): Promise<SearchResult[]> {
+  if (!query.trim()) {
+    return [];
+  }
+
   const data = await tmdbFetch<TMDBSearchResponse>(
     `/search/multi?query=${encodeURIComponent(query)}&include_adult=false`,
     {
@@ -42,7 +34,13 @@ export async function searchMulti(query: string): Promise<SearchResult[]> {
     },
   );
 
+  console.log("SEARCH QUERY:", query);
   console.log("SEARCH DATA:", data);
+
+  if (!data.results || !Array.isArray(data.results)) {
+    return [];
+  }
+
   return data.results
     .filter((item) => {
       return ["movie", "tv", "person"].includes(item.media_type) && !item.adult;

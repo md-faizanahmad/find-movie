@@ -10,6 +10,9 @@ export async function tmdbFetch<T>(
 ): Promise<T> {
   const { revalidate = 3600, ...fetchOptions } = options;
 
+  console.log("TOKEN EXISTS:", !!process.env.TMDB_API_TOKEN);
+  console.log("FETCHING:", `${TMDB_BASE_URL}${endpoint}`);
+
   const response = await fetch(`${TMDB_BASE_URL}${endpoint}`, {
     ...fetchOptions,
 
@@ -23,13 +26,12 @@ export async function tmdbFetch<T>(
       revalidate,
     },
   });
-  console.log(`${TMDB_BASE_URL}${endpoint}`);
+
   if (!response.ok) {
     const error = await response.text();
+
     console.error("TMDB ERROR:", error);
-    throw new Error(`TMDB request failed: ${response.status}`);
-  }
-  if (!response.ok) {
+
     throw new Error(`TMDB request failed: ${response.status}`);
   }
 

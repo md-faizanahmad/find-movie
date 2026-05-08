@@ -1,4 +1,4 @@
-import { searchMulti } from "@/lib/tmdb/search";
+import { searchMulti } from "@/features/search/services/search.service";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {

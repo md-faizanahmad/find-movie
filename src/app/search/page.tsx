@@ -7,13 +7,14 @@ import { searchMulti } from "@/features/search/services/search.service";
 import { SearchBar } from "@/features/home/components/SearchBar";
 
 interface Props {
-  searchParams: {
+  searchParams: Promise<{
     q?: string;
-  };
+  }>;
 }
-
 export default async function SearchPage({ searchParams }: Props) {
-  const query = searchParams.q || "";
+  const params = await searchParams;
+
+  const query = params.q || "";
 
   const results = query ? await searchMulti(query) : [];
 

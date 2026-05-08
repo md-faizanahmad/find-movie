@@ -42,6 +42,7 @@ export async function searchMulti(query: string): Promise<SearchResult[]> {
     },
   );
 
+  console.log("SEARCH DATA:", data);
   return data.results
     .filter((item) => {
       return ["movie", "tv", "person"].includes(item.media_type) && !item.adult;

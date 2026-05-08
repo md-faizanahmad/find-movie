@@ -16,7 +16,7 @@ export function Footer() {
                 <Film size={18} className="text-white" />
               </div>
               <span className="text-xl font-black uppercase tracking-tighter">
-                Movie<span className="text-red-600">Hub</span>
+                FIND<span className="text-red-600">MOVIE</span>
               </span>
             </Link>
 
@@ -118,7 +118,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="mt-16 border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-[11px] uppercase tracking-widest">
-            © {currentYear} MovieHub. No personal API used. Built for
+            © {currentYear} FindMovie. No personal API used. Built for
             educational purposes.
           </p>
           <div className="flex gap-6 text-[11px] uppercase tracking-widest font-bold">

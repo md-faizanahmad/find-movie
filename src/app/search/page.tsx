@@ -4,7 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { SearchGrid } from "@/features/search/components/SearchGrid";
 
 import { searchMulti } from "@/features/search/services/search.service";
-import { SearchBar } from "@/components/search-bar";
+import { SearchBar } from "@/features/home/components/SearchBar";
 
 interface Props {
   searchParams: {

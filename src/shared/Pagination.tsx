@@ -1,36 +1,60 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useMemo, useTransition } from "react";
+import { usePathname, useRouter } from "next/navigation";
 
 interface Props {
   page: number;
-
   totalPages: number;
-
   language?: string;
-
   query?: string;
 }
 
 export function Pagination({ page, totalPages, language, query }: Props) {
+  const router = useRouter();
+
+  const pathname = usePathname();
+
+  const [isPending, startTransition] = useTransition();
+
   const prevPage = page > 1 ? page - 1 : 1;
 
   const nextPage = page < totalPages ? page + 1 : totalPages;
 
-  function buildUrl(targetPage: number) {
-    const params = new URLSearchParams();
+  const buildUrl = useMemo(() => {
+    return (targetPage: number) => {
+      const params = new URLSearchParams();
 
-    params.set("page", String(targetPage));
+      params.set("page", String(targetPage));
 
-    // Keep language filter
-    if (language) {
-      params.set("language", language);
+      if (language) {
+        params.set("language", language);
+      }
+
+      if (query) {
+        params.set("query", query);
+      }
+
+      return `${pathname}?${params.toString()}`;
+    };
+  }, [language, pathname, query]);
+
+  // Prefetch nearby pages
+  useEffect(() => {
+    router.prefetch(buildUrl(nextPage));
+
+    if (page > 1) {
+      router.prefetch(buildUrl(prevPage));
     }
+  }, [buildUrl, nextPage, page, prevPage, router]);
 
-    // Keep search query
-    if (query) {
-      params.set("query", query);
-    }
-
-    return `/movies?${params.toString()}`;
+  function handleNavigate(targetPage: number) {
+    startTransition(() => {
+      router.push(buildUrl(targetPage), {
+        scroll: false,
+      });
+    });
   }
 
   return (
@@ -39,10 +63,15 @@ export function Pagination({ page, totalPages, language, query }: Props) {
       aria-label="Pagination"
     >
       {/* Buttons */}
-      <div className="order-2 flex  w-full items-center justify-center gap-3 sm:w-auto md:order-1">
+      <div
+        className={`order-2 flex w-full items-center justify-center gap-3 transition-opacity duration-200 sm:w-auto md:order-1 ${
+          isPending ? "opacity-70" : "opacity-100"
+        }`}
+      >
         {/* Previous */}
-        <Link
-          href={buildUrl(prevPage)}
+        <button
+          onClick={() => handleNavigate(prevPage)}
+          disabled={page <= 1 || isPending}
           className={`group flex h-12 w-12 items-center justify-center rounded-full border transition-all md:h-auto md:w-auto md:px-6 md:py-3 ${
             page <= 1
               ? "pointer-events-none border-neutral-800 text-neutral-700"
@@ -52,21 +81,24 @@ export function Pagination({ page, totalPages, language, query }: Props) {
           <ChevronLeftIcon />
 
           <span className="ml-2 hidden font-semibold md:inline">Previous</span>
-        </Link>
+        </button>
 
         {/* Next */}
-        <Link
-          href={buildUrl(nextPage)}
+        <button
+          onClick={() => handleNavigate(nextPage)}
+          disabled={page >= totalPages || isPending}
           className={`group flex flex-1 items-center justify-center rounded-full px-8 py-3 transition-all md:flex-none md:px-10 ${
             page >= totalPages
               ? "pointer-events-none bg-neutral-800 text-neutral-600"
               : "bg-red-600 text-white shadow-lg shadow-red-600/20 hover:bg-red-700 active:scale-95"
           }`}
         >
-          <span className="mr-1 text-base font-semibold">Next Page</span>
+          <span className="mr-1 text-base font-semibold">
+            {isPending ? "Loading..." : "Next Page"}
+          </span>
 
           <ChevronRightIcon />
-        </Link>
+        </button>
       </div>
 
       {/* Status */}

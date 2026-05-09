@@ -64,6 +64,7 @@ const forcedAdultTitles = [
   "gandii baat",
   "kavita bhabhi",
   "rasbhari",
+  "sex",
 ];
 
 const suspiciousGenres = [

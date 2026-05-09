@@ -1,9 +1,9 @@
 "use client";
 
+import { Suspense, useState } from "react";
 import Image from "next/image";
 import { Skeleton } from "@mui/material";
 import { SearchBar } from "./SearchBar";
-import { useState } from "react";
 
 interface Props {
   backdropPath: string | null;
@@ -72,7 +72,10 @@ export function HeroSection({ backdropPath, isLoading = false }: Props) {
 
           {/* SearchBar Container */}
           <div className="w-full max-w-2xl">
-            <SearchBar />
+            <Suspense fallback={null}>
+              <SearchBar />
+            </Suspense>
+            {/* <SearchBar /> */}
           </div>
         </div>
       </div>

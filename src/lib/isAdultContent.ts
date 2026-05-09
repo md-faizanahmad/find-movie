@@ -44,6 +44,7 @@ const strongAdultKeywords = [
   "Kunwari Dulhan",
   "GGS - Ganteng-Ganteng Sange",
   "Hot Girls Wanted",
+  "sex",
 ];
 
 const mediumAdultKeywords = [
@@ -64,8 +65,9 @@ const mediumAdultKeywords = [
   "sex, party and lies",
   "how to have sex",
   "phone sex",
-  "Charmsukh",
-  "Palang Tod",
+  "sex",
+  "charmsukh",
+  "palang tod",
   "Shanthi Appuram Nithya",
   "Kunwari Dulhan",
   "GGS - Ganteng-Ganteng Sange",
@@ -78,11 +80,12 @@ const suspiciousGenres = [
 
 export function isAdultContent(movie: any) {
   const text = `
-    ${movie.title || ""}
-${movie.original_title || ""}
-${movie.name || ""}
-${movie.original_name || ""}
-  `
+  ${movie.title || ""}
+  ${movie.original_title || ""}
+  ${movie.name || ""}
+  ${movie.original_name || ""}
+  ${movie.overview || ""}
+`
 
     .toLowerCase()
     .replace(/\s+/g, " ");

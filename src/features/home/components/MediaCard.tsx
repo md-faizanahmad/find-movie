@@ -114,7 +114,7 @@ export function MediaCard({ item }: MediaCardProps) {
     : "TBD";
 
   const isLocked = item.adult && !adultUnlocked;
-
+  console.log(item.title, item.adult);
   const CardContent = (
     <>
       {/* Poster */}

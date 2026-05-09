@@ -50,7 +50,7 @@ export function PersonHero({ person }: Props) {
                 alt={person.name}
                 fill
                 priority
-                className="object-cover rounded-full"
+                className="object-cover"
                 sizes="(max-width: 768px) 208px, 320px"
               />
             ) : (

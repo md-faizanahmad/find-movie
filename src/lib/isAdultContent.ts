@@ -91,7 +91,7 @@ export function isAdultContent(movie: any) {
     .replace(/\s+/g, " ");
 
   const strongMatches = strongAdultKeywords.filter((word) =>
-    text.includes(word),
+    text.includes(word.toLowerCase()),
   ).length;
 
   const mediumMatches = mediumAdultKeywords.filter((word) =>

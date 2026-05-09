@@ -39,7 +39,7 @@ function mapMovie(movie: TMDBMovie): Media {
     rating: movie.vote_average ?? 0,
     popularity: movie.popularity ?? 0,
     releaseDate: movie.release_date ?? "",
-    adult: isAdultContent(movie),
+    adult: isAdultContent(movie.adult),
   };
 }
 
@@ -52,7 +52,7 @@ function mapTV(tv: TMDBTV): Media {
     backdrop: tv.backdrop_path ?? null,
     rating: tv.vote_average ?? 0,
     popularity: tv.popularity ?? 0,
-    adult: isAdultContent(tv),
+    adult: isAdultContent(tv.adult),
     releaseDate: tv.first_air_date ?? "",
   };
 }

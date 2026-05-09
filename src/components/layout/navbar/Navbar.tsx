@@ -58,8 +58,15 @@ export function Navbar() {
               const isActive =
                 item.href === "/"
                   ? pathname === "/"
-                  : pathname.startsWith(item.href);
-
+                  : item.href === "/movies"
+                    ? pathname.startsWith("/movies") ||
+                      pathname.startsWith("/movie")
+                    : item.href === "/tv"
+                      ? pathname.startsWith("/tv")
+                      : item.href === "/people"
+                        ? pathname.startsWith("/people") ||
+                          pathname.startsWith("/person")
+                        : false;
               return (
                 <Link
                   key={item.name}

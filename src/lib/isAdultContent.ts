@@ -1,12 +1,61 @@
-const explicitKeywords = [
+const adultKeywords = [
+  // Porn / explicit
   "porn",
   "porno",
   "pornographic",
   "xxx",
   "nsfw",
+  "adult",
   "adult film",
   "hardcore",
   "softcore",
+  "explicit",
+  "explicit sex",
+  "sexual content",
+  "sex tape",
+  "group sex",
+  "oral sex",
+  "phone sex",
+  "safe sex",
+  "sex play",
+  "sex rider",
+  "how to have sex",
+
+  // Sexual acts
+  "sex",
+  "sexual",
+  "anal",
+  "blowjob",
+  "handjob",
+  "deepthroat",
+  "threesome",
+  "orgy",
+  "bdsm",
+  "fetish",
+  "milf",
+
+  // Nudity
+  "nude",
+  "nudity",
+  "topless",
+  "uncensored",
+
+  // Erotic themes
+  "erotic",
+  "seduction",
+  "sensual",
+  "lust",
+  "temptation",
+  "desire",
+  "passion",
+  "provocative",
+  "intimate",
+  "mistress",
+  "affair",
+  "hookup",
+  "one night stand",
+
+  // Adult industry
   "onlyfans",
   "camgirl",
   "camgirls",
@@ -15,60 +64,21 @@ const explicitKeywords = [
   "brothel",
   "stripper",
   "strip club",
-  "sex tape",
-  "sexual content",
-  "explicit sex",
-  "group sex",
-  "bdsm",
-  "fetish",
-  "orgy",
-  "milf",
-  "anal",
-  "blowjob",
-  "nude",
-  "nudity",
-  "uncensored",
-  "18+",
-];
 
-const suspiciousKeywords = [
-  "erotic",
-  "seduction",
-  "sensual",
-  "sexual",
-  "sex",
-  "sex play",
-  "affair",
-  "mistress",
-  "lust",
-  "intimate",
-  "temptation",
-  "desire",
-  "passion",
-  "provocative",
-  "safe sex",
-  "phone sex",
-  "how to have sex",
-  "sex & more",
-  "the sex trip",
-  "sex rider",
-];
-
-const forcedAdultTitles = [
+  // OTT / known adult series
   "charmsukh",
   "palang tod",
+  "gandii baat",
+  "kavita bhabhi",
+  "rasbhari",
   "shanthi appuram nithya",
   "kunwari dulhan",
   "ggs - ganteng-ganteng sange",
   "hot girls wanted",
-  "gandii baat",
-  "kavita bhabhi",
-  "rasbhari",
-  "sex",
-];
 
-const suspiciousGenres = [
-  10749, // Romance
+  // Rating markers
+  "18+",
+  "a rated",
 ];
 
 export function isAdultContent(media: any) {
@@ -82,33 +92,8 @@ export function isAdultContent(media: any) {
     .toLowerCase()
     .replace(/\s+/g, " ");
 
-  const explicitMatch = explicitKeywords.some((word) => text.includes(word));
-
-  const suspiciousMatch = suspiciousKeywords.some((word) =>
-    text.includes(word),
-  );
-
-  const forcedTitleMatch = forcedAdultTitles.some((title) =>
-    text.includes(title),
-  );
-
-  const hasSuspiciousGenre =
-    media.genre_ids?.some((id: number) => suspiciousGenres.includes(id)) ||
-    false;
-
-  /*
-    FINAL RULES
-
-    1. TMDB adult flag
-    2. Explicit keywords
-    3. Forced adult titles
-    4. Suspicious keywords + romance genre
-  */
-
   return (
     media.adult === true ||
-    explicitMatch ||
-    forcedTitleMatch ||
-    (suspiciousMatch && hasSuspiciousGenre)
+    adultKeywords.some((word) => text.includes(word.toLowerCase()))
   );
 }

@@ -6,6 +6,7 @@ export interface SearchResult {
   title: string;
   image: string | null;
   year?: string;
+  overview?: string;
 }
 
 interface TMDBSearchResponse {
@@ -19,6 +20,7 @@ interface TMDBSearchResponse {
     profile_path?: string;
     release_date?: string;
     first_air_date?: string;
+    overview?: string;
   }[];
 }
 

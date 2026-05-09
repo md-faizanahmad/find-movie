@@ -12,7 +12,11 @@ interface Props {
 export function SearchGrid({ results, query }: Props) {
   if (!query.trim()) return null;
 
-  if (!results.length) {
+  const mediaResults = results.filter(
+    (item) => item.media_type === "movie" || item.media_type === "tv",
+  );
+
+  if (!mediaResults.length) {
     return <SearchEmpty query={query} />;
   }
 
@@ -26,7 +30,7 @@ export function SearchGrid({ results, query }: Props) {
         xl:grid-cols-6
       "
     >
-      {results.map((item) => (
+      {mediaResults.map((item) => (
         <SearchResultCard key={`${item.media_type}-${item.id}`} item={item} />
       ))}
     </div>

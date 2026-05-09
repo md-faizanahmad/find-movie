@@ -22,7 +22,7 @@ export function RegionFilter() {
   const currentQuery = searchParams.get("query") || "";
 
   return (
-    <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar scroll-smooth">
+    <div className="flex gap-2 overflow-x-auto p-4 pb-2 no-scrollbar scroll-smooth">
       {REGIONS.map((region) => {
         const isActive = currentLang === region.value;
 
@@ -36,7 +36,7 @@ export function RegionFilter() {
           <Link
             key={region.value}
             href={`/movies?${params.toString()}`}
-            className={`whitespace-nowrap rounded-full px-5 py-2 text-xs font-bold uppercase tracking-widest transition-all duration-300 border ${
+            className={`whitespace-nowrap  rounded-full px-5 py-2 text-xs font-bold uppercase tracking-widest transition-all duration-300 border ${
               isActive
                 ? "bg-red-600 border-red-600 text-white shadow-lg shadow-red-600/20 scale-105"
                 : "bg-neutral-900 border-white/5 text-neutral-400 hover:border-white/20 hover:text-white"

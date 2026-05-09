@@ -1,4 +1,4 @@
-const strongAdultKeywords = [
+const explicitKeywords = [
   "porn",
   "porno",
   "pornographic",
@@ -29,25 +29,9 @@ const strongAdultKeywords = [
   "nudity",
   "uncensored",
   "18+",
-  "sex play",
-  "sex, party and lies",
-  "how to have sex",
-  "phone sex",
-  "Safe sex",
-  "Sex",
-  "Sex & More",
-  "the sex trip",
-  "Sex Rider: Wet Highway",
-  "Charmsukh",
-  "Palang Tod",
-  "Shanthi Appuram Nithya",
-  "Kunwari Dulhan",
-  "GGS - Ganteng-Ganteng Sange",
-  "Hot Girls Wanted",
-  "sex",
 ];
 
-const mediumAdultKeywords = [
+const suspiciousKeywords = [
   "erotic",
   "seduction",
   "sensual",
@@ -62,59 +46,68 @@ const mediumAdultKeywords = [
   "desire",
   "passion",
   "provocative",
-  "sex, party and lies",
-  "how to have sex",
+  "safe sex",
   "phone sex",
-  "sex",
+  "how to have sex",
+  "sex & more",
+  "the sex trip",
+  "sex rider",
+];
+
+const forcedAdultTitles = [
   "charmsukh",
   "palang tod",
-  "Shanthi Appuram Nithya",
-  "Kunwari Dulhan",
-  "GGS - Ganteng-Ganteng Sange",
-  "Hot Girls Wanted",
+  "shanthi appuram nithya",
+  "kunwari dulhan",
+  "ggs - ganteng-ganteng sange",
+  "hot girls wanted",
+  "gandii baat",
+  "kavita bhabhi",
+  "rasbhari",
 ];
 
 const suspiciousGenres = [
   10749, // Romance
 ];
 
-export function isAdultContent(movie: any) {
+export function isAdultContent(media: any) {
   const text = `
-  ${movie.title || ""}
-  ${movie.original_title || ""}
-  ${movie.name || ""}
-  ${movie.original_name || ""}
-  ${movie.overview || ""}
-`
-
+    ${media.title || ""}
+    ${media.original_title || ""}
+    ${media.name || ""}
+    ${media.original_name || ""}
+    ${media.overview || ""}
+  `
     .toLowerCase()
     .replace(/\s+/g, " ");
 
-  const strongMatches = strongAdultKeywords.filter((word) =>
-    text.includes(word.toLowerCase()),
-  ).length;
+  const explicitMatch = explicitKeywords.some((word) => text.includes(word));
 
-  const mediumMatches = mediumAdultKeywords.filter((word) =>
+  const suspiciousMatch = suspiciousKeywords.some((word) =>
     text.includes(word),
-  ).length;
+  );
+
+  const forcedTitleMatch = forcedAdultTitles.some((title) =>
+    text.includes(title),
+  );
 
   const hasSuspiciousGenre =
-    movie.genre_ids?.some((id: number) => suspiciousGenres.includes(id)) ||
+    media.genre_ids?.some((id: number) => suspiciousGenres.includes(id)) ||
     false;
 
   /*
-    DETECTION RULES
+    FINAL RULES
 
-    1. TMDB adult flag = always adult
-    2. ANY strong keyword = adult
-    3. 2+ medium keywords = adult
-    4. 1 medium keyword + romance genre = adult
+    1. TMDB adult flag
+    2. Explicit keywords
+    3. Forced adult titles
+    4. Suspicious keywords + romance genre
   */
 
   return (
-    movie.adult === true ||
-    strongMatches >= 1 ||
-    mediumMatches >= 2 ||
-    (mediumMatches >= 1 && hasSuspiciousGenre)
+    media.adult === true ||
+    explicitMatch ||
+    forcedTitleMatch ||
+    (suspiciousMatch && hasSuspiciousGenre)
   );
 }

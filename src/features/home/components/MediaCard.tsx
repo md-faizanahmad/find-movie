@@ -89,7 +89,8 @@ import { Star, PlayCircle } from "lucide-react";
 import { useState } from "react";
 import { Media } from "../services/home.service";
 import { AdultVerificationModal } from "@/components/adult/AdultVerificationModal";
-
+import { isAdultContent } from "@/lib/isAdultContent";
+import { useMemo } from "react";
 interface MediaCardProps {
   item: Media;
 }
@@ -113,8 +114,11 @@ export function MediaCard({ item }: MediaCardProps) {
     ? new Date(item.releaseDate).getFullYear()
     : "TBD";
 
-  const isLocked = item.adult && !adultUnlocked;
-  console.log(item.title, item.adult);
+  // const isAdult = isAdultContent(item);
+  const isAdult = useMemo(() => isAdultContent(item), [item]);
+
+  const isLocked = isAdult && !adultUnlocked;
+
   const CardContent = (
     <>
       {/* Poster */}
@@ -133,7 +137,7 @@ export function MediaCard({ item }: MediaCardProps) {
             "
             className={`object-cover transition-all duration-700 ease-out ${
               !isLocked ? "group-hover:scale-105 group-hover:brightness-50" : ""
-            } ${isLocked ? "scale-110 blur-xl" : ""}`}
+            } ${isLocked ? "scale-110 blur-2xl brightness-50 " : ""}`}
           />
         ) : (
           <div className="flex h-full items-center justify-center text-neutral-700">

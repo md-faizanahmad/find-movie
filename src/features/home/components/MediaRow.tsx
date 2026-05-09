@@ -1,7 +1,5 @@
 "use client";
 
-// src/features/home/components/MediaRow.tsx
-
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { MediaCard } from "./MediaCard";
@@ -67,7 +65,7 @@ export function MediaRow({ title, items, href = "#" }: Props) {
         <div
           ref={scrollRef}
           className="
-            flex gap-3 overflow-x-auto scroll-smooth px-6 pb-4
+            flex gap-3 overflow-x-auto scroll-smooth px-8 pb-4
             snap-x snap-mandatory
             scrollbar-hide
             md:gap-5 md:px-12 lg:px-16

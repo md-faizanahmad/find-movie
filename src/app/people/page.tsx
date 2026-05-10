@@ -14,6 +14,7 @@ interface Props {
     page?: string;
     q?: string;
     department?: string;
+    gender?: string;
   }>;
 }
 
@@ -22,6 +23,7 @@ export default async function PeoplePage({ searchParams }: Props) {
   const page = Number(params.page || 1);
   const query = params.q || "";
   const department = params.department || "";
+  const gender = params.gender || "";
 
   // Fetch people
   const people = query
@@ -30,9 +32,15 @@ export default async function PeoplePage({ searchParams }: Props) {
 
   // Note: Local filtering for "department" only filters the current page.
   // For true global department filtering, it should be done via API params if supported.
-  const filteredPeople = people.results.filter((person: TMDBPerson) =>
-    department ? person.known_for_department === department : true,
-  );
+  const filteredPeople = people.results.filter((person: TMDBPerson) => {
+    const matchesDepartment = department
+      ? person.known_for_department === department
+      : true;
+
+    const matchesGender = gender ? String(person.gender) === gender : true;
+
+    return matchesDepartment && matchesGender;
+  });
 
   const hasResults = filteredPeople.length > 0;
 

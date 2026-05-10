@@ -18,7 +18,8 @@ export function RegionFilter() {
   const searchParams = useSearchParams();
 
   // Get current values from URL
-  const currentLang = searchParams.get("language") || "";
+  // const currentLang = searchParams.get("language") || "";
+  const currentLang = searchParams.get("with_original_language") || "";
   const currentQuery = searchParams.get("query") || "";
 
   return (
@@ -28,7 +29,12 @@ export function RegionFilter() {
 
         // Build the new URL: keep the search query if it exists
         const params = new URLSearchParams();
-        if (region.value) params.set("language", region.value);
+        // if (region.value) params.set("language", region.value);
+        if (region.value) {
+          params.set("with_original_language", region.value);
+        } else {
+          params.delete("with_original_language");
+        }
         if (currentQuery) params.set("query", currentQuery);
         params.set("page", "1"); // Reset to page 1 on filter change
 

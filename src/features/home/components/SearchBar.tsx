@@ -27,9 +27,10 @@ export function SearchBar() {
     <form onSubmit={handleSubmit} className="relative w-full max-w-3xl">
       <Search
         className="
-          absolute top-1/2 left-4
-          -translate-y-1/2 text-neutral-400
-        "
+    absolute top-1/2 left-4
+    -translate-y-1/2 text-neutral-400
+    z-10 
+  "
         size={20}
       />
 

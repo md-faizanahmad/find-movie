@@ -30,7 +30,7 @@ export default async function PeoplePage({ searchParams }: Props) {
     ? await searchPeople(query, page)
     : await getPopularPeople(page);
 
-  // Note: Local filtering for "department" only filters the current page.
+  // Note: Local filtering for "department", only filters the current page.
   // For true global department filtering, it should be done via API params if supported.
   const filteredPeople = people.results.filter((person: TMDBPerson) => {
     const matchesDepartment = department

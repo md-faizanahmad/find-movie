@@ -5,19 +5,18 @@ import { searchMovies } from "@/features/discover/api/searchMovies";
 import { DiscoverHero } from "@/features/discover/components/DiscoverHero";
 import { MovieEmptyState } from "@/features/discover/components/MovieEmptyState";
 import { MovieGrid } from "@/features/discover/components/MovieGrid";
+import { MovieSortTabs } from "@/features/discover/components/MovieSortTabs";
 import { RegionFilter } from "@/features/discover/components/RegionFilter";
-import { SortDropdown } from "@/features/discover/components/SortDropdown";
 import { Pagination } from "@/shared/Pagination";
 import { ResultCounter } from "@/shared/ResultCounter";
 
 interface Props {
   searchParams: Promise<{
-    language?: string;
-
+    // refactor
+    // language?: string;
+    with_original_language?: string;
     sort?: string;
-
     query?: string;
-
     page?: string;
   }>;
 }
@@ -25,7 +24,9 @@ interface Props {
 export default async function MoviesPage({ searchParams }: Props) {
   const params = await searchParams;
 
-  const language = params.language || "en";
+  // const language = params.language || "en";
+  // refactor
+  const withOriginalLanguage = params.with_original_language || "en";
 
   const sort = params.sort || "popularity.desc";
 
@@ -34,10 +35,19 @@ export default async function MoviesPage({ searchParams }: Props) {
   const page = Number(params.page || 1);
 
   // Dynamic Fetch
+  // const movies = query
+  //   ? await searchMovies(query, page)
+  //   : await discoverMovies({
+  //       language,
+  //       sortBy: sort,
+  //       page,
+  //     });
+
+  // refactor
   const movies = query
     ? await searchMovies(query, page)
     : await discoverMovies({
-        language,
+        withOriginalLanguage,
         sortBy: sort,
         page,
       });
@@ -60,7 +70,7 @@ export default async function MoviesPage({ searchParams }: Props) {
             <div className="mx-1 mb-1 hidden h-6 w-px bg-white/10 sm:block" />
 
             <div className="w-full sm:w-auto mb-1">
-              <SortDropdown />
+              <MovieSortTabs />
             </div>
           </div>
 
@@ -103,7 +113,7 @@ export default async function MoviesPage({ searchParams }: Props) {
               <Pagination
                 page={page}
                 totalPages={movies.total_pages}
-                language={language}
+                language={withOriginalLanguage}
                 query={query}
               />
             </footer>

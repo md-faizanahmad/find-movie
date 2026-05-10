@@ -34,10 +34,13 @@ export function TVSearch() {
   }
 
   return (
-    <div className="flex items-center overflow-hidden rounded-2xl border border-white/10 bg-white/10 backdrop-blur-xl">
+    // <div className="flex items-center overflow-hidden rounded-2xl border border-white/10 bg-white/10 backdrop-blur-xl">
+    <div className="flex items-center overflow-hidden rounded-2xl border border-white/10 bg-white/10 backdrop-blur-xl supports-backdrop-filter:bg-white/10 will-change-transform">
       <input
         type="text"
         value={query}
+        autoComplete="off"
+        spellCheck={false}
         onChange={(e) => setQuery(e.target.value)}
         onKeyDown={(e) => {
           if (e.key === "Enter") {

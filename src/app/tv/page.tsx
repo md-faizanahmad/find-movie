@@ -7,24 +7,23 @@ import { TVPagination } from "@/features/tv/components/TVPagination";
 import { TVEmptyState } from "@/features/tv/components/TVEmptyState";
 import { TVHero } from "@/features/tv/components/TVHero";
 import { TVRegionFilter } from "@/features/tv/components/TVRegionFilter";
-import { TVSortDropdown } from "@/features/tv/components/TVSortDropdown";
 import { ResultCounter } from "@/shared/ResultCounter";
+import { TVSortTabs } from "@/features/tv/components/TVSortTabs";
 
 interface Props {
   searchParams: Promise<{
-    language?: string;
-
+    // language?: string;
+    with_original_language?: string;
     sort?: string;
-
     query?: string;
-
     page?: string;
   }>;
 }
 
 export default async function TVShowsPage({ searchParams }: Props) {
   const params = await searchParams;
-  const language = params.language || "en";
+  // const language = params.language || "en";
+  const language = params.with_original_language || "en";
   const sort = params.sort || "popularity.desc";
   const query = params.query || "";
   const page = Number(params.page || 1);
@@ -62,7 +61,7 @@ export default async function TVShowsPage({ searchParams }: Props) {
 
             {/* Sort Dropdown - Priority 2 */}
             <div className="w-full sm:w-auto mb-2">
-              <TVSortDropdown />
+              <TVSortTabs />
             </div>
           </div>
 

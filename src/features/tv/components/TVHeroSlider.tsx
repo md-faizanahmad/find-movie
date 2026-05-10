@@ -26,20 +26,31 @@ export function TVHeroSlider({ shows }: Props) {
         const isActive = index === active;
 
         return (
+          // <div
+          //   key={show.id}
+          //   className={`absolute  inset-0 transition-opacity duration-1000 ${
+          //     isActive ? "opacity-100" : "opacity-0 z-0"
+          //   }`}
+          // >
+
           <div
             key={show.id}
-            className={`absolute  inset-0 transition-opacity duration-1000 ${
-              isActive ? "opacity-100" : "opacity-0 z-0"
+            className={`absolute inset-0 will-change-opacity backface-hidden transform-gpu transition-opacity duration-1000 ${
+              isActive ? "opacity-100 z-10" : "opacity-0 z-0"
             }`}
           >
             <Image
               src={`${IMAGE_BASE_URL}${show.backdrop_path}`}
               alt={show.name}
               fill
-              className="object-cover object-top md:object-[center_25%]"
+              // className="object-cover object-top md:object-[center_25%]"
+              className="object-cover object-top md:object-[center_25%] select-none"
+              draggable={false}
               priority={index === 0} // Only prioritize the first slide
-              sizes="100vw"
-              quality={90}
+              // sizes="100vw"
+              sizes="(max-width: 768px) 100vw, 100vw"
+              quality={85}
+              // quality={90}
             />
           </div>
         );

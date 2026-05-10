@@ -8,16 +8,13 @@ export function SearchBar() {
   const router = useRouter();
 
   const searchParams = useSearchParams();
-
   const currentQuery = searchParams.get("q") || "";
-
   const [query, setQuery] = useState(currentQuery);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     const trimmedQuery = query.trim();
-
     if (!trimmedQuery) return;
 
     router.push(`/search?q=${encodeURIComponent(trimmedQuery)}`);

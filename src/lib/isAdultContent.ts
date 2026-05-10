@@ -75,6 +75,8 @@ const adultKeywords = [
   "kunwari dulhan",
   "ggs - ganteng-ganteng sange",
   "hot girls wanted",
+  "how to have sex",
+  "how to have cyber sex on the internet",
 
   // Rating markers
   "18+",

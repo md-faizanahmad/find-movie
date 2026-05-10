@@ -41,10 +41,13 @@ export default async function TVShowsPage({ searchParams }: Props) {
   const hasResults = tvShows.results.length > 0;
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-black text-white">
-      <TVHero shows={tvShows.results.slice(0, 5)} />
-
-      <section className="relative z-30 mx-auto -mt-8 max-w-500 space-y-8 px-4 pb-20 md:px-8 lg:px-12">
+    // <main className="min-h-screen overflow-x-hidden bg-black text-white">
+    <main className="relative isolate min-h-screen overflow-x-hidden bg-black text-white">
+      {/* <TVHero shows={tvShows.results.slice(0, 5)} /> */}
+      <div className="relative z-0">
+        <TVHero shows={tvShows.results.slice(0, 5)} />
+      </div>
+      <section className="relative z-10 mx-auto -mt-8 max-w-500 space-y-8 px-4 pb-20 md:px-8 lg:px-12">
         {/* Filter Bar */}
         <div className="flex flex-col gap-4 p-4  shadow-2xl md:flex-row md:items-center md:justify-between md:p-3">
           {/* 1. Filter Group: Stacks on mobile, inline on desktop */}

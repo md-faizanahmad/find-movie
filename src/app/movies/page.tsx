@@ -1,21 +1,13 @@
 // app/movies/page.tsx
 
 import { discoverMovies } from "@/features/discover/api/discoverMovies";
-
 import { searchMovies } from "@/features/discover/api/searchMovies";
-
 import { DiscoverHero } from "@/features/discover/components/DiscoverHero";
-
 import { MovieEmptyState } from "@/features/discover/components/MovieEmptyState";
-
 import { MovieGrid } from "@/features/discover/components/MovieGrid";
-
 import { RegionFilter } from "@/features/discover/components/RegionFilter";
-
 import { SortDropdown } from "@/features/discover/components/SortDropdown";
-
 import { Pagination } from "@/shared/Pagination";
-
 import { ResultCounter } from "@/shared/ResultCounter";
 
 interface Props {

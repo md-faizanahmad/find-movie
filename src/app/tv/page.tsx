@@ -8,7 +8,7 @@ import { TVEmptyState } from "@/features/tv/components/TVEmptyState";
 import { TVHero } from "@/features/tv/components/TVHero";
 import { TVRegionFilter } from "@/features/tv/components/TVRegionFilter";
 import { ResultCounter } from "@/shared/ResultCounter";
-import { TVSortTabs } from "@/features/tv/components/TVSortTabs";
+import { TVSortDropdown } from "@/features/tv/components/TVSortDropdown";
 
 interface Props {
   searchParams: Promise<{
@@ -61,7 +61,7 @@ export default async function TVShowsPage({ searchParams }: Props) {
 
             {/* Sort Dropdown - Priority 2 */}
             <div className="w-full sm:w-auto mb-2">
-              <TVSortTabs />
+              <TVSortDropdown />
             </div>
           </div>
 

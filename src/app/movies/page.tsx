@@ -5,8 +5,8 @@ import { searchMovies } from "@/features/discover/api/searchMovies";
 import { DiscoverHero } from "@/features/discover/components/DiscoverHero";
 import { MovieEmptyState } from "@/features/discover/components/MovieEmptyState";
 import { MovieGrid } from "@/features/discover/components/MovieGrid";
-import { MovieSortTabs } from "@/features/discover/components/MovieSortTabs";
 import { RegionFilter } from "@/features/discover/components/RegionFilter";
+import { SortDropdown } from "@/features/discover/components/SortDropdown";
 import { Pagination } from "@/shared/Pagination";
 import { ResultCounter } from "@/shared/ResultCounter";
 
@@ -70,7 +70,7 @@ export default async function MoviesPage({ searchParams }: Props) {
             <div className="mx-1 mb-1 hidden h-6 w-px bg-white/10 sm:block" />
 
             <div className="w-full sm:w-auto mb-1">
-              <MovieSortTabs />
+              <SortDropdown />
             </div>
           </div>
 

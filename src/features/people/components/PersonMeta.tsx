@@ -1,42 +1,50 @@
 import { Calendar, Flame, MapPin } from "lucide-react";
 
-interface Props {
-  person: any;
+interface CombinedCredits {
+  cast?: unknown[];
 }
-function calculateAge(birthday?: string, deathday?: string) {
+
+interface Person {
+  birthday: string | null;
+  deathday: string | null;
+  place_of_birth: string | null;
+  popularity: number | null;
+  combined_credits?: CombinedCredits | null;
+}
+
+interface Props {
+  person: Person;
+}
+
+function calculateAge(
+  birthday: string | null,
+  deathday: string | null,
+): number | null {
   if (!birthday) return null;
 
   const birth = new Date(birthday);
-
   const end = deathday ? new Date(deathday) : new Date();
-
   let age = end.getFullYear() - birth.getFullYear();
-
   const month = end.getMonth() - birth.getMonth();
-
   if (month < 0 || (month === 0 && end.getDate() < birth.getDate())) {
     age--;
   }
 
   return age;
 }
-function getCountryFlag(place: string) {
+
+function getCountryFlag(place: string | null): string {
+  if (!place) return "🌍";
+
   const lower = place.toLowerCase();
 
   if (lower.includes("india")) return "🇮🇳";
-
   if (lower.includes("usa") || lower.includes("america")) return "🇺🇸";
-
   if (lower.includes("uk") || lower.includes("england")) return "🇬🇧";
-
   if (lower.includes("japan")) return "🇯🇵";
-
   if (lower.includes("korea")) return "🇰🇷";
-
   if (lower.includes("australia")) return "🇦🇺";
-
   if (lower.includes("spain")) return "🇪🇸";
-
   if (lower.includes("france")) return "🇫🇷";
 
   return "🌍";
@@ -44,10 +52,8 @@ function getCountryFlag(place: string) {
 
 export function PersonMeta({ person }: Props) {
   const age = calculateAge(person.birthday, person.deathday);
-
   const flag = getCountryFlag(person.place_of_birth);
-
-  const knownCredits = person.combined_credits?.cast?.length || 0;
+  const knownCredits = person.combined_credits?.cast?.length ?? 0;
 
   return (
     <>
@@ -72,7 +78,7 @@ export function PersonMeta({ person }: Props) {
         <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-neutral-300 backdrop-blur-md">
           <span className="inline-flex items-center gap-2">
             <Flame className="h-4 w-4 text-orange-500" />
-            {Math.round(person.popularity || 0)}
+            {Math.round(person.popularity ?? 0)}
           </span>
         </div>
       </div>

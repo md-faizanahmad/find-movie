@@ -49,14 +49,14 @@ export function MediaRow({ title, items, href = "#" }: Props) {
         {/* Desktop Arrows */}
         <button
           onClick={() => scroll("left")}
-          className="absolute -left-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-black/70 p-2 text-white backdrop-blur transition hover:bg-black md:flex"
+          className="absolute left-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-black/70 p-2 text-white backdrop-blur transition hover:bg-black md:flex"
         >
           <ChevronLeft size={22} />
         </button>
 
         <button
           onClick={() => scroll("right")}
-          className="absolute -right-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-black/70 p-2 text-white backdrop-blur transition hover:bg-black md:flex"
+          className="absolute right-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-black/70 p-2 text-white backdrop-blur transition hover:bg-black md:flex"
         >
           <ChevronRight size={22} />
         </button>
@@ -65,15 +65,14 @@ export function MediaRow({ title, items, href = "#" }: Props) {
         <div
           ref={scrollRef}
           className="
-    flex gap-3 overflow-x-auto overflow-y-visible scroll-smooth
-    px-6 py-6
-    snap-x snap-mandatory
-    scrollbar-hide
-    md:gap-5 md:px-8 lg:px-10
-    [-ms-overflow-style:none]
-    [scrollbar-width:none]
-    [&::-webkit-scrollbar]:hidden
-  "
+            flex gap-3 overflow-x-auto overflow-y-visible scroll-smooth px-10 py-6
+            snap-x snap-mandatory
+            scrollbar-hide
+            md:gap-5 md:px-14 lg:px-18
+            [-ms-overflow-style:none]
+            [scrollbar-width:none]
+            [&::-webkit-scrollbar]:hidden
+          "
         >
           {items.map((item) => (
             <div

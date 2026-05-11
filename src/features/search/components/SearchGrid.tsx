@@ -5,18 +5,13 @@ import { SearchResult } from "../services/search.service";
 
 interface Props {
   results: SearchResult[];
-
   query: string;
 }
 
 export function SearchGrid({ results, query }: Props) {
   if (!query.trim()) return null;
 
-  const mediaResults = results.filter(
-    (item) => item.media_type === "movie" || item.media_type === "tv",
-  );
-
-  if (!mediaResults.length) {
+  if (!results.length) {
     return <SearchEmpty query={query} />;
   }
 
@@ -30,7 +25,7 @@ export function SearchGrid({ results, query }: Props) {
         xl:grid-cols-6
       "
     >
-      {mediaResults.map((item) => (
+      {results.map((item) => (
         <SearchResultCard key={`${item.media_type}-${item.id}`} item={item} />
       ))}
     </div>

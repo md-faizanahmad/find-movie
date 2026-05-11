@@ -136,7 +136,9 @@ export function MediaCard({ item }: MediaCardProps) {
               16vw
             "
             className={`object-cover transition-all duration-700 ease-out ${
-              !isLocked ? "group-hover:scale-105 group-hover:brightness-50" : ""
+              !isLocked
+                ? "group-hover:scale-105 group-hover:brightness-50 origin-center"
+                : ""
             } ${isLocked ? "scale-110 blur-2xl brightness-50 " : ""}`}
           />
         ) : (
@@ -173,7 +175,7 @@ export function MediaCard({ item }: MediaCardProps) {
                 e.preventDefault();
                 setShowVerification(true);
               }}
-              className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-black transition hover:scale-105"
+              className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-black transition hover:scale-105 origin-center"
             >
               Unlock Content
             </button>

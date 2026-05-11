@@ -1,37 +1,19 @@
 "use client";
 
 import Link from "next/link";
-
-import { Home, Film, Tv, Users, Clapperboard } from "lucide-react";
-
+import { Home, Film, Tv, Users, Clapperboard, Search } from "lucide-react";
 import { usePathname } from "next/navigation";
-
 import { cn } from "@/lib/utils/cn";
+import { AuthSection } from "@/components/Auth/AuthSection";
 
 export function Navbar() {
   const pathname = usePathname();
 
   const navItems = [
-    {
-      name: "Home",
-      icon: Home,
-      href: "/",
-    },
-    {
-      name: "Movies",
-      icon: Film,
-      href: "/movies",
-    },
-    {
-      name: "TV Shows",
-      icon: Tv,
-      href: "/tv",
-    },
-    {
-      name: "People",
-      icon: Users,
-      href: "/people",
-    },
+    { name: "Home", icon: Home, href: "/" },
+    { name: "Movies", icon: Film, href: "/movies" },
+    { name: "TV Shows", icon: Tv, href: "/tv" },
+    { name: "People", icon: Users, href: "/people" },
   ];
 
   return (
@@ -39,52 +21,57 @@ export function Navbar() {
       {/* TOP BAR */}
       <header className="fixed top-0 z-50 w-full border-b border-white/5 bg-black/60 backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 md:px-12">
-          {/* Logo */}
+          {/* Left: Logo */}
           <Link href="/" className="group">
             <div className="flex items-center gap-3">
               <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-red-600 transition-transform group-hover:scale-110">
                 <Clapperboard className="h-5 w-5 text-white" />
               </div>
-
               <h1 className="text-xl font-black tracking-tighter text-white">
                 FIND<span className="text-red-600">MOVIE</span>
               </h1>
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden items-center gap-10 md:flex">
-            {navItems.map((item) => {
-              const isActive =
-                item.href === "/"
-                  ? pathname === "/"
-                  : item.href === "/movies"
-                    ? pathname.startsWith("/movies") ||
-                      pathname.startsWith("/movie")
-                    : item.href === "/tv"
-                      ? pathname.startsWith("/tv")
-                      : item.href === "/people"
-                        ? pathname.startsWith("/people") ||
-                          pathname.startsWith("/person")
-                        : false;
-              return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={cn(
-                    "relative text-sm font-bold uppercase tracking-widest transition-all hover:text-white",
-                    isActive ? "text-white" : "text-neutral-500",
-                  )}
-                >
-                  {item.name}
+          {/* Right: Navigation & Auth */}
+          <div className="flex items-center gap-8">
+            {/* Desktop Navigation Links */}
+            <nav className="hidden items-center gap-10 md:flex">
+              {navItems.map((item) => {
+                const isActive =
+                  item.href === "/"
+                    ? pathname === "/"
+                    : pathname.startsWith(item.href);
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={cn(
+                      "relative text-sm font-bold uppercase tracking-widest transition-all hover:text-white",
+                      isActive ? "text-white" : "text-neutral-500",
+                    )}
+                  >
+                    {item.name}
+                    {isActive && (
+                      <span className="absolute -bottom-5.5 left-0 h-0.5 w-full bg-red-600 shadow-[0_0_12px_rgba(220,38,38,0.8)]" />
+                    )}
+                  </Link>
+                );
+              })}
+            </nav>
 
-                  {isActive && (
-                    <span className="absolute -bottom-5.5 left-0 h-0.5 w-full bg-red-600 shadow-[0_0_12px_rgba(220,38,38,0.8)]" />
-                  )}
-                </Link>
-              );
-            })}
-          </nav>
+            {/* Auth Section (Login/UserMenu) */}
+            {/* This stays on the right for both Mobile and Desktop */}
+            <div className="flex items-center gap-4">
+              <Link
+                href="/search"
+                className="p-2 text-neutral-400 hover:text-white md:hidden"
+              >
+                <Search size={20} />
+              </Link>
+              <AuthSection />
+            </div>
+          </div>
         </div>
       </header>
 
@@ -93,7 +80,6 @@ export function Navbar() {
         <div className="mx-auto flex max-w-md items-center justify-between">
           {navItems.map((item) => {
             const Icon = item.icon;
-
             const isActive =
               item.href === "/"
                 ? pathname === "/"
@@ -119,7 +105,6 @@ export function Navbar() {
                     strokeWidth={isActive ? 2.5 : 2}
                   />
                 </div>
-
                 <span
                   className={cn(
                     "text-[10px] font-bold uppercase tracking-tighter transition-colors",

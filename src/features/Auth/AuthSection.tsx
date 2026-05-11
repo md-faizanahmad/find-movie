@@ -1,10 +1,20 @@
+"use client";
+
 import { useState } from "react";
+
 import { LoginModal } from "./LoginModal";
 import { UserMenu } from "./UserMenu";
 
-export function AuthSection() {
+interface AuthUser {
+  firstName: string;
+}
+
+interface AuthSectionProps {
+  user: AuthUser | null;
+}
+
+export function AuthSection({ user }: AuthSectionProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [user, setUser] = useState<{ firstName: string } | null>(null);
 
   return (
     <>
@@ -16,14 +26,10 @@ export function AuthSection() {
           Login
         </button>
       ) : (
-        <UserMenu user={user} onLogout={() => setUser(null)} />
+        <UserMenu user={user} />
       )}
 
-      <LoginModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onLogin={(name) => setUser({ firstName: name })}
-      />
+      <LoginModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
 }

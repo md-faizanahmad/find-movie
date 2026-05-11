@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/layout/navbar/Navbar";
+// import { Navbar } from "@/components/layout/navbar/Navbar";
 import { Footer } from "@/components/layout/footer/Footer";
+import { NavbarServer } from "@/components/layout/navbar/NavbarServer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -103,7 +104,8 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}
     >
       <body className="bg-black text-white selection:bg-red-600/30 min-h-screen font-sans antialiased overflow-x-hidden">
-        <Navbar />
+        {/* <Navbar /> */}
+        <NavbarServer />
         {/* Added a container wrapper to ensure footer-push works if you add a footer later */}
         <main className="grow">{children}</main>
         <Footer />

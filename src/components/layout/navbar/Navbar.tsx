@@ -4,9 +4,14 @@ import Link from "next/link";
 import { Home, Film, Tv, Users, Clapperboard } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils/cn";
-import { AuthSection } from "@/components/Auth/AuthSection";
+import { AuthSection } from "@/features/Auth/AuthSection";
 
-export function Navbar() {
+interface NavbarProps {
+  user: {
+    firstName: string;
+  } | null;
+}
+export function Navbar({ user }: NavbarProps) {
   const pathname = usePathname();
 
   const navItems = [
@@ -63,7 +68,7 @@ export function Navbar() {
             {/* Auth Section (Login/UserMenu) */}
             {/* This stays on the right for both Mobile and Desktop */}
             <div className="flex items-center gap-4">
-              <AuthSection />
+              <AuthSection user={user} />
             </div>
           </div>
         </div>

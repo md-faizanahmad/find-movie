@@ -59,7 +59,7 @@ export default async function SearchPage({ searchParams }: Props) {
       )}
 
       {/* Content */}
-      <div className="relative z-10 px-4 pt-16 pb-20 md:px-8 md:pt-32">
+      <div className="relative z-10 px-4 pt-14 pb-20 md:px-8 md:pt-28">
         <div className="mx-auto max-w-7xl">
           {/* Header */}
           <div className="mb-8 flex flex-col gap-6 md:mb-14">

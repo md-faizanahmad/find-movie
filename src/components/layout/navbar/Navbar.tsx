@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Home, Film, Tv, Users, Clapperboard, Search } from "lucide-react";
+import { Home, Film, Tv, Users, Clapperboard } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils/cn";
 import { AuthSection } from "@/components/Auth/AuthSection";
@@ -63,12 +63,6 @@ export function Navbar() {
             {/* Auth Section (Login/UserMenu) */}
             {/* This stays on the right for both Mobile and Desktop */}
             <div className="flex items-center gap-4">
-              <Link
-                href="/search"
-                className="p-2 text-neutral-400 hover:text-white md:hidden"
-              >
-                <Search size={20} />
-              </Link>
               <AuthSection />
             </div>
           </div>

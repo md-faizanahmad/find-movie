@@ -65,7 +65,7 @@ export function MediaRow({ title, items, href = "#" }: Props) {
         <div
           ref={scrollRef}
           className="
-            flex gap-3 overflow-x-auto overflow-y-visible scroll-smooth px-8 py-4
+            flex gap-3 overflow-x-auto overflow-y-visible scroll-smooth px-10 py-6
             snap-x snap-mandatory
             scrollbar-hide
             md:gap-5 md:px-12 lg:px-16

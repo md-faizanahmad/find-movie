@@ -184,7 +184,7 @@ export function MediaCard({ item }: MediaCardProps) {
       </div>
 
       {/* Info */}
-      <div className="mt-2.5 space-y-1 px-0.5 sm:mt-3">
+      {/* <div className="mt-2.5 space-y-1 px-0.5 sm:mt-3">
         <h3 className="line-clamp-1 text-[11px] font-bold text-neutral-200 transition-colors group-hover:text-red-500 sm:text-xs md:text-sm lg:text-base">
           {item.title}
         </h3>
@@ -196,6 +196,38 @@ export function MediaCard({ item }: MediaCardProps) {
 
           <span className="uppercase tracking-widest">{item.mediaType}</span>
         </div>
+      </div> */}
+      {/* Info */}
+      <div className="mt-2.5 space-y-1 px-0.5 sm:mt-3">
+        {isLocked ? (
+          <>
+            <div className="h-4 w-24 rounded bg-neutral-800" />
+
+            <div className="flex items-center gap-2">
+              <div className="h-3 w-10 rounded bg-neutral-900" />
+
+              <div className="h-1 w-1 rounded-full bg-neutral-800" />
+
+              <div className="h-3 w-12 rounded bg-neutral-900" />
+            </div>
+          </>
+        ) : (
+          <>
+            <h3 className="line-clamp-1 text-[11px] font-bold text-neutral-200 transition-colors group-hover:text-red-500 sm:text-xs md:text-sm lg:text-base">
+              {item.title}
+            </h3>
+
+            <div className="flex items-center gap-1.5 text-[9px] font-medium text-neutral-500 md:gap-2 md:text-xs">
+              <span>{year}</span>
+
+              <span className="h-1 w-1 rounded-full bg-neutral-800" />
+
+              <span className="uppercase tracking-widest">
+                {item.mediaType}
+              </span>
+            </div>
+          </>
+        )}
       </div>
 
       {/* Verification Modal */}

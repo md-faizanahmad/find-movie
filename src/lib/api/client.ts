@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { env } from "../config/env";
 
 // 🔥 Ensure this file is NEVER bundled in client

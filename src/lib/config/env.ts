@@ -30,7 +30,7 @@ export const requiredEnv = [
 
   "NEXT_PUBLIC_SUPABASE_URL",
   "NEXT_PUBLIC_SUPABASE_ANON_KEY",
-  "NEXT_PUBLIC_SITE_URL",
+  "NEXT_PUBLIC_BASE_URL",
 ] as const;
 
 type EnvKey = (typeof requiredEnv)[number];
@@ -46,10 +46,10 @@ function getEnvVariable(key: EnvKey): string {
 }
 
 export const env = {
-  tmdbApiKey: getEnvVariable("TMDB_API_KEY"),
-  tmdbBaseUrl: getEnvVariable("TMDB_BASE_URL"),
-  tmdbImageBaseUrl: getEnvVariable("TMDB_IMAGE_BASE_URL"),
+  TMDB_API_KEY: getEnvVariable("TMDB_API_KEY"),
+  TMDB_BASE_URL: getEnvVariable("TMDB_BASE_URL"),
+  TMDB_IMAGE_BASE_URL: getEnvVariable("TMDB_IMAGE_BASE_URL"),
   supabaseUrl: getEnvVariable("NEXT_PUBLIC_SUPABASE_URL"),
   supabaseAnonKey: getEnvVariable("NEXT_PUBLIC_SUPABASE_ANON_KEY"),
-  siteUrl: getEnvVariable("NEXT_PUBLIC_SITE_URL"),
+  NEXT_PUBLIC_BASE_URL: getEnvVariable("NEXT_PUBLIC_BASE_URL"),
 };

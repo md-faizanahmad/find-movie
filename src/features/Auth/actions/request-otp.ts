@@ -48,7 +48,7 @@ export async function requestOtpAction(
     email,
 
     options: {
-      emailRedirectTo: `${env.siteUrl}/auth/callback`,
+      emailRedirectTo: `${env.NEXT_PUBLIC_BASE_URL}/auth/callback`,
     },
   });
 

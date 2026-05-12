@@ -102,7 +102,7 @@ export function Footer() {
                 <Twitter size={18} />
               </Link> */}
               <Link
-                href="#"
+                href="mdahmad.dev@gmail.com"
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-900 border border-white/5 hover:bg-red-600 hover:text-white transition-all"
               >
                 <Mail size={18} />

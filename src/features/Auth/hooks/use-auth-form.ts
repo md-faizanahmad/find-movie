@@ -1,23 +1,23 @@
-"use client";
+// "use client";
 
-import { useActionState } from "react";
+// import { useActionState } from "react";
 
-import { requestOtpAction, type RequestOtpState } from "../actions/request-otp";
+// import { requestOtpAction, type RequestOtpState } from "../actions/request-otp";
 
-const initialState: RequestOtpState = {
-  success: false,
-  error: null,
-};
+// const initialState: RequestOtpState = {
+//   success: false,
+//   error: null,
+// };
 
-export function useAuthForm() {
-  const [state, formAction, pending] = useActionState(
-    requestOtpAction,
-    initialState,
-  );
+// export function useAuthForm() {
+//   const [state, formAction, pending] = useActionState(
+//     requestOtpAction,
+//     initialState,
+//   );
 
-  return {
-    state,
-    formAction,
-    pending,
-  };
-}
+//   return {
+//     state,
+//     formAction,
+//     pending,
+//   };
+// }

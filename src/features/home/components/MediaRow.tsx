@@ -64,26 +64,24 @@ export function MediaRow({ title, items, href = "#" }: Props) {
         {/* Scroll Container */}
         <div
           ref={scrollRef}
-          className="
-            flex gap-3 overflow-x-auto overflow-y-visible scroll-smooth px-10 py-6
-            snap-x snap-mandatory
-            scrollbar-hide
-            md:gap-5 md:px-14 lg:px-18
-            [-ms-overflow-style:none]
-            [scrollbar-width:none]
-            [&::-webkit-scrollbar]:hidden
-          "
+          className="flex items-start gap-3 overflow-x-auto overflow-y-hidden scroll-smooth px-4 py-6
+    snap-x snap-mandatory
+    scrollbar-hide
+    md:gap-5 md:px-10
+    [-ms-overflow-style:none]
+    [scrollbar-width:none]
+    [&::-webkit-scrollbar]:hidden
+  "
         >
           {items.map((item) => (
             <div
               key={item.id}
-              className="
-                min-w-35 flex-none
-                snap-start
-                sm:min-w-45
-                md:min-w-55
-                lg:min-w-65
-              "
+              className="w-35 flex-none
+        snap-start
+        sm:w-45
+        md:w-55
+        lg:w-65
+      "
             >
               <MediaCard item={item} />
             </div>

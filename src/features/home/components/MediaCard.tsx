@@ -122,7 +122,7 @@ export function MediaCard({ item }: MediaCardProps) {
   const CardContent = (
     <>
       {/* Poster */}
-      <div className="relative aspect-2/3 w-full overflow-hidden rounded-xl bg-neutral-900 ring-offset-black transition-all duration-500 group-hover:ring-2 group-hover:ring-red-600/80 group-hover:ring-offset-2 md:group-hover:ring-offset-4">
+      <div className="relative aspect-[2/3]  w-full overflow-hidden rounded-xl bg-neutral-900 ring-offset-black transition-all duration-500 group-hover:ring-2 group-hover:ring-red-600/80 group-hover:ring-offset-2 md:group-hover:ring-offset-4">
         {imageUrl ? (
           <Image
             src={imageUrl}
@@ -183,20 +183,6 @@ export function MediaCard({ item }: MediaCardProps) {
         )}
       </div>
 
-      {/* Info */}
-      {/* <div className="mt-2.5 space-y-1 px-0.5 sm:mt-3">
-        <h3 className="line-clamp-1 text-[11px] font-bold text-neutral-200 transition-colors group-hover:text-red-500 sm:text-xs md:text-sm lg:text-base">
-          {item.title}
-        </h3>
-
-        <div className="flex items-center gap-1.5 text-[9px] font-medium text-neutral-500 md:gap-2 md:text-xs">
-          <span>{year}</span>
-
-          <span className="h-1 w-1 rounded-full bg-neutral-800" />
-
-          <span className="uppercase tracking-widest">{item.mediaType}</span>
-        </div>
-      </div> */}
       {/* Info */}
       <div className="mt-2.5 space-y-1 px-0.5 sm:mt-3">
         {isLocked ? (

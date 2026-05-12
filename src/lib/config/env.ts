@@ -28,8 +28,6 @@ export const requiredEnv = [
   "TMDB_BASE_URL",
   "TMDB_IMAGE_BASE_URL",
 
-  "NEXT_PUBLIC_SUPABASE_URL",
-  "NEXT_PUBLIC_SUPABASE_ANON_KEY",
   "NEXT_PUBLIC_BASE_URL",
 ] as const;
 
@@ -49,7 +47,5 @@ export const env = {
   TMDB_API_KEY: getEnvVariable("TMDB_API_KEY"),
   TMDB_BASE_URL: getEnvVariable("TMDB_BASE_URL"),
   TMDB_IMAGE_BASE_URL: getEnvVariable("TMDB_IMAGE_BASE_URL"),
-  supabaseUrl: getEnvVariable("NEXT_PUBLIC_SUPABASE_URL"),
-  supabaseAnonKey: getEnvVariable("NEXT_PUBLIC_SUPABASE_ANON_KEY"),
   NEXT_PUBLIC_BASE_URL: getEnvVariable("NEXT_PUBLIC_BASE_URL"),
 };

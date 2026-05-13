@@ -4,8 +4,9 @@ import { connectToDatabase } from "@/lib/db/mongoose";
 import { verifySessionToken } from "@/lib/jwt/jwt";
 import { UserModel } from "../models/user.model";
 import { AUTH_COOKIE_NAME } from "../constants/cookie.constants";
+import { SessionUser } from "../types/session-user.types";
 
-export async function getCurrentUser() {
+export async function getCurrentUser(): Promise<SessionUser | null> {
   await connectToDatabase();
 
   const cookieStore = await cookies();

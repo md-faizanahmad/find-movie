@@ -1,14 +1,18 @@
-// import { getCurrentProfile } from "@/features/Auth/lib/get-profile";
-// import { Navbar } from "./Navbar";
+import { getCurrentUser } from "@/features/Auth/lib/auth";
+import { Navbar } from "./Navbar";
 
-// export async function NavbarServer() {
-//   const profile = await getCurrentProfile();
+import { NavbarUser } from "./navbar.types";
 
-//   const navbarUser = profile
-//     ? {
-//         firstName: profile.full_name.split(" ")[0] ?? "User",
-//       }
-//     : null;
+export async function NavbarServer() {
+  const user = await getCurrentUser();
 
-//   return <Navbar user={navbarUser} />;
-// }
+  let navbarUser: NavbarUser | null = null;
+
+  if (user) {
+    navbarUser = {
+      firstName: user.fullName.split(" ")[0] ?? "User",
+    };
+  }
+
+  return <Navbar user={navbarUser} />;
+}

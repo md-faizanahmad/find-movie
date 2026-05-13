@@ -36,7 +36,21 @@ const userSchema = new Schema<UserDocument>(
     },
 
     favorites: {
-      type: [Number],
+      type: [
+        {
+          mediaId: {
+            type: Number,
+            required: true,
+          },
+
+          mediaType: {
+            type: String,
+            enum: ["movie", "tv", "person"],
+            required: true,
+          },
+        },
+      ],
+
       default: [],
     },
   },

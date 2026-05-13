@@ -7,7 +7,11 @@ export interface UserDocument {
   fullName: string;
   birthYear: number;
   adultVerified: boolean;
-  favorites: number[];
+  favorites: {
+    mediaId: number;
+
+    mediaType: "movie" | "tv" | "person";
+  }[];
   createdAt: Date;
   updatedAt: Date;
 }

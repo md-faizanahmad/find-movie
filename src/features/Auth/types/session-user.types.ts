@@ -4,5 +4,9 @@ export interface SessionUser {
   fullName: string;
   adultVerified: boolean;
   emailVerified: boolean;
-  favorites: number[];
+  favorites: {
+    mediaId: number;
+
+    mediaType: "movie" | "tv" | "person";
+  }[];
 }

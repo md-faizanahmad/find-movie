@@ -88,7 +88,7 @@ export function Navbar({ user }: NavbarProps) {
                     {item.name}
 
                     {isActive && (
-                      <span className="absolute -bottom-[22px] left-0 h-0.5 w-full bg-red-600 shadow-[0_0_12px_rgba(220,38,38,0.8)]" />
+                      <span className="absolute -bottom-5.5 left-0 h-0.5 w-full bg-red-600 shadow-[0_0_12px_rgba(220,38,38,0.8)]" />
                     )}
                   </Link>
                 );

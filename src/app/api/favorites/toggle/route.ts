@@ -1,7 +1,10 @@
-import { requireAuth } from "@/features/Auth/lib/auth";
-import { UserModel } from "@/features/Auth/models/user.model";
-import { toggleFavoriteSchema } from "@/features/Auth/validations/auth.validation";
 import { NextRequest, NextResponse } from "next/server";
+
+import { requireAuth } from "@/features/Auth/lib/auth";
+
+import { UserModel } from "@/features/Auth/models/user.model";
+
+import { toggleFavoriteSchema } from "@/features/Auth/validations/auth.validation";
 
 export async function POST(request: NextRequest) {
   try {
@@ -23,7 +26,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { mediaId } = parsedBody.data;
+    const { mediaId, mediaType } = parsedBody.data;
 
     const existingUser = await UserModel.findById(user.id);
 
@@ -39,14 +42,21 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const alreadyFavorited = existingUser.favorites.includes(mediaId);
+    const alreadyFavorited = existingUser.favorites.some(
+      (favorite) =>
+        favorite.mediaId === mediaId && favorite.mediaType === mediaType,
+    );
 
     if (alreadyFavorited) {
       existingUser.favorites = existingUser.favorites.filter(
-        (id) => id !== mediaId,
+        (favorite) =>
+          !(favorite.mediaId === mediaId && favorite.mediaType === mediaType),
       );
     } else {
-      existingUser.favorites.push(mediaId);
+      existingUser.favorites.push({
+        mediaId,
+        mediaType,
+      });
     }
 
     await existingUser.save();

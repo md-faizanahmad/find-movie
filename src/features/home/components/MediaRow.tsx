@@ -69,7 +69,7 @@ export function MediaRow({ title, items, href = "#" }: Props) {
     scrollbar-hide
     md:gap-5 md:px-10
     [-ms-overflow-style:none]
-    [scrollbar-width:none]
+    scrollbar-none
     [&::-webkit-scrollbar]:hidden
   "
         >

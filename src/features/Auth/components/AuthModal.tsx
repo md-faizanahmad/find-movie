@@ -52,7 +52,7 @@ export function AuthModal({
   }
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 px-6 backdrop-blur-md">
+    <div className="fixed inset-0 z-100 flex items-center justify-center bg-black/70 px-6 backdrop-blur-md">
       <div className="relative w-full max-w-md rounded-3xl border border-white/10 bg-neutral-950 p-8 shadow-2xl">
         {/* Close */}
         <button

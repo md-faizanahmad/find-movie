@@ -7,7 +7,7 @@ export default async function ProfilePage() {
   return (
     <main className="min-h-screen bg-black px-6 py-32 text-white">
       <div className="mx-auto max-w-4xl">
-        <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-xl">
+        <div className="rounded-3xl border border-white/10 bg-white/3 p-8 backdrop-blur-xl">
           <div className="flex items-center gap-5">
             <div className="flex h-20 w-20 items-center justify-center rounded-full bg-red-600 text-3xl font-black">
               {user.fullName.charAt(0)}

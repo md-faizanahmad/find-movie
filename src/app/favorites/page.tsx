@@ -14,7 +14,7 @@ export default async function FavoritesPage() {
         </div>
 
         {user.favorites.length === 0 ? (
-          <div className="flex flex-col items-center justify-center rounded-3xl border border-dashed border-white/10 bg-white/[0.02] px-6 py-24 text-center">
+          <div className="flex flex-col items-center justify-center rounded-3xl border border-dashed border-white/10 bg-white/2 px-6 py-24 text-center">
             <Heart className="h-16 w-16 text-neutral-700" />
 
             <h2 className="mt-6 text-2xl font-bold">No Favorites Yet</h2>

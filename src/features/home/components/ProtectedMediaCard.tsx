@@ -7,6 +7,7 @@ import Image from "next/image";
 import { Star } from "lucide-react";
 
 import { FavoriteButton } from "@/features/favorites/components/FavoriteButton";
+
 import { Media } from "../services/home.service";
 
 interface ProtectedMediaCardProps {
@@ -42,7 +43,7 @@ export function ProtectedMediaCard({
       className="group relative block overflow-hidden rounded-3xl"
     >
       {/* Poster */}
-      <div className="relative aspect-2/3 overflow-hidden bg-neutral-900">
+      <div className="relative aspect-[2/3] overflow-hidden bg-neutral-900">
         <Image
           src={
             item.poster
@@ -62,7 +63,7 @@ export function ProtectedMediaCard({
       </div>
 
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/10 to-transparent opacity-80" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent opacity-80" />
 
       {/* Rating */}
       <div className="absolute left-3 top-3 z-10">
@@ -76,7 +77,14 @@ export function ProtectedMediaCard({
       </div>
 
       {/* Favorite */}
-      <div className="absolute right-3 top-3 z-10">
+      <div
+        className="absolute right-3 top-3 z-30"
+        onClick={(event) => {
+          event.preventDefault();
+
+          event.stopPropagation();
+        }}
+      >
         <FavoriteButton
           mediaId={item.id}
           initialFavorited={isFavorited}
@@ -126,6 +134,8 @@ export function ProtectedMediaCard({
           <button
             onClick={(event) => {
               event.preventDefault();
+
+              event.stopPropagation();
 
               onRequireAuth();
             }}

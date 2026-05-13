@@ -29,6 +29,12 @@ const userSchema = new Schema<UserDocument>(
       default: false,
     },
 
+    emailVerified: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+
     favorites: {
       type: [Number],
       default: [],

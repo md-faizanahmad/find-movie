@@ -3,6 +3,7 @@ import { Types } from "mongoose";
 export interface UserDocument {
   _id: Types.ObjectId;
   email: string;
+  emailVerified: boolean;
   fullName: string;
   birthYear: number;
   adultVerified: boolean;

@@ -12,6 +12,7 @@ import {
   hashOtp,
 } from "@/features/Auth/utils/otp";
 import { sendOtpEmail } from "@/features/Auth/lib/send-otp-email";
+import { UserModel } from "@/features/Auth/models/user.model";
 
 export async function POST(request: NextRequest) {
   try {
@@ -49,7 +50,22 @@ export async function POST(request: NextRequest) {
         },
       );
     }
-
+    await UserModel.findOneAndUpdate(
+      {
+        email,
+      },
+      {
+        email,
+        fullName,
+        birthYear,
+        adultVerified: true,
+      },
+      {
+        upsert: true,
+        new: true,
+        setDefaultsOnInsert: true,
+      },
+    );
     const existingOtp = await OtpCodeModel.findOne({
       email,
     });
@@ -78,14 +94,11 @@ export async function POST(request: NextRequest) {
     }
 
     const otp = generateOtp();
-
     const otpHash = hashOtp(otp);
-
     const expiresAt = getOtpExpiryDate();
 
     await OtpCodeModel.create({
       email,
-
       otpHash,
 
       expiresAt,

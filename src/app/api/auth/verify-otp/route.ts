@@ -99,6 +99,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    user.emailVerified = true;
+    await user.save();
     const token = await generateSessionToken({
       userId: user._id.toString(),
       email: user.email,

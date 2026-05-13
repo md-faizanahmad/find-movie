@@ -7,12 +7,21 @@ import { NavbarUser } from "@/components/layout/navbar/navbar.types";
 
 interface UserMenuProps {
   user: NavbarUser | null;
+
+  onLoginClick: () => void;
 }
 
-export function UserMenu({ user }: UserMenuProps) {
+export function UserMenu({
+  user,
+
+  onLoginClick,
+}: UserMenuProps) {
   if (!user) {
     return (
-      <button className="rounded-full bg-red-600 px-5 py-2 text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-red-500">
+      <button
+        onClick={onLoginClick}
+        className="rounded-full bg-red-600 px-5 py-2 text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-red-500"
+      >
         Login
       </button>
     );

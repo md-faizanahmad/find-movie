@@ -6,12 +6,15 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils/cn";
 import { NavbarUser } from "./navbar.types";
 import { UserMenu } from "@/features/Auth/UserMenu";
+import { useAuthModal } from "@/features/Auth/hooks/use-auth-modal";
+import { AuthModal } from "@/features/Auth/components/AuthModal";
 
 interface NavbarProps {
   user: NavbarUser | null;
 }
 export function Navbar({ user }: NavbarProps) {
   const pathname = usePathname();
+  const authModal = useAuthModal();
 
   const navItems = [
     { name: "Home", icon: Home, href: "/" },
@@ -67,7 +70,7 @@ export function Navbar({ user }: NavbarProps) {
             {/* Auth Section (Login/UserMenu) */}
             {/* This stays on the right for both Mobile and Desktop */}
             <div className="flex items-center gap-4">
-              <UserMenu user={user} />
+              <UserMenu user={user} onLoginClick={authModal.openModal} />
             </div>
           </div>
         </div>
@@ -119,6 +122,16 @@ export function Navbar({ user }: NavbarProps) {
 
       {/* Mobile Spacer */}
       <div className="h-20 md:hidden" />
+      <AuthModal
+        isOpen={authModal.isOpen}
+        onClose={authModal.closeModal}
+        step={authModal.step}
+        email={authModal.email}
+        loading={authModal.loading}
+        error={authModal.error}
+        onRequestOtp={authModal.requestOtpAction}
+        onVerifyOtp={authModal.verifyOtpAction}
+      />
     </>
   );
 }

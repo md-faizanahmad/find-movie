@@ -53,3 +53,19 @@ export async function logout(): Promise<AuthResponse> {
 
   return parseResponse(response);
 }
+
+export async function toggleFavorite(mediaId: number) {
+  const response = await fetch("/api/favorites/toggle", {
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/json",
+    },
+
+    body: JSON.stringify({
+      mediaId,
+    }),
+  });
+
+  return response.json();
+}

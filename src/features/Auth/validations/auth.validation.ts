@@ -13,7 +13,9 @@ export const verifyOtpSchema = z.object({
 
   otp: z.string().trim().length(6),
 });
+export const toggleFavoriteSchema = z.object({
+  mediaId: z.number().int().positive(),
+});
 
 export type RequestOtpInput = z.infer<typeof requestOtpSchema>;
-
 export type VerifyOtpInput = z.infer<typeof verifyOtpSchema>;

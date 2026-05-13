@@ -3,7 +3,13 @@
 import Link from "next/link";
 
 import { ChevronDown, Heart, LogOut, User } from "lucide-react";
+
+import { useRouter } from "next/navigation";
+
+import { useState } from "react";
+
 import { NavbarUser } from "@/components/layout/navbar/navbar.types";
+import { logout } from "./services/auth.client";
 
 interface UserMenuProps {
   user: NavbarUser | null;
@@ -11,11 +17,25 @@ interface UserMenuProps {
   onLoginClick: () => void;
 }
 
-export function UserMenu({
-  user,
+export function UserMenu({ user, onLoginClick }: UserMenuProps) {
+  const router = useRouter();
 
-  onLoginClick,
-}: UserMenuProps) {
+  const [logoutLoading, setLogoutLoading] = useState(false);
+
+  async function handleLogout() {
+    try {
+      setLogoutLoading(true);
+
+      await logout();
+
+      router.refresh();
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLogoutLoading(false);
+    }
+  }
+
   if (!user) {
     return (
       <button
@@ -56,16 +76,16 @@ export function UserMenu({
 
         <div className="my-2 h-px bg-white/5" />
 
-        <form action="/api/auth/logout" method="POST">
-          <button
-            type="submit"
-            className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-red-400 transition-colors hover:bg-red-500/10"
-          >
-            <LogOut className="h-4 w-4" />
+        <button
+          type="button"
+          onClick={handleLogout}
+          disabled={logoutLoading}
+          className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-red-400 transition-colors hover:bg-red-500/10 disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          <LogOut className="h-4 w-4" />
 
-            <span>Logout</span>
-          </button>
-        </form>
+          <span>{logoutLoading ? "Logging out..." : "Logout"}</span>
+        </button>
       </div>
     </div>
   );

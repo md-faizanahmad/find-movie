@@ -1,32 +1,52 @@
 "use client";
 
 import { X } from "lucide-react";
-
 import { AuthSuccess } from "./AuthSuccess";
-
 import { LoginForm } from "./LoginForm";
-
 import { VerifyOtpForm } from "./VerifyOtpForm";
-
-import { useAuthModal } from "../hooks/use-auth-modal";
+import { AuthStep } from "../types/auth-modal.types";
 
 interface AuthModalProps {
   isOpen: boolean;
 
   onClose: () => void;
+
+  step: AuthStep;
+
+  email: string;
+
+  loading: boolean;
+
+  error: string | null;
+
+  onRequestOtp: (payload: {
+    fullName: string;
+
+    email: string;
+
+    birthYear: number;
+  }) => Promise<void>;
+
+  onVerifyOtp: (otp: string) => Promise<void>;
 }
 
-export function AuthModal({ isOpen, onClose }: AuthModalProps) {
-  const {
-    step,
+export function AuthModal({
+  isOpen,
 
-    email,
+  onClose,
 
-    loading,
+  step,
 
-    error,
-  } = useAuthModal();
+  email,
 
+  loading,
+
+  error,
+
+  onRequestOtp,
+
+  onVerifyOtp,
+}: AuthModalProps) {
   if (!isOpen) {
     return null;
   }
@@ -34,7 +54,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 px-6 backdrop-blur-md">
       <div className="relative w-full max-w-md rounded-3xl border border-white/10 bg-neutral-950 p-8 shadow-2xl">
-        {/* Close Button */}
+        {/* Close */}
         <button
           onClick={onClose}
           className="absolute right-4 top-4 rounded-full p-2 text-neutral-500 transition-colors hover:bg-white/5 hover:text-white"
@@ -42,7 +62,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
           <X className="h-5 w-5" />
         </button>
 
-        {/* Title */}
+        {/* Heading */}
         {step !== "success" && (
           <div className="mb-8">
             <h2 className="text-3xl font-black text-white">
@@ -57,11 +77,18 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
           </div>
         )}
 
-        {/* Step Renderer */}
-        {step === "login" && <LoginForm loading={loading} error={error} />}
+        {/* Steps */}
+        {step === "login" && (
+          <LoginForm loading={loading} error={error} onSubmit={onRequestOtp} />
+        )}
 
         {step === "verify" && (
-          <VerifyOtpForm email={email} loading={loading} error={error} />
+          <VerifyOtpForm
+            email={email}
+            loading={loading}
+            error={error}
+            onSubmit={onVerifyOtp}
+          />
         )}
 
         {step === "success" && <AuthSuccess />}

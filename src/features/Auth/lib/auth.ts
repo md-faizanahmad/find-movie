@@ -5,7 +5,7 @@ import { verifySessionToken } from "@/lib/jwt/jwt";
 import { UserModel } from "../models/user.model";
 import { AUTH_COOKIE_NAME } from "../constants/cookie.constants";
 import { SessionUser } from "../types/session-user.types";
-
+import { redirect } from "next/navigation";
 export async function getCurrentUser(): Promise<SessionUser | null> {
   await connectToDatabase();
 
@@ -40,7 +40,7 @@ export async function requireAuth() {
   const user = await getCurrentUser();
 
   if (!user) {
-    throw new Error("Unauthorized");
+    redirect("/");
   }
 
   return user;

@@ -26,7 +26,6 @@
 //   );
 // }
 import { MediaCard } from "@/features/home/components/MediaCard";
-import { isAdultContent } from "@/lib/isAdultContent";
 
 interface Props {
   movies: any[];
@@ -64,7 +63,6 @@ export function MovieGrid({ movies }: Props) {
                 title: movie.title,
                 poster: movie.poster_path,
                 backdrop: movie.backdrop_path,
-                adult: isAdultContent(movie),
                 rating: movie.vote_average,
                 popularity: movie.popularity,
                 releaseDate: movie.release_date,

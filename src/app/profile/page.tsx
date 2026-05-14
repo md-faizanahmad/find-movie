@@ -9,7 +9,7 @@ export default async function ProfilePage() {
   const favoriteItems = await getFavoriteMedia(user.favorites);
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-zinc-100 antialiased">
+    <main className="min-h-screen bg-[#0a0a0a] text-zinc-100 antialiased lg:mt-10 md:mt-10">
       <div className="mx-auto max-w-6xl px-4 py-12 md:px-8 md:py-20">
         {/* Main Grid: Mobile single col, Desktop side-by-side */}
         <div className="flex flex-col gap-12 lg:flex-row">
@@ -90,7 +90,7 @@ export default async function ProfilePage() {
             </div>
 
             {favoriteItems.length === 0 ? (
-              <div className="flex h-[300px] flex-col items-center justify-center rounded-3xl border border-dashed border-white/5 bg-zinc-900/20 text-center">
+              <div className="flex h-75 flex-col items-center justify-center rounded-3xl border border-dashed border-white/5 bg-zinc-900/20 text-center">
                 <Heart className="mb-4 h-10 w-10 text-zinc-800" />
                 <p className="text-sm font-medium text-zinc-500">
                   Your collection is empty

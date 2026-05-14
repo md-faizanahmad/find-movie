@@ -53,6 +53,8 @@ export default async function MoviesPage({ searchParams }: Props) {
       });
 
   const hasResults = movies.results.length > 0;
+  console.log(movies.length);
+  console.log(hasResults);
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-black text-white ">

@@ -111,7 +111,8 @@ export function MediaCard({
         </h3>
 
         <p className="mt-1 text-xs text-neutral-300">
-          {item.releaseDate
+          {item.releaseDate &&
+          !Number.isNaN(new Date(item.releaseDate).getTime())
             ? new Date(item.releaseDate).getFullYear()
             : "Upcoming"}
         </p>

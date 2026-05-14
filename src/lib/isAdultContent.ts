@@ -83,19 +83,29 @@ const adultKeywords = [
   "a rated",
 ];
 
-export function isAdultContent(media: any) {
+export function isAdultContent(media: unknown): boolean {
+  /**
+   * Prevent runtime crashes
+   * from malformed media objects.
+   */
+  if (!media || typeof media !== "object") {
+    return false;
+  }
+
+  const safeMedia = media as Record<string, unknown>;
+
   const text = `
-    ${media.title || ""}
-    ${media.original_title || ""}
-    ${media.name || ""}
-    ${media.original_name || ""}
-    ${media.overview || ""}
+    ${safeMedia.title ?? ""}
+    ${safeMedia.original_title ?? ""}
+    ${safeMedia.name ?? ""}
+    ${safeMedia.original_name ?? ""}
+    ${safeMedia.overview ?? ""}
   `
     .toLowerCase()
     .replace(/\s+/g, " ");
 
   return (
-    media.adult === true ||
+    safeMedia.adult === true ||
     adultKeywords.some((word) => text.includes(word.toLowerCase()))
   );
 }

@@ -1,132 +1,113 @@
 import Link from "next/link";
-
-import { Heart, Mail, ShieldCheck } from "lucide-react";
-
+import { Heart, Mail, ShieldCheck, ChevronRight } from "lucide-react";
 import { requireAuth } from "@/features/Auth/lib/auth";
-
 import { getFavoriteMedia } from "@/features/favorites/services/favorites.service";
 import { FavoriteItemsGrid } from "@/features/favorites/components/FavoriteItemsGrid";
 
 export default async function ProfilePage() {
   const user = await requireAuth();
-
   const favoriteItems = await getFavoriteMedia(user.favorites);
 
   return (
     <main className="min-h-screen bg-[#0a0a0a] text-zinc-100 antialiased">
-      <div className="mx-auto max-w-6xl px-6 py-20">
-        {/* Top Section */}
-        <div className="grid gap-10 lg:grid-cols-[380px_1fr]">
-          {/* Profile Card */}
-          <div className="rounded-3xl border border-white/5 bg-zinc-900/40 p-6 backdrop-blur-xl">
-            {/* Header */}
-            <div className="mb-10 flex items-center gap-5">
-              <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-red-600 to-red-700 text-3xl font-bold shadow-xl shadow-red-900/20">
-                {user.fullName.charAt(0)}
+      <div className="mx-auto max-w-6xl px-4 py-12 md:px-8 md:py-20">
+        {/* Main Grid: Mobile single col, Desktop side-by-side */}
+        <div className="flex flex-col gap-12 lg:flex-row">
+          {/* Profile Section */}
+          <aside className="w-full shrink-0 lg:w-[320px]">
+            <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
+              <div className="relative mb-6">
+                <div className="flex h-24 w-24 items-center justify-center rounded-2xl bg-linear-to-br from-red-600 to-red-700 text-3xl font-bold shadow-2xl shadow-red-900/40">
+                  {user.fullName.charAt(0)}
+                </div>
+                <div className="absolute -bottom-2 -right-2 rounded-full bg-zinc-900 p-1">
+                  <ShieldCheck className="h-6 w-6 text-red-500" />
+                </div>
               </div>
 
-              <div>
-                <h1 className="text-3xl font-bold tracking-tight">
-                  {user.fullName}
-                </h1>
-
-                <p className="mt-1 flex items-center gap-1.5 text-zinc-400">
-                  <ShieldCheck className="h-4 w-4 text-red-500" />
+              <h1 className="text-2xl font-bold tracking-tight md:text-3xl">
+                {user.fullName}
+              </h1>
+              <div className="mt-4 flex flex-wrap justify-center gap-2 lg:justify-start">
+                <span className="rounded-full bg-white/5 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-zinc-400 ring-1 ring-white/10">
                   Verified Member
-                </p>
-              </div>
-            </div>
-
-            {/* Info Cards */}
-            <div className="space-y-4">
-              {/* Email */}
-              <div className="flex items-center gap-4 rounded-2xl border border-white/5 bg-zinc-900/70 p-5">
-                <div className="rounded-xl bg-zinc-800 p-2.5 text-red-500">
-                  <Mail className="h-5 w-5" />
-                </div>
-
-                <div>
-                  <p className="text-xs font-medium uppercase tracking-wider text-zinc-500">
-                    Email Address
-                  </p>
-
-                  <p className="font-medium text-zinc-200">{user.email}</p>
-                </div>
-              </div>
-
-              {/* Favorites */}
-              <Link
-                href="/favorites"
-                className="group flex items-center justify-between rounded-2xl border border-white/5 bg-zinc-900/70 p-5 transition-colors hover:bg-zinc-900"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="rounded-xl bg-zinc-800 p-2.5 text-red-500">
-                    <Heart className="h-5 w-5" />
-                  </div>
-
-                  <div>
-                    <p className="text-xs font-medium uppercase tracking-wider text-zinc-500">
-                      Favorites
-                    </p>
-
-                    <p className="font-medium text-zinc-200">
-                      {user.favorites.length} items saved
-                    </p>
-                  </div>
-                </div>
-
-                <span className="text-sm font-medium text-zinc-500 transition-colors group-hover:text-white">
-                  View
                 </span>
-              </Link>
+              </div>
             </div>
 
-            {/* Badges */}
-            <div className="mt-8 flex flex-wrap gap-3">
-              <span className="inline-flex items-center rounded-full bg-green-500/10 px-3 py-1 text-xs font-semibold text-green-500 ring-1 ring-inset ring-green-500/20">
-                18+ Verified
-              </span>
-
-              <span className="inline-flex items-center rounded-full bg-blue-500/10 px-3 py-1 text-xs font-semibold text-blue-500 ring-1 ring-inset ring-blue-500/20">
-                Secure Account
-              </span>
-            </div>
-          </div>
-
-          {/* Favorites Preview */}
-          <div>
-            <div className="mb-6 flex items-center justify-between">
-              <div>
-                <h2 className="text-2xl font-bold">Favorite Collection</h2>
-
-                <p className="mt-1 text-sm text-zinc-500">
-                  Your recently saved movies and shows.
-                </p>
+            {/* Quick Info List */}
+            <div className="mt-10 space-y-3">
+              <div className="flex items-center gap-4 rounded-xl bg-zinc-900/50 p-4 ring-1 ring-white/5">
+                <Mail className="h-5 w-5 text-zinc-500" />
+                <div className="min-w-0 flex-1">
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-500">
+                    Email
+                  </p>
+                  <p className="truncate text-sm font-medium text-zinc-300">
+                    {user.email}
+                  </p>
+                </div>
               </div>
 
               <Link
                 href="/favorites"
-                className="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/10"
+                className="group flex items-center gap-4 rounded-xl bg-zinc-900/50 p-4 ring-1 ring-white/5 transition-all hover:bg-zinc-800"
               >
-                View All
+                <Heart className="h-5 w-5 text-red-500" />
+                <div className="flex-1">
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-500">
+                    Collection
+                  </p>
+                  <p className="text-sm font-medium text-zinc-300">
+                    {user.favorites.length} Saved Items
+                  </p>
+                </div>
+                <ChevronRight className="h-4 w-4 text-zinc-600 transition-transform group-hover:translate-x-1" />
               </Link>
+            </div>
+          </aside>
+
+          {/* Collection Grid Section */}
+          <section className="flex-1">
+            <div className="mb-6 flex items-end justify-between px-1">
+              <div>
+                <h2 className="text-xl font-bold md:text-2xl">
+                  Your Favorites
+                </h2>
+                <p className="text-sm text-zinc-500">
+                  Quick access to your library
+                </p>
+              </div>
+
+              {favoriteItems.length > 0 && (
+                <Link
+                  href="/favorites"
+                  className="text-xs font-bold uppercase tracking-widest text-red-500 hover:text-red-400"
+                >
+                  View All
+                </Link>
+              )}
             </div>
 
             {favoriteItems.length === 0 ? (
-              <div className="flex min-h-[320px] flex-col items-center justify-center rounded-3xl border border-dashed border-white/10 bg-zinc-900/20 px-6 text-center">
-                <Heart className="h-14 w-14 text-zinc-700" />
-
-                <h3 className="mt-5 text-2xl font-bold">No Favorites Yet</h3>
-
-                <p className="mt-2 max-w-sm text-sm leading-relaxed text-zinc-500">
-                  Start saving movies and TV shows to build your personal
-                  collection.
+              <div className="flex h-[300px] flex-col items-center justify-center rounded-3xl border border-dashed border-white/5 bg-zinc-900/20 text-center">
+                <Heart className="mb-4 h-10 w-10 text-zinc-800" />
+                <p className="text-sm font-medium text-zinc-500">
+                  Your collection is empty
                 </p>
+                <Link
+                  href="/"
+                  className="mt-4 text-xs font-bold uppercase text-white hover:underline"
+                >
+                  Browse Content
+                </Link>
               </div>
             ) : (
-              <FavoriteItemsGrid items={favoriteItems.slice(0, 8)} />
+              <div className="rounded-2xl">
+                <FavoriteItemsGrid items={favoriteItems.slice(0, 8)} />
+              </div>
             )}
-          </div>
+          </section>
         </div>
       </div>
     </main>

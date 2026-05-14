@@ -38,6 +38,8 @@ export default async function TVShowsPage({ searchParams }: Props) {
       });
 
   const hasResults = tvShows.results.length > 0;
+  console.log("length", tvShows.length);
+  console.log(tvShows[0]);
 
   return (
     // <main className="min-h-screen overflow-x-hidden bg-black text-white">

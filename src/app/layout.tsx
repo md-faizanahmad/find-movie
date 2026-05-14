@@ -99,18 +99,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <AuthModalProvider>
-      <html
-        lang="en"
-        className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}
-      >
-        <body className="bg-black text-white selection:bg-red-600/30 min-h-screen font-sans antialiased overflow-x-hidden">
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}
+    >
+      <body className="bg-black text-white selection:bg-red-600/30 min-h-screen font-sans antialiased overflow-x-hidden">
+        <AuthModalProvider>
           <NavbarServer />
           {/* Added a container wrapper to ensure footer-push works if you add a footer later */}
           <main className="grow">{children}</main>
           <Footer />
-        </body>
-      </html>
-    </AuthModalProvider>
+        </AuthModalProvider>
+      </body>
+    </html>
   );
 }

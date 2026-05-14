@@ -6,7 +6,6 @@ const TMDB_ACCESS_TOKEN = process.env.TMDB_ACCESS_TOKEN!;
 
 interface FavoriteItem {
   mediaId: number;
-
   mediaType: "movie" | "tv" | "person";
 }
 
@@ -58,7 +57,8 @@ async function fetchFavoriteItem(
     return {
       id: data.id,
 
-      mediaType: favorite.mediaType === "person" ? "movie" : favorite.mediaType,
+      // mediaType: favorite.mediaType === "person" ? "movie" : favorite.mediaType,
+      mediaType: favorite.mediaType,
 
       title: data.title ?? data.name ?? "",
 

@@ -16,7 +16,7 @@ import { getHollywoodTVShows } from "@/features/movies/api/getHollywoodTVShows";
 
 export interface Media {
   id: number;
-  mediaType: "movie" | "tv";
+  mediaType: "movie" | "tv" | "person";
   title: string;
   poster: string | null;
   backdrop: string | null;

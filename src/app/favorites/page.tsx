@@ -1,9 +1,11 @@
 import { requireAuth } from "@/features/Auth/lib/auth";
+import { FavoriteItemsGrid } from "@/features/favorites/components/FavoriteItemsGrid";
+import { getFavoriteMedia } from "@/features/favorites/services/favorites.service";
 import { Heart } from "lucide-react";
 
 export default async function FavoritesPage() {
   const user = await requireAuth();
-
+  const favoriteItems = await getFavoriteMedia(user.favorites);
   return (
     <main className="min-h-screen bg-black px-6 py-32 text-white">
       <div className="mx-auto max-w-6xl">
@@ -24,7 +26,9 @@ export default async function FavoritesPage() {
             </p>
           </div>
         ) : (
-          <div>Favorites grid coming next...</div>
+          <div>
+            <FavoriteItemsGrid items={favoriteItems} />
+          </div>
         )}
       </div>
     </main>

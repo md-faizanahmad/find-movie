@@ -63,7 +63,7 @@ export function ProtectedMediaCard({
       </div>
 
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent opacity-80" />
+      <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/10 to-transparent opacity-80" />
 
       {/* Rating */}
       <div className="absolute left-3 top-3 z-10">

@@ -12,22 +12,22 @@ import { Media } from "../services/home.service";
 
 import { isAdultContent } from "@/lib/isAdultContent";
 
+import { useAuthModal } from "@/features/Auth/hooks/use-auth-modal";
+
 interface MediaCardProps {
   item: Media;
 
   isAuthenticated?: boolean;
-
-  onRequireAuth?: () => void;
 }
 
 export function MediaCard({
   item,
 
   isAuthenticated = false,
-
-  onRequireAuth,
 }: MediaCardProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
+
+  const authModal = useAuthModal();
 
   const isLocked = isAdultContent(item) && !isAuthenticated;
 
@@ -42,7 +42,7 @@ export function MediaCard({
 
     event.stopPropagation();
 
-    onRequireAuth?.();
+    authModal.openModal();
   }
 
   return (

@@ -2,7 +2,7 @@ import { Media } from "@/features/home/services/home.service";
 
 const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 
-const TMDB_ACCESS_TOKEN = process.env.TMDB_ACCESS_TOKEN!;
+const TMDB_ACCESS_TOKEN = process.env.TMDB_API_TOKEN!;
 
 interface FavoriteItem {
   mediaId: number;
@@ -48,6 +48,8 @@ async function fetchFavoriteItem(
     );
 
     if (!response.ok) {
+      console.error("TMDB fetch failed:", response.status, favorite);
+
       return null;
     }
 

@@ -10,9 +10,15 @@ interface Props {
   title: string;
   items: Media[];
   href?: string;
+  isAuthenticated?: boolean;
 }
 
-export function MediaRow({ title, items, href = "#" }: Props) {
+export function MediaRow({
+  title,
+  items,
+  href = "#",
+  isAuthenticated = false,
+}: Props) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: "left" | "right") => {
@@ -83,7 +89,8 @@ export function MediaRow({ title, items, href = "#" }: Props) {
         lg:w-65
       "
             >
-              <MediaCard item={item} />
+              {/* <MediaCard item={item} /> */}
+              <MediaCard item={item} isAuthenticated={isAuthenticated} />
             </div>
           ))}
 

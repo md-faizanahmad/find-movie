@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/layout/footer/Footer";
 import { NavbarServer } from "@/components/layout/navbar/NavbarServer";
+import { AuthModalProvider } from "@/features/Auth/components/AuthModalProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -98,16 +99,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}
-    >
-      <body className="bg-black text-white selection:bg-red-600/30 min-h-screen font-sans antialiased overflow-x-hidden">
-        <NavbarServer />
-        {/* Added a container wrapper to ensure footer-push works if you add a footer later */}
-        <main className="grow">{children}</main>
-        <Footer />
-      </body>
-    </html>
+    <AuthModalProvider>
+      <html
+        lang="en"
+        className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}
+      >
+        <body className="bg-black text-white selection:bg-red-600/30 min-h-screen font-sans antialiased overflow-x-hidden">
+          <NavbarServer />
+          {/* Added a container wrapper to ensure footer-push works if you add a footer later */}
+          <main className="grow">{children}</main>
+          <Footer />
+        </body>
+      </html>
+    </AuthModalProvider>
   );
 }

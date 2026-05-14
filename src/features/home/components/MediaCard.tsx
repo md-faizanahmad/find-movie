@@ -12,7 +12,7 @@ import { Media } from "../services/home.service";
 
 import { isAdultContent } from "@/lib/isAdultContent";
 
-import { useAuthModal } from "@/features/Auth/hooks/use-auth-modal";
+import { useAuthModal } from "@/context/auth-modal.context";
 
 interface MediaCardProps {
   item: Media;
@@ -27,12 +27,25 @@ export function MediaCard({
 }: MediaCardProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
 
+  /**
+   * Global auth modal controller.
+   */
   const authModal = useAuthModal();
 
+  /**
+   * Lock adult content for guests.
+   */
   const isLocked = isAdultContent(item) && !isAuthenticated;
 
+  /**
+   * Dynamic detail route.
+   */
   const href = `/${item.mediaType}/${item.id}`;
 
+  /**
+   * Intercepts locked content click
+   * and opens auth modal instead.
+   */
   function handleLockedClick(event: React.MouseEvent) {
     if (!isLocked) {
       return;
@@ -104,7 +117,7 @@ export function MediaCard({
         </p>
       </div>
 
-      {/* Adult Lock Overlay */}
+      {/* Adult Content Overlay */}
       {isLocked && (
         <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-black/75 px-6 text-center backdrop-blur-md">
           {/* Badge */}

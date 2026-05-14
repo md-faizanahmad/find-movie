@@ -7,6 +7,7 @@ export default async function FavoritesPage() {
   const user = await requireAuth();
   const favoriteItems = await getFavoriteMedia(user.favorites);
   console.log(user.favorites);
+  console.log(favoriteItems);
   return (
     <main className="min-h-screen bg-black px-6 py-32 text-white">
       <div className="mx-auto max-w-6xl">

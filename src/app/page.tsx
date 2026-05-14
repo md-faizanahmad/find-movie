@@ -1,12 +1,12 @@
 import { HeroSection } from "@/features/home/components/HeroSection";
 import { MediaRow } from "@/features/home/components/MediaRow";
 import { getHomeData } from "@/features/home/services/home.service";
-import { getCurrentUser } from "@/features/Auth/lib/auth";
+// import { getCurrentUser } from "@/features/Auth/lib/auth";
 
 export default async function HomePage() {
   const { trending, bollywood, southIndian, indianTV, hollywoodTV } =
     await getHomeData();
-  const user = await getCurrentUser();
+  // const user = await getCurrentUser();
 
   const heroMovie = trending?.[0] || null;
 
@@ -19,37 +19,26 @@ export default async function HomePage() {
 
       <div className="relative z-20 -mt-5 pb-20 md:-mt-6 lg:-mt-6">
         <div className="space-y-2 md:space-y-6">
-          <MediaRow
+          {/* <MediaRow
             title="Hollywood"
             items={trending}
             href="/movies"
             isAuthenticated={!!user}
-          />
+          /> */}
 
-          <MediaRow
-            title="Bollywood"
-            items={bollywood}
-            href="/movies"
-            isAuthenticated={!!user}
-          />
+          <MediaRow title="Hollywood" items={trending} href="/movies" />
+          <MediaRow title="Bollywood" items={bollywood} href="/movies" />
 
-          <MediaRow
-            title="South Indian"
-            items={southIndian}
-            href="/movies"
-            isAuthenticated={!!user}
-          />
+          <MediaRow title="South Indian" items={southIndian} href="/movies" />
           <MediaRow
             title="Hollywood TV Shows"
             items={hollywoodTV}
             href="/tv/hollywood"
-            isAuthenticated={!!user}
           />
           <MediaRow
             title="Indian TV Shows"
             items={indianTV}
             href="/tv/indian"
-            isAuthenticated={!!user}
           />
         </div>
       </div>

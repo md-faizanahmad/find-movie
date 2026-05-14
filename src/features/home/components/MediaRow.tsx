@@ -10,14 +10,14 @@ interface Props {
   title: string;
   items: Media[];
   href?: string;
-  isAuthenticated?: boolean;
+  // isAuthenticated?: boolean;
 }
 
 export function MediaRow({
   title,
   items,
   href = "#",
-  isAuthenticated = false,
+  // isAuthenticated = false,
 }: Props) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -90,7 +90,8 @@ export function MediaRow({
       "
             >
               {/* <MediaCard item={item} /> */}
-              <MediaCard item={item} isAuthenticated={isAuthenticated} />
+              {/* <MediaCard item={item} isAuthenticated={isAuthenticated} /> */}
+              <MediaCard item={item} />
             </div>
           ))}
 

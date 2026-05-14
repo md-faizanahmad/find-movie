@@ -10,7 +10,7 @@ export interface UserDocument {
   favorites: {
     mediaId: number;
 
-    mediaType: "movie" | "tv" | "person";
+    mediaType: "movie" | "tv";
   }[];
   createdAt: Date;
   updatedAt: Date;

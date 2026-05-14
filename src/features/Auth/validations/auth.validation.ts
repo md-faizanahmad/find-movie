@@ -17,7 +17,7 @@ export const verifyOtpSchema = z.object({
 export const toggleFavoriteSchema = z.object({
   mediaId: z.number().int().positive(),
 
-  mediaType: z.enum(["movie", "tv", "person"]),
+  mediaType: z.enum(["movie", "tv"]),
 });
 
 export type RequestOtpInput = z.infer<typeof requestOtpSchema>;

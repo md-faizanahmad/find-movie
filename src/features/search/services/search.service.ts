@@ -50,7 +50,7 @@ export async function searchMulti(query: string): Promise<SearchResult[]> {
     .map((item) => ({
       id: item.id,
 
-      media_type: item.media_type as "movie" | "tv" | "person",
+      media_type: item.media_type as "movie" | "tv",
 
       title: item.title || item.name || "Unknown",
 

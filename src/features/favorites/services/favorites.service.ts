@@ -11,7 +11,6 @@ interface FavoriteItem {
 
 interface TMDBResponse {
   id: number;
-
   title?: string;
 
   name?: string;
@@ -57,8 +56,7 @@ async function fetchFavoriteItem(
     return {
       id: data.id,
 
-      // mediaType: favorite.mediaType === "person" ? "movie" : favorite.mediaType,
-      mediaType: favorite.mediaType,
+      mediaType: favorite.mediaType === "person" ? "movie" : favorite.mediaType,
 
       title: data.title ?? data.name ?? "",
 

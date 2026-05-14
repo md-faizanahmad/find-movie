@@ -6,7 +6,6 @@ export interface SessionUser {
   emailVerified: boolean;
   favorites: {
     mediaId: number;
-
-    mediaType: "movie" | "tv" | "person";
+    mediaType: "movie" | "tv";
   }[];
 }

@@ -45,7 +45,7 @@ const userSchema = new Schema<UserDocument>(
 
           mediaType: {
             type: String,
-            enum: ["movie", "tv", "person"],
+            enum: ["movie", "tv"],
             required: true,
           },
         },

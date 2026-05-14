@@ -86,6 +86,7 @@ export function ProtectedMediaCard({
         }}
       >
         <FavoriteButton
+          mediaType=""
           mediaId={item.id}
           initialFavorited={isFavorited}
           isAuthenticated={isAuthenticated}

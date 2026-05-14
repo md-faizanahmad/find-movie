@@ -11,7 +11,7 @@ import { toggleFavorite } from "@/features/Auth/services/auth.client";
 
 interface FavoriteButtonProps {
   mediaId: number;
-
+  mediaType: string;
   initialFavorited: boolean;
 
   isAuthenticated: boolean;
@@ -21,7 +21,7 @@ interface FavoriteButtonProps {
 
 export function FavoriteButton({
   mediaId,
-
+  mediaType,
   initialFavorited,
 
   isAuthenticated,
@@ -48,7 +48,7 @@ export function FavoriteButton({
 
       setFavorited(optimisticValue);
 
-      const response = await toggleFavorite(mediaId);
+      const response = await toggleFavorite(mediaId, mediaType);
 
       if (!response.success) {
         setFavorited(!optimisticValue);

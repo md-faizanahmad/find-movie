@@ -54,7 +54,7 @@ export async function logout(): Promise<AuthResponse> {
   return parseResponse(response);
 }
 
-export async function toggleFavorite(mediaId: number) {
+export async function toggleFavorite(mediaId: number, mediaType: string) {
   const response = await fetch("/api/favorites/toggle", {
     method: "POST",
 
@@ -64,6 +64,7 @@ export async function toggleFavorite(mediaId: number) {
 
     body: JSON.stringify({
       mediaId,
+      mediaType,
     }),
   });
 

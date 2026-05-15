@@ -145,7 +145,7 @@ export function MediaCard({ item, isAuthenticated = false }: MediaCardProps) {
     <div className="group relative w-full overflow-visible">
       {/* Locked Overlay */}
       {isLocked && (
-        <div className="absolute inset-0 z-40 flex flex-col items-center justify-center rounded-xl bg-black/80 px-4 text-center backdrop-blur-md">
+        <div className="absolute inset-0 z-40 flex flex-col items-center justify-center rounded-xl bg-black/85 px-2 text-center backdrop-blur-md">
           <div className="mb-2 rounded-full bg-red-600 px-2.5 py-0.5 text-[10px] font-black text-white">
             18+
           </div>

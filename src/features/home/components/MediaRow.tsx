@@ -23,9 +23,7 @@ export function MediaRow({
 
   const scroll = (direction: "left" | "right") => {
     if (!scrollRef.current) return;
-
-    const amount = 400;
-
+    const amount = scrollRef.current.clientWidth * 0.8;
     scrollRef.current.scrollBy({
       left: direction === "left" ? -amount : amount,
       behavior: "smooth",
@@ -33,80 +31,71 @@ export function MediaRow({
   };
 
   return (
-    <section className="group/row py-6 px-6 md:py-12 md:px-8">
-      <div className="mb-5 flex items-end justify-between px-6 md:px-8 lg:px-8">
-        <h2 className="text-xl font-bold tracking-tight text-red-800 md:text-2xl lg:text-3xl">
+    <section className="group/row py-4">
+      {/* Title Header */}
+      <div className="mb-4 flex items-end justify-between px-6 md:px-10">
+        <h2 className="text-lg font-bold tracking-tight text-zinc-200 md:text-2xl">
           {title}
         </h2>
 
         <Link
           href={href}
-          className="flex items-center gap-1 text-xs font-bold uppercase tracking-widest text-gray-500 transition-colors hover:text-red-500 md:text-sm"
+          className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest text-zinc-500 transition-colors hover:text-red-500 md:text-xs"
         >
           Explore All
           <ChevronRight
-            size={16}
+            size={14}
             className="transition-transform group-hover/row:translate-x-1"
           />
         </Link>
       </div>
 
       <div className="relative">
-        {/* Desktop Arrows */}
+        {/* Navigation Arrows - Only visible on hover/desktop */}
         <button
           onClick={() => scroll("left")}
-          className="absolute left-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-black/70 p-2 text-white backdrop-blur transition hover:bg-black md:flex"
+          className="absolute left-0 top-0 bottom-0 z-30 hidden w-12 items-center justify-center bg-black/40 text-white opacity-0 backdrop-blur-sm transition-opacity group-hover/row:opacity-100 md:flex"
         >
-          <ChevronLeft size={22} />
+          <ChevronLeft size={30} />
         </button>
 
         <button
           onClick={() => scroll("right")}
-          className="absolute right-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-black/70 p-2 text-white backdrop-blur transition hover:bg-black md:flex"
+          className="absolute right-0 top-0 bottom-0 z-30 hidden w-12 items-center justify-center bg-black/40 text-white opacity-0 backdrop-blur-sm transition-opacity group-hover/row:opacity-100 md:flex"
         >
-          <ChevronRight size={22} />
+          <ChevronRight size={30} />
         </button>
 
-        {/* Scroll Container */}
+        {/* 
+            SCROLL CONTAINER FIXES:
+            1. overflow-x-auto + overflow-y-visible (allows scale to pop out)
+            2. -mx (negative margin) + px (padding) ensures borders aren't cut on the ends
+            3. py-4 gives vertical breathing room for the hover scale
+        */}
         <div
           ref={scrollRef}
-          className="flex items-start gap-3 overflow-x-auto overflow-y-hidden scroll-smooth px-4 py-6
-    snap-x snap-mandatory
-    scrollbar-hide
-    md:gap-5 md:px-10
-    [-ms-overflow-style:none]
-    scrollbar-none
-    [&::-webkit-scrollbar]:hidden
-  "
+          className="flex gap-3 overflow-x-auto overflow-y-visible scroll-smooth px-6 py-4
+            scrollbar-hide snap-x snap-mandatory md:gap-5 md:px-10
+            [-ms-overflow-style:none] scrollbar-none [&::-webkit-scrollbar]:hidden"
         >
           {items.map((item) => (
             <div
               key={item.id}
-              className="w-35 flex-none
-        snap-start
-        sm:w-45
-        md:w-55
-        lg:w-65
-      "
+              className="w-35 flex-none snap-start sm:w-45 md:w-55 lg:w-60"
             >
-              {/* <MediaCard item={item} /> */}
               <MediaCard item={item} isAuthenticated={isAuthenticated} />
-              {/* <MediaCard item={item} /> */}
             </div>
           ))}
 
+          {/* View More Card */}
           <Link
             href={href}
-            className="
-              flex min-w-35 mt-10 flex-none snap-start
-              items-center justify-center rounded-xl
-              border border-neutral-800 bg-neutral-900/50
-              transition-colors hover:bg-neutral-800
-              sm:min-w-45
-            "
+            className="flex min-h-52.5 w-35 flex-none snap-start items-center justify-center rounded-xl 
+                       border border-zinc-800 bg-zinc-900/30 transition-colors hover:bg-zinc-800
+                       sm:w-45 md:h-82.5 md:w-55"
           >
-            <span className="text-sm font-bold text-neutral-500">
-              View More
+            <span className="text-xs font-bold text-zinc-500 uppercase tracking-tighter">
+              View All
             </span>
           </Link>
         </div>

@@ -9,6 +9,7 @@ import { TVHero } from "@/features/tv/components/TVHero";
 import { TVRegionFilter } from "@/features/tv/components/TVRegionFilter";
 import { ResultCounter } from "@/shared/ResultCounter";
 import { TVSortDropdown } from "@/features/tv/components/TVSortDropdown";
+import { getCurrentUser } from "@/features/Auth/lib/auth";
 
 interface Props {
   searchParams: Promise<{
@@ -21,6 +22,7 @@ interface Props {
 }
 
 export default async function TVShowsPage({ searchParams }: Props) {
+  const user = await getCurrentUser();
   const params = await searchParams;
   // const language = params.language || "en";
   const language = params.with_original_language || "en";
@@ -38,8 +40,6 @@ export default async function TVShowsPage({ searchParams }: Props) {
       });
 
   const hasResults = tvShows.results.length > 0;
-  console.log("length", tvShows.length);
-  console.log(tvShows[0]);
 
   return (
     // <main className="min-h-screen overflow-x-hidden bg-black text-white">
@@ -101,7 +101,7 @@ export default async function TVShowsPage({ searchParams }: Props) {
         {/* Results */}
         {hasResults ? (
           <div className="space-y-10">
-            <TVGrid shows={tvShows.results} />
+            <TVGrid shows={tvShows.results} isAuthenticated={!!user} />
 
             <div className="border-t border-white/5 pt-6">
               <TVPagination

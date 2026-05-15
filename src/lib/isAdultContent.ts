@@ -1,115 +1,136 @@
-const adultKeywords = [
-  // Porn / explicit
-  "porn",
-  "porno",
-  "pornographic",
-  "xxx",
-  "nsfw",
-  "adult",
-  "adult film",
-  "hardcore",
-  "softcore",
-  "explicit",
-  "explicit sex",
-  "sexual content",
-  "sex tape",
-  "group sex",
-  "oral sex",
-  "phone sex",
-  "safe sex",
-  "sex play",
-  "sex rider",
-  "how to have sex",
+// src/lib/moderation/isAdultContent.ts
 
-  // Sexual acts
-  "sex",
-  "sexual",
-  "anal",
-  "blowjob",
-  "handjob",
-  "deepthroat",
-  "threesome",
-  "orgy",
-  "bdsm",
-  "fetish",
-  "milf",
+import keywords from "./moderation/adultKeywords.json";
+import { normalizeText } from "./moderation/normalizeText";
+import type { AdultKeywords } from "./moderation/types";
 
-  // Nudity
-  "nude",
-  "nudity",
-  "topless",
-  "uncensored",
+const data = keywords as AdultKeywords;
 
-  // Erotic themes
-  "erotic",
-  "seduction",
-  "sensual",
-  "lust",
-  "temptation",
-  "desire",
-  "passion",
-  "provocative",
-  "intimate",
-  "mistress",
-  "affair",
-  "hookup",
-  "one night stand",
+type CheckInput = {
+  title?: string;
+  overview?: string;
+  keywords?: string[];
+  genres?: string[];
+};
 
-  // Adult industry
-  "onlyfans",
-  "camgirl",
-  "camgirls",
-  "cam model",
-  "escort",
-  "brothel",
-  "stripper",
-  "strip club",
+export function isAdultContent({
+  title = "",
+  overview = "",
+  keywords = [],
+  genres = [],
+}: CheckInput): boolean {
+  const combinedText = normalizeText(`
+    ${title}
+    ${overview}
+    ${keywords.join(" ")}
+    ${genres.join(" ")}
+  `);
 
-  // OTT / known adult series
-  "charmsukh",
-  "palang tod",
-  "gandii baat",
-  "kavita bhabhi",
-  "rasbhari",
-  "shanthi appuram nithya",
-  "kunwari dulhan",
-  "ggs - ganteng-ganteng sange",
-  "hot girls wanted",
-  "how to have sex",
-  "how to have cyber sex on the internet",
+  let score = 0;
 
-  // adult webseris
-  "spartacus",
-  "shameless",
+  // =========================
+  // CATEGORY WEIGHTS
+  // =========================
 
-  // Rating markers
-  "18+",
-  "a rated",
-];
+  score += calculateScore(combinedText, data.explicitTerms, 6);
 
-export function isAdultContent(media: unknown): boolean {
-  /**
-   * Prevent runtime crashes
-   * from malformed media objects.
-   */
-  if (!media || typeof media !== "object") {
-    return false;
+  score += calculateScore(combinedText, data.bypassSpellings, 5);
+
+  score += calculateScore(combinedText, data.platforms, 4);
+
+  score += calculateScore(combinedText, data.adultSeries, 8);
+
+  score += calculateScore(combinedText, data.actresses, 2);
+
+  score += calculateScore(combinedText, data.searchIntent, 5);
+
+  score += calculateScore(combinedText, data.romanizedHindi, 4);
+
+  score += calculateScore(combinedText, data.emojiIndicators, 3);
+
+  // =========================
+  // COMBINATION BOOSTS
+  // =========================
+
+  const hasActress = containsAny(combinedText, data.actresses);
+
+  const hasExplicit = containsAny(combinedText, data.explicitTerms);
+
+  const hasIntent = containsAny(combinedText, data.searchIntent);
+
+  const hasPlatform = containsAny(combinedText, data.platforms);
+
+  const hasAdultSeries = containsAny(combinedText, data.adultSeries);
+
+  // Actress + explicit
+  // Example:
+  // "Sydney Sweeney nude scenes"
+  if (hasActress && hasExplicit) {
+    score += 10;
   }
 
-  const safeMedia = media as Record<string, unknown>;
+  // Intent + explicit
+  // Example:
+  // "watch hot web series online"
+  if (hasIntent && hasExplicit) {
+    score += 8;
+  }
 
-  const text = `
-    ${safeMedia.title ?? ""}
-    ${safeMedia.original_title ?? ""}
-    ${safeMedia.name ?? ""}
-    ${safeMedia.original_name ?? ""}
-    ${safeMedia.overview ?? ""}
-  `
-    .toLowerCase()
-    .replace(/\s+/g, " ");
+  // Platform + explicit
+  // Example:
+  // "ullu hot series"
+  if (hasPlatform && hasExplicit) {
+    score += 10;
+  }
 
-  return (
-    safeMedia.adult === true ||
-    adultKeywords.some((word) => text.includes(word.toLowerCase()))
-  );
+  // Known adult series / movie
+  if (hasAdultSeries) {
+    score += 10;
+  }
+
+  // =========================
+  // FINAL THRESHOLD
+  // =========================
+
+  return score >= 14;
+}
+
+// ======================================================
+// HELPERS
+// ======================================================
+
+function calculateScore(text: string, list: string[], weight: number): number {
+  let total = 0;
+
+  for (const item of list) {
+    const normalizedItem = normalizeText(item);
+
+    const regex = new RegExp(
+      `(^|\\s)${escapeRegex(normalizedItem)}($|\\s)`,
+      "i",
+    );
+
+    if (regex.test(text)) {
+      total += weight;
+    }
+  }
+
+  return total;
+}
+
+function containsAny(text: string, list: string[]): boolean {
+  return list.some((item) => {
+    const normalizedItem = normalizeText(item);
+
+    const regex = new RegExp(
+      `(^|\\s)${escapeRegex(normalizedItem)}($|\\s)`,
+      "i",
+    );
+
+    return regex.test(text);
+  });
+}
+
+function escapeRegex(text: string): string {
+  return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }

@@ -181,7 +181,7 @@ export function MediaCard({ item, isAuthenticated = false }: MediaCardProps) {
           )}
 
           {/* Top Actions: Rating (Left) and Heart (Right) */}
-          <div className="absolute inset-x-0 top-0 z-20 flex items-center justify-between p-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          <div className="absolute inset-x-0 top-0 z-20 flex items-center justify-between p-2 ">
             <div className="flex items-center gap-1 rounded-lg bg-black/60 px-2 py-1 backdrop-blur-md">
               <Star className="h-3 w-3 fill-yellow-500 text-yellow-500" />
               <span className="text-[10px] font-black text-white">

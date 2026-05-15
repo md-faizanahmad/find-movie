@@ -6,8 +6,8 @@ import { getHomeData } from "@/features/home/services/home.service";
 export default async function HomePage() {
   const { trending, bollywood, southIndian, indianTV, hollywoodTV } =
     await getHomeData();
-  const user = await getCurrentUser();
   const heroMovie = trending?.[0] || null;
+  const user = await getCurrentUser();
 
   return (
     <main className="relative min-h-screen bg-black selection:bg-red-600/30">

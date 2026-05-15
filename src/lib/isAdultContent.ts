@@ -78,6 +78,10 @@ const adultKeywords = [
   "how to have sex",
   "how to have cyber sex on the internet",
 
+  // adult webseris
+  "spartacus",
+  "shameless",
+
   // Rating markers
   "18+",
   "a rated",

@@ -19,12 +19,12 @@ export function MovieGrid({ movies, isAuthenticated = false }: Props) {
          - Ultra-Wide: 8 columns (to maintain card aspect ratio)
       */}
       <div
-        className="grid grid-cols-2 gap-x-4 gap-y-8 
+        className="grid grid-cols-2 gap-x-6 gap-y-8 
                       sm:grid-cols-3 
-                      md:grid-cols-4 md:gap-x-6 
+                      md:grid-cols-4 md:gap-x-8 
                       lg:grid-cols-5 
                       xl:grid-cols-5
-                      xl:gap-3
+                      xl:gap-4
                       2xl:grid-cols-8 
                       max-w-500 mx-auto"
       >

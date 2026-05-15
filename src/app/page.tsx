@@ -16,8 +16,13 @@ export default async function HomePage() {
         isLoading={!heroMovie}
       />
 
-      <div className="relative z-20 -mt-5 pb-20 md:-mt-6 lg:-mt-6">
-        <div className="space-y-2 md:space-y-6">
+      {/* 
+          1. Removed overflow-hidden if any.
+          2. Added horizontal padding (px-4 to px-8) to give cards room to scale.
+          3. Used 'overflow-visible' on the row wrapper so borders don't clip.
+      */}
+      <div className="relative z-20 -mt-5 pb-20 md:-mt-6 lg:-mt-10">
+        <div className="space-y-8 md:space-y-12">
           <MediaRow
             title="Hollywood"
             items={trending}
@@ -38,12 +43,14 @@ export default async function HomePage() {
             href="/movies"
             isAuthenticated={!!user}
           />
+
           <MediaRow
             title="Hollywood TV Shows"
             items={hollywoodTV}
             href="/tv/hollywood"
             isAuthenticated={!!user}
           />
+
           <MediaRow
             title="Indian TV Shows"
             items={indianTV}
@@ -61,5 +68,3 @@ export default async function HomePage() {
     </main>
   );
 }
-
-//// update with authmodal

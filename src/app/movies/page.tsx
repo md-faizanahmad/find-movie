@@ -1,5 +1,6 @@
 // app/movies/page.tsx
 
+import { getCurrentUser } from "@/features/Auth/lib/auth";
 import { discoverMovies } from "@/features/discover/api/discoverMovies";
 import { searchMovies } from "@/features/discover/api/searchMovies";
 import { DiscoverHero } from "@/features/discover/components/DiscoverHero";
@@ -23,7 +24,7 @@ interface Props {
 
 export default async function MoviesPage({ searchParams }: Props) {
   const params = await searchParams;
-
+  const user = await getCurrentUser();
   // const language = params.language || "en";
   // refactor
   const withOriginalLanguage = params.with_original_language || "en";
@@ -109,7 +110,7 @@ export default async function MoviesPage({ searchParams }: Props) {
         {/* Results */}
         {hasResults ? (
           <div className="space-y-10">
-            <MovieGrid movies={movies.results} />
+            <MovieGrid movies={movies.results} isAuthenticated={!!user} />
 
             <footer className="mt-10 border-t border-white/5 pt-8">
               <Pagination

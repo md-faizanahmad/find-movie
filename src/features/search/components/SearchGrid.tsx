@@ -6,9 +6,10 @@ import { SearchResult } from "../services/search.service";
 interface Props {
   results: SearchResult[];
   query: string;
+  isAuthenticated?: boolean;
 }
 
-export function SearchGrid({ results, query }: Props) {
+export function SearchGrid({ results, query, isAuthenticated = false }: Props) {
   if (!query.trim()) return null;
 
   if (!results.length) {
@@ -26,7 +27,11 @@ export function SearchGrid({ results, query }: Props) {
       "
     >
       {results.map((item) => (
-        <SearchResultCard key={`${item.media_type}-${item.id}`} item={item} />
+        <SearchResultCard
+          key={`${item.media_type}-${item.id}`}
+          item={item}
+          isAuthenticated={isAuthenticated}
+        />
       ))}
     </div>
   );

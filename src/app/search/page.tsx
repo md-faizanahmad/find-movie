@@ -4,6 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { SearchGrid } from "@/features/search/components/SearchGrid";
 import { searchMulti } from "@/features/search/services/search.service";
 import { SearchBar } from "@/features/home/components/SearchBar";
+import { getCurrentUser } from "@/features/Auth/lib/auth";
 
 interface Props {
   searchParams: Promise<{
@@ -15,7 +16,7 @@ const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/original";
 
 export default async function SearchPage({ searchParams }: Props) {
   const params = await searchParams;
-
+  const user = await getCurrentUser();
   const query = params.q || "";
 
   const results = query ? await searchMulti(query) : [];
@@ -136,7 +137,11 @@ export default async function SearchPage({ searchParams }: Props) {
 
           {/* Results */}
           <div className="relative z-10">
-            <SearchGrid results={results} query={query} />
+            <SearchGrid
+              results={results}
+              query={query}
+              isAuthenticated={!!user}
+            />
           </div>
         </div>
       </div>

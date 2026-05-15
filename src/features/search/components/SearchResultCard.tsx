@@ -7,11 +7,12 @@ import { SearchResult } from "../services/search.service";
 
 interface Props {
   item: SearchResult;
+  isAuthenticated?: boolean;
 }
 
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
-export function SearchResultCard({ item }: Props) {
+export function SearchResultCard({ item, isAuthenticated = false }: Props) {
   if (item.media_type === "person") {
     return (
       <Link
@@ -72,6 +73,7 @@ export function SearchResultCard({ item }: Props) {
         releaseDate: item.year || "",
         overview: item.overview || "",
       }}
+      isAuthenticated={isAuthenticated}
     />
   );
 }

@@ -73,7 +73,7 @@ export function MediaRow({
           className="flex items-start gap-3 overflow-x-auto overflow-y-visible scroll-smooth px-4 py-6
     snap-x snap-mandatory
     scrollbar-hide
-    md:gap-5 md:px-13
+    md:gap-5 md:px-10
     [-ms-overflow-style:none]
     scrollbar-none
     [&::-webkit-scrollbar]:hidden
@@ -98,16 +98,26 @@ export function MediaRow({
           <Link
             href={href}
             className="
-              flex min-w-35 mt-10 flex-none snap-start
-              items-center justify-center rounded-xl
-              border border-neutral-800 bg-neutral-900/50
-              transition-colors hover:bg-neutral-800
-              sm:min-w-45
-            "
+    relative flex aspect-2/3 flex-none snap-start 
+    w-35 sm:w-45 md:w-55 lg:w-60
+    flex-col items-center justify-center rounded-xl 
+    border border-white/5 bg-zinc-900/30 
+    transition-all duration-300
+    hover:bg-zinc-900 hover:border-red-600/50 hover:scale-[1.03]
+    group
+  "
           >
-            <span className="text-sm font-bold text-neutral-500">
-              View More
+            {/* Subtle background icon for a "premium" feel */}
+            <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-white/5 text-zinc-500 transition-colors group-hover:bg-red-600/10 group-hover:text-red-500">
+              <ChevronRight size={24} />
+            </div>
+
+            <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500 transition-colors group-hover:text-zinc-200 md:text-xs">
+              View All
             </span>
+
+            {/* Bottom subtle glow on hover */}
+            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-linear-to-t from-red-600/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
           </Link>
         </div>
       </div>

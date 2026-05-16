@@ -1,7 +1,8 @@
+import { TMDBTV } from "@/@types/tv.types";
 import { MediaCard } from "@/features/home/components/MediaCard";
 
 interface Props {
-  shows: any[];
+  shows: TMDBTV[];
   isAuthenticated?: boolean;
 }
 

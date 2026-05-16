@@ -189,7 +189,7 @@ export function MediaCard({ item, isAuthenticated = false }: MediaCardProps) {
                 {item.rating > 0 ? item.rating.toFixed(1) : "NEW"}
               </span>
             </div>
-            <button className="flex h-7 w-7 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-md transition hover:text-red-500">
+            <div className="flex  items-center justify-center ">
               {/* <Heart className="h-4 w-4" /> */}
               <FavoriteButton
                 mediaId={item.id}
@@ -197,7 +197,7 @@ export function MediaCard({ item, isAuthenticated = false }: MediaCardProps) {
                 initialFavorited={item.isFavorited ?? false}
                 isAuthenticated={isAuthenticated}
               />
-            </button>
+            </div>
           </div>
 
           {/* Bottom Info Overlay */}

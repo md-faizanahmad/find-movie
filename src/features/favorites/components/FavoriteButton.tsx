@@ -13,7 +13,6 @@ interface FavoriteButtonProps {
   mediaId: number;
   mediaType: string;
   initialFavorited: boolean;
-
   isAuthenticated: boolean;
 
   onRequireAuth?: () => void;
@@ -34,7 +33,11 @@ export function FavoriteButton({
 
   const [loading, setLoading] = useState(false);
 
-  async function handleToggle() {
+  async function handleToggle(e: any) {
+    e.preventDefault();
+
+    e.stopPropagation();
+
     if (!isAuthenticated) {
       onRequireAuth?.();
 

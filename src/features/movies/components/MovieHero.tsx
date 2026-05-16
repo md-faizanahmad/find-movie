@@ -24,6 +24,20 @@ export function MovieHero({
 
   if (!backdrop_path) return null;
 
+  // for dynamic font size
+  // Dynamic Title Sizing Strategy
+  const getTitleSizeClass = (text: string) => {
+    if (text.length > 35) return "text-2xl md:text-5xl"; // Safe minimum size for massive titles
+    if (text.length > 15) return "text-3xl md:text-6xl"; // Intermediate size
+    return "text-4xl md:text-7xl"; // Original default size for short titles
+  };
+
+  // Dynamic Tagline Sizing Strategy
+  const getTaglineSizeClass = (text: string) => {
+    if (text.length > 80) return "text-base md:text-xl"; // Shrunk down to fit long descriptions
+    return "text-lg md:text-2xl"; // Original default size
+  };
+
   return (
     <section className="relative h-[65vh] md:h-[85vh] w-full overflow-hidden bg-black">
       {/* 1. Base Layer: Visuals */}
@@ -76,14 +90,18 @@ export function MovieHero({
       {/* 4. Content Layer */}
       <div className="relative z-20 flex h-full flex-col justify-end p-8 md:p-20 max-w-6xl pointer-events-none">
         <div className="max-w-3xl space-y-6 pointer-events-auto">
-          <h1 className="text-4xl md:text-7xl font-black text-white leading-[0.9] tracking-tighter drop-shadow-2xl italic uppercase">
+          <h1
+            className={`${getTitleSizeClass(title)} font-black text-white leading-[0.9] tracking-tighter drop-shadow-2xl italic uppercase`}
+          >
             {title}
           </h1>
 
           {tagline && (
             <div className="flex items-center gap-4">
-              <span className="h-10 md:h-12 w-1.5 bg-red-600 rounded-full" />
-              <p className="text-gray-100 text-lg md:text-2xl font-light italic leading-relaxed max-w-xl">
+              <span className="h-10 md:h-12 w-1.5 bg-red-600 rounded-full shrink-0" />
+              <p
+                className={`text-gray-100 ${getTaglineSizeClass(tagline)} font-light italic leading-relaxed max-w-xl`}
+              >
                 {tagline}
               </p>
             </div>

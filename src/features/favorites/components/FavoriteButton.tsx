@@ -91,7 +91,7 @@ export function FavoriteButton({
       onClick={handleToggle}
       disabled={loading}
       className={cn(
-        "group flex h-11 w-11 items-center justify-center rounded-full border transition-all duration-300",
+        "group flex h-11 w-11 items-center justify-center rounded-full border transition-all duration-300 cursor-pointer",
 
         favorited
           ? "border-red-500/30 bg-red-500/20 text-red-500"

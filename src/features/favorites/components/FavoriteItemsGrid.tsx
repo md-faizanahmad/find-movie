@@ -50,7 +50,7 @@ export function FavoriteItemsGrid({
           className="group relative overflow-hidden rounded-2xl border border-white/5 bg-zinc-900/40 transition-all hover:border-white/10"
         >
           {/* Favorite Button */}
-          <div className="absolute right-3 top-3 z-20">
+          <div className="absolute right-3 top-3 z-40 cursor-pointer">
             <FavoriteButton
               // Media ID for toggle API
               mediaId={item.id}

@@ -10,7 +10,7 @@ export default async function FavoritesPage() {
   console.log(user.favorites);
   console.log(favoriteItems);
   return (
-    <main className="min-h-screen bg-black px-6 py-32 text-white">
+    <main className="min-h-screen bg-black px-6 py-20 text-white">
       <div className="mx-auto max-w-6xl">
         <div className="mb-10">
           <h1 className="text-4xl font-black">Your Favorites</h1>

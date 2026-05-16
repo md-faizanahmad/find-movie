@@ -42,6 +42,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // alreadyFavorited
     const alreadyFavorited = existingUser.favorites.some(
       (favorite) =>
         favorite.mediaId === mediaId && favorite.mediaType === mediaType,
@@ -63,9 +64,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-
       favorited: !alreadyFavorited,
-
       favorites: existingUser.favorites,
     });
   } catch (error) {

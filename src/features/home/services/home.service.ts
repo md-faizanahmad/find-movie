@@ -25,6 +25,7 @@ export interface Media {
   adult?: boolean;
   releaseDate: string;
   overview?: string;
+  isFavorited?: boolean;
 }
 
 /* -------------------------------------------------------------------------- */

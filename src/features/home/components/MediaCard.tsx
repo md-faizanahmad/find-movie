@@ -121,10 +121,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Star, Heart, PlayCircle } from "lucide-react";
+import { Star, PlayCircle } from "lucide-react";
 import { Media } from "../services/home.service";
 import { isAdultContent } from "@/lib/isAdultContent";
 import { useAuthModal } from "@/context/auth-modal.context";
+import { FavoriteButton } from "@/features/favorites/components/FavoriteButton";
 
 interface MediaCardProps {
   item: Media;
@@ -189,7 +190,13 @@ export function MediaCard({ item, isAuthenticated = false }: MediaCardProps) {
               </span>
             </div>
             <button className="flex h-7 w-7 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-md transition hover:text-red-500">
-              <Heart className="h-4 w-4" />
+              {/* <Heart className="h-4 w-4" /> */}
+              <FavoriteButton
+                mediaId={item.id}
+                mediaType={item.mediaType}
+                initialFavorited={item.isFavorited ?? false}
+                isAuthenticated={isAuthenticated}
+              />
             </button>
           </div>
 

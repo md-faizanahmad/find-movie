@@ -70,7 +70,7 @@ export function UserMenu({ user, onLoginClick }: UserMenuProps) {
 
       {/* Dropdown */}
       <div
-        className={`absolute right-0 top-14 z-50 w-30 rounded-2xl border border-white/10 bg-neutral-950/95 p-2 shadow-2xl backdrop-blur-xl transition-all duration-200 ${
+        className={`absolute right-0 top-14 z-50 w-40 rounded-2xl border border-white/10 bg-neutral-950/95 p-2 shadow-2xl backdrop-blur-xl transition-all duration-200 ${
           open
             ? "visible translate-y-0 opacity-100"
             : "invisible translate-y-2 opacity-0"

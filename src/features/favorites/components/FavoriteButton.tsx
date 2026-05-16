@@ -61,6 +61,7 @@ export function FavoriteButton({
 
       // Toggle favorite in database
       const response = await toggleFavorite(mediaId, mediaType);
+      console.log(response);
 
       // Rollback if request failed
       if (!response.success) {

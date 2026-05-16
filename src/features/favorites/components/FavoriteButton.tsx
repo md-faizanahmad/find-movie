@@ -10,18 +10,14 @@ import { toggleFavorite } from "@/features/Auth/services/auth.client";
 
 interface FavoriteButtonProps {
   mediaId: number;
-
   mediaType: string;
-
   initialFavorited: boolean;
-
   isAuthenticated: boolean;
-
   // Notify parent after toggle
   onToggle?: (favorited: boolean) => void;
-
   // Open auth modal if user not logged in
   onRequireAuth?: () => void;
+  onOptimisticUnfavorite?: () => void;
 }
 
 export function FavoriteButton({
@@ -31,6 +27,7 @@ export function FavoriteButton({
   isAuthenticated,
   onToggle,
   onRequireAuth,
+  onOptimisticUnfavorite,
 }: FavoriteButtonProps) {
   // Local optimistic favorite state
   const [favorited, setFavorited] = useState(initialFavorited);
@@ -41,13 +38,11 @@ export function FavoriteButton({
   async function handleToggle(e: React.MouseEvent<HTMLButtonElement>) {
     // Prevent card link navigation when clicking favorite button
     e.preventDefault();
-
     e.stopPropagation();
 
     // Require authentication
     if (!isAuthenticated) {
       onRequireAuth?.();
-
       return;
     }
 
@@ -57,6 +52,9 @@ export function FavoriteButton({
       // Optimistic UI update
       const optimisticValue = !favorited;
 
+      if (!optimisticValue) {
+        onOptimisticUnfavorite?.();
+      }
       setFavorited(optimisticValue);
 
       // Toggle favorite in database
@@ -67,6 +65,10 @@ export function FavoriteButton({
       if (!response.success) {
         setFavorited(!optimisticValue);
 
+        /// RollBack - This restores card if request failed.
+        if (!optimisticValue) {
+          onToggle?.(true);
+        }
         return;
       }
 

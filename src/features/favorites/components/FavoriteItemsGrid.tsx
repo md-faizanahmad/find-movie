@@ -8,28 +8,21 @@
 */
 
 import { useState } from "react";
-
 import Link from "next/link";
-
 import Image from "next/image";
-
 import { Star } from "lucide-react";
-
 import { Media } from "@/features/home/services/home.service";
-
 import { FavoriteButton } from "@/features/favorites/components/FavoriteButton";
 
 interface FavoriteItemsGridProps {
   // All favorite media items from server
   items: Media[];
-
   // Authentication status
   isAuthenticated?: boolean;
 }
 
 export function FavoriteItemsGrid({
   items,
-
   isAuthenticated = false,
 }: FavoriteItemsGridProps) {
   /*
@@ -66,18 +59,16 @@ export function FavoriteItemsGrid({
                 If item becomes unfavorited:
                 remove it from local grid state instantly.
               */
-              onToggle={(favorited) => {
-                if (!favorited) {
-                  setFavoriteItems((prev) =>
-                    prev.filter(
-                      (favoriteItem) =>
-                        !(
-                          favoriteItem.id === item.id &&
-                          favoriteItem.mediaType === item.mediaType
-                        ),
-                    ),
-                  );
-                }
+              onOptimisticUnfavorite={() => {
+                setFavoriteItems((prev) =>
+                  prev.filter(
+                    (favoriteItem) =>
+                      !(
+                        favoriteItem.id === item.id &&
+                        favoriteItem.mediaType === item.mediaType
+                      ),
+                  ),
+                );
               }}
             />
           </div>

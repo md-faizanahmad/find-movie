@@ -27,7 +27,7 @@ export function FavoriteItemsGrid({
           className="group relative overflow-hidden rounded-2xl border border-white/5 bg-zinc-900/40 transition-all hover:border-white/10"
         >
           {/* Favorite Button */}
-          <div className="absolute right-3 top-12 z-20">
+          <div className="absolute right-3 top-3 z-20">
             <FavoriteButton
               mediaId={item.id}
               mediaType={item.mediaType}
@@ -57,7 +57,7 @@ export function FavoriteItemsGrid({
             </div>
 
             {/* Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/10 to-transparent opacity-90" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/95 via-black/10 to-transparent opacity-90" />
 
             {/* Rating */}
             <div className="absolute left-3 top-3 z-10">
@@ -79,15 +79,23 @@ export function FavoriteItemsGrid({
 
             {/* Bottom Content */}
             <div className="absolute inset-x-0 bottom-0 z-10 p-4">
-              <h3 className="line-clamp-1 text-sm font-bold text-white">
-                {item.title}
-              </h3>
+              <div className="flex items-end justify-between gap-3">
+                <div>
+                  <h3 className="line-clamp-1 text-sm font-bold text-white">
+                    {item.title}
+                  </h3>
 
-              <p className="mt-1 text-xs text-zinc-400">
-                {item.releaseDate
-                  ? new Date(item.releaseDate).getFullYear()
-                  : "Upcoming"}
-              </p>
+                  <p className="mt-1 text-xs text-zinc-400">
+                    {item.releaseDate
+                      ? new Date(item.releaseDate).getFullYear()
+                      : "Upcoming"}
+                  </p>
+                </div>
+
+                <div className="shrink-0 rounded-full border border-white/10 bg-black/60 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white backdrop-blur-md">
+                  {item.mediaType}
+                </div>
+              </div>
             </div>
           </Link>
         </div>

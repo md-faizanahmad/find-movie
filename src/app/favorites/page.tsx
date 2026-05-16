@@ -31,14 +31,6 @@ export default async function FavoritesPage() {
         ) : (
           <div>
             <div className="mb-10 flex items-center justify-between gap-4">
-              <div>
-                <h1 className="text-4xl font-black">Your Favorites</h1>
-
-                <p className="mt-2 text-neutral-400">
-                  Movies and shows you saved.
-                </p>
-              </div>
-
               {user.favorites.length > 0 && <ClearFavoritesButton />}
             </div>
             <FavoriteItemsGrid items={favoriteItems} />

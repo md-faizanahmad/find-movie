@@ -71,11 +71,11 @@ export function FavoriteItemsGrid({
             </div>
 
             {/* Type Badge */}
-            <div className="absolute right-3 top-3 z-10">
+            {/* <div className="absolute right-3 top-3 z-10">
               <div className="rounded-full border border-white/10 bg-black/60 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white backdrop-blur-md">
                 {item.mediaType}
               </div>
-            </div>
+            </div> */}
 
             {/* Bottom Content */}
             <div className="absolute inset-x-0 bottom-0 z-10 p-4">

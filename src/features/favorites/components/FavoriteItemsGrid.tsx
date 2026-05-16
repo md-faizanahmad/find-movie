@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 
 import Image from "next/image";
@@ -7,10 +8,10 @@ import { Star } from "lucide-react";
 import { Media } from "@/features/home/services/home.service";
 
 import { FavoriteButton } from "@/features/favorites/components/FavoriteButton";
-
+import { useState } from "react";
 interface FavoriteItemsGridProps {
   items: Media[];
-
+  onToggle?: (favorited: boolean) => void;
   isAuthenticated?: boolean;
 }
 
@@ -19,20 +20,41 @@ export function FavoriteItemsGrid({
 
   isAuthenticated = false,
 }: FavoriteItemsGridProps) {
+  const [favoriteItems, setFavoriteItems] = useState(items);
+
   return (
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-      {items.map((item) => (
+      {favoriteItems.map((item) => (
         <div
           key={`${item.mediaType}-${item.id}`}
           className="group relative overflow-hidden rounded-2xl border border-white/5 bg-zinc-900/40 transition-all hover:border-white/10"
         >
           {/* Favorite Button */}
           <div className="absolute right-3 top-3 z-20">
+            {/* <FavoriteButton
+              mediaId={item.id}
+              mediaType={item.mediaType}
+              initialFavorited={item.isFavorited ?? true}
+              isAuthenticated={isAuthenticated}
+            /> */}
             <FavoriteButton
               mediaId={item.id}
               mediaType={item.mediaType}
               initialFavorited={item.isFavorited ?? true}
               isAuthenticated={isAuthenticated}
+              onToggle={(favorited) => {
+                if (!favorited) {
+                  setFavoriteItems((prev) =>
+                    prev.filter(
+                      (favoriteItem) =>
+                        !(
+                          favoriteItem.id === item.id &&
+                          favoriteItem.mediaType === item.mediaType
+                        ),
+                    ),
+                  );
+                }
+              }}
             />
           </div>
 

@@ -14,6 +14,7 @@ interface FavoriteButtonProps {
   mediaType: string;
   initialFavorited: boolean;
   isAuthenticated: boolean;
+  onToggle?: (favorited: boolean) => void;
 
   onRequireAuth?: () => void;
 }
@@ -22,7 +23,7 @@ export function FavoriteButton({
   mediaId,
   mediaType,
   initialFavorited,
-
+  onToggle,
   isAuthenticated,
 
   onRequireAuth,
@@ -54,12 +55,14 @@ export function FavoriteButton({
       const response = await toggleFavorite(mediaId, mediaType);
 
       if (!response.success) {
-        setFavorited(!optimisticValue);
+        // setFavorited(!optimisticValue);
+        setFavorited(response.favorited);
 
         return;
       }
 
-      router.refresh();
+      setFavorited(response.favorited);
+      onToggle?.(response.favorited);
     } catch (error) {
       console.error(error);
 

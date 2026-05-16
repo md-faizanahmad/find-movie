@@ -78,7 +78,8 @@ export function UserMenu({ user, onLoginClick }: UserMenuProps) {
       >
         <Link
           href="/profile"
-          onClick={() => setOpen(false)}
+          // onClick={() => setOpen(false)}
+          prefetch
           className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-neutral-300 transition-colors hover:bg-white/5 hover:text-white"
         >
           <User className="h-4 w-4" />
@@ -88,7 +89,8 @@ export function UserMenu({ user, onLoginClick }: UserMenuProps) {
 
         <Link
           href="/favorites"
-          onClick={() => setOpen(false)}
+          // onClick={() => setOpen(false)}
+          prefetch
           className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-neutral-300 transition-colors hover:bg-white/5 hover:text-white"
         >
           <Heart className="h-4 w-4" />

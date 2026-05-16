@@ -64,7 +64,9 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
+
       favorited: !alreadyFavorited,
+
       favorites: existingUser.favorites,
     });
   } catch (error) {

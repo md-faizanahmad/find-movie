@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 
 import Image from "next/image";
@@ -9,15 +10,14 @@ import { Media } from "@/features/home/services/home.service";
 
 import { FavoriteButton } from "@/features/favorites/components/FavoriteButton";
 import { useState } from "react";
+
 interface FavoriteItemsGridProps {
   items: Media[];
-  onToggle?: (favorited: boolean) => void;
+
   isAuthenticated?: boolean;
 }
-
 export function FavoriteItemsGrid({
   items,
-
   isAuthenticated = false,
 }: FavoriteItemsGridProps) {
   const [favoriteItems, setFavoriteItems] = useState(items);
@@ -31,12 +31,6 @@ export function FavoriteItemsGrid({
         >
           {/* Favorite Button */}
           <div className="absolute right-3 top-3 z-20">
-            {/* <FavoriteButton
-              mediaId={item.id}
-              mediaType={item.mediaType}
-              initialFavorited={item.isFavorited ?? true}
-              isAuthenticated={isAuthenticated}
-            /> */}
             <FavoriteButton
               mediaId={item.id}
               mediaType={item.mediaType}

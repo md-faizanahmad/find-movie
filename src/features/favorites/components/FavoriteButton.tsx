@@ -2,8 +2,6 @@
 
 import { Heart } from "lucide-react";
 
-import { useRouter } from "next/navigation";
-
 import { useState } from "react";
 
 import { cn } from "@/lib/utils/cn";
@@ -15,7 +13,6 @@ interface FavoriteButtonProps {
   initialFavorited: boolean;
   isAuthenticated: boolean;
   onToggle?: (favorited: boolean) => void;
-
   onRequireAuth?: () => void;
 }
 
@@ -23,20 +20,17 @@ export function FavoriteButton({
   mediaId,
   mediaType,
   initialFavorited,
-  onToggle,
   isAuthenticated,
-
+  onToggle,
   onRequireAuth,
 }: FavoriteButtonProps) {
-  const router = useRouter();
-
   const [favorited, setFavorited] = useState(initialFavorited);
 
   const [loading, setLoading] = useState(false);
 
   async function handleToggle(e: any) {
+    // prevent to not click on card href
     e.preventDefault();
-
     e.stopPropagation();
 
     if (!isAuthenticated) {
@@ -47,17 +41,13 @@ export function FavoriteButton({
 
     try {
       setLoading(true);
-
       const optimisticValue = !favorited;
-
       setFavorited(optimisticValue);
 
       const response = await toggleFavorite(mediaId, mediaType);
 
       if (!response.success) {
-        // setFavorited(!optimisticValue);
-        setFavorited(response.favorited);
-
+        setFavorited(!optimisticValue);
         return;
       }
 

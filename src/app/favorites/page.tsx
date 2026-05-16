@@ -1,4 +1,5 @@
 import { requireAuth } from "@/features/Auth/lib/auth";
+import { ClearFavoritesButton } from "@/features/favorites/components/ClearFavoritesButton";
 import { FavoriteItemsGrid } from "@/features/favorites/components/FavoriteItemsGrid";
 import { getFavoriteMedia } from "@/features/favorites/services/favorites.service";
 import { Heart } from "lucide-react";
@@ -29,6 +30,17 @@ export default async function FavoritesPage() {
           </div>
         ) : (
           <div>
+            <div className="mb-10 flex items-center justify-between gap-4">
+              <div>
+                <h1 className="text-4xl font-black">Your Favorites</h1>
+
+                <p className="mt-2 text-neutral-400">
+                  Movies and shows you saved.
+                </p>
+              </div>
+
+              {user.favorites.length > 0 && <ClearFavoritesButton />}
+            </div>
             <FavoriteItemsGrid items={favoriteItems} />
           </div>
         )}

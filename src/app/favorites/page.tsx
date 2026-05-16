@@ -33,7 +33,8 @@ export default async function FavoritesPage() {
             <div className="mb-10 flex items-center justify-between gap-4">
               {user.favorites.length > 0 && <ClearFavoritesButton />}
             </div>
-            <FavoriteItemsGrid items={favoriteItems} />
+            {/* <FavoriteItemsGrid items={favoriteItems} /> */}
+            <FavoriteItemsGrid items={favoriteItems} isAuthenticated={true} />
           </div>
         )}
       </div>

@@ -27,8 +27,8 @@ export default async function GalleryPage({ params }: Props) {
   if (!media) {
     notFound();
   }
-  const posterUrl = media.poster_path
-    ? `${IMAGE_BASE}${media.poster_path}`
+  const posterUrl = media.backdrop_path
+    ? `${IMAGE_BASE}${media.backdrop_path}`
     : null;
   const images = media.images?.backdrops || [];
 

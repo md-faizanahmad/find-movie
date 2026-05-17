@@ -1,38 +1,39 @@
 "use client";
 
 import Link from "next/link";
-
-import { ChevronDown, Heart, LogOut, User } from "lucide-react";
-
+import { ChevronDown, Heart, LogOut, User, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-
-import { useState } from "react";
-
+import { useState, useEffect, useRef } from "react";
 import { NavbarUser } from "@/components/layout/navbar/navbar.types";
-
 import { logout } from "./services/auth.client";
 
 interface UserMenuProps {
   user: NavbarUser | null;
-
   onLoginClick: () => void;
 }
 
 export function UserMenu({ user, onLoginClick }: UserMenuProps) {
   const router = useRouter();
-
   const [logoutLoading, setLogoutLoading] = useState(false);
-
   const [open, setOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  // Close menu if user clicks outside of it
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   async function handleLogout() {
     try {
       setLogoutLoading(true);
-
       setOpen(false);
-
       await logout();
-
       router.refresh();
     } catch (error) {
       console.error(error);
@@ -41,11 +42,12 @@ export function UserMenu({ user, onLoginClick }: UserMenuProps) {
     }
   }
 
+  // Elegant Minimalist Login Button matching the application style
   if (!user) {
     return (
       <button
         onClick={onLoginClick}
-        className="rounded-full bg-red-600 px-5 py-2 text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-red-500"
+        className="relative overflow-hidden rounded-full bg-red-600 px-5 py-2 text-xs font-black uppercase tracking-widest text-white shadow-[0_4px_20px_rgba(220,38,38,0.3)] transition-all duration-300 hover:scale-105 hover:bg-red-500 active:scale-95"
       >
         Login
       </button>
@@ -53,61 +55,86 @@ export function UserMenu({ user, onLoginClick }: UserMenuProps) {
   }
 
   return (
-    <div className="relative">
-      {/* Trigger */}
+    <div className="relative" ref={menuRef}>
+      {/* Trigger Button - Glassmorphic Pill Style */}
       <button
         onClick={() => setOpen((prev) => !prev)}
-        className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-bold text-white transition-all hover:border-white/20 hover:bg-white/10"
+        className={`group flex items-center gap-2.5 rounded-full border px-4 py-2 text-xs font-bold tracking-wide text-white transition-all duration-300 active:scale-95 ${
+          open
+            ? "border-red-500/40 bg-zinc-900/90 shadow-[0_0_20px_rgba(220,38,38,0.15)]"
+            : "border-white/10 bg-zinc-900/40 backdrop-blur-md hover:border-white/20 hover:bg-zinc-800/60"
+        }`}
       >
-        <span>{user.firstName}</span>
-
+        {/* User Icon Avatar Placeholder */}
+        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-white/10 text-zinc-300 transition-colors group-hover:bg-red-500/20 group-hover:text-red-400">
+          <User className="h-3 w-3" />
+        </div>
+        <span className="max-w-25 truncate">{user.firstName}</span>
         <ChevronDown
-          className={`h-4 w-4 transition-transform duration-200 ${
-            open ? "rotate-180" : ""
+          className={`h-3.5 w-3.5 text-zinc-400 transition-transform duration-300 ease-out group-hover:text-white ${
+            open ? "rotate-180 text-red-400" : ""
           }`}
         />
       </button>
 
-      {/* Dropdown */}
+      {/* Backdrop overlay for small mobile screen spaces to focus attention */}
+      {open && (
+        <div
+          className="fixed inset-0 z-40 bg-black/20 backdrop-blur-[2px] md:hidden"
+          onClick={() => setOpen(false)}
+        />
+      )}
+
+      {/* Dropdown Menu - Mobile Friendly positioning */}
+      {/* Mobile: Only fixed  */}
+      {/* Desktop: Reset to absolute */}
       <div
-        className={`absolute right-0 top-14 z-50 w-40 rounded-2xl border border-white/10 bg-neutral-950/95 p-2 shadow-2xl backdrop-blur-xl transition-all duration-200 ${
-          open
-            ? "visible translate-y-0 opacity-100"
-            : "invisible translate-y-2 opacity-0"
-        }`}
+        className={`z-50 mt-2 rounded-2xl border border-white/10 bg-zinc-950/95 p-1.5 shadow-[0_10px_40px_rgba(0,0,0,0.7)] backdrop-blur-2xl transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]
+    fixed bottom-4 left-4 right-4 
+    md:absolute md:bottom-auto md:left-auto md:right-0 md:top-full md:w-48
+    ${
+      open
+        ? "visible translate-y-0 opacity-100 scale-100"
+        : "invisible translate-y-4 opacity-0 scale-95 md:translate-y-2"
+    }`}
       >
+        {/* Profile Option */}
         <Link
           href="/profile"
-          // onClick={() => setOpen(false)}
+          onClick={() => setOpen(false)}
           prefetch
-          className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-neutral-300 transition-colors hover:bg-white/5 hover:text-white"
+          className="group flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-zinc-400 transition-all duration-200 hover:bg-white/5 hover:text-white active:scale-98"
         >
-          <User className="h-4 w-4" />
-
+          <User className="h-4 w-4 text-zinc-500 transition-colors group-hover:text-red-400" />
           <span>Profile</span>
         </Link>
 
+        {/* Favorites Option */}
         <Link
           href="/favorites"
-          // onClick={() => setOpen(false)}
+          onClick={() => setOpen(false)}
           prefetch
-          className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-neutral-300 transition-colors hover:bg-white/5 hover:text-white"
+          className="group flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-zinc-400 transition-all duration-200 hover:bg-white/5 hover:text-white active:scale-98"
         >
-          <Heart className="h-4 w-4" />
-
+          <Heart className="h-4 w-4 text-zinc-500 transition-colors group-hover:text-red-400" />
           <span>Favorites</span>
         </Link>
 
-        <div className="my-2 h-px bg-white/5" />
+        {/* Thin Sleek Divider Line */}
+        <div className="my-1.5 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
 
+        {/* Logout Button */}
         <button
           type="button"
           onClick={handleLogout}
           disabled={logoutLoading}
-          className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-red-400 transition-colors hover:bg-red-500/10 disabled:cursor-not-allowed disabled:opacity-60"
+          className="group flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-zinc-400 transition-all duration-200 hover:bg-red-500/10 hover:text-red-400 disabled:cursor-not-allowed disabled:opacity-50 active:scale-98"
         >
-          <LogOut className="h-4 w-4" />
-
+          {logoutLoading ? (
+            <Loader2 className="h-4 w-4 animate-spin text-red-400" />
+          ) : (
+            <LogOut className="h-4 w-4 text-zinc-500 transition-colors group-hover:text-red-400" />
+          )}
           <span>{logoutLoading ? "Logging out..." : "Logout"}</span>
         </button>
       </div>

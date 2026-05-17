@@ -3,14 +3,17 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 import type { Backdrop } from "@/@types/movie.details.types";
+import Link from "next/link";
 
 interface Props {
   backdrops: Backdrop[];
+  mediaType: "movie" | "tv";
+  mediaId: number;
 }
 
 const IMAGE_BASE = "https://image.tmdb.org/t/p/w780";
 
-export function MovieGallery({ backdrops }: Props) {
+export function Gallery({ backdrops, mediaId, mediaType }: Props) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -41,8 +44,14 @@ export function MovieGallery({ backdrops }: Props) {
           Scenes
         </h2>
         <span className="text-xs font-semibold text-gray-500 uppercase tracking-widest hidden md:block">
-          {backdrops.length} Images • Drag to Explore
+          {backdrops.length}
         </span>
+        <Link
+          href={`/gallery/${mediaType}/${mediaId}`}
+          className="text-sm font-medium text-yellow-400 hover:text-yellow-300 transition"
+        >
+          View All
+        </Link>
       </div>
 
       <div

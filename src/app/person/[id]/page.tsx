@@ -43,9 +43,9 @@ export default async function PersonPage({ params }: Props) {
           {/* Featured Works / Known For: Carousel or Grid */}
           <section className="animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100">
             <div className="mb-6 flex items-center justify-between">
-              <h2 className="text-2xl font-black italic uppercase tracking-tighter border-l-4 border-red-600 pl-4">
+              {/* <h2 className="text-2xl font-black italic uppercase tracking-tighter border-l-4 border-red-600 pl-4">
                 Known For
-              </h2>
+              </h2> */}
               <span className="text-xs font-bold uppercase tracking-widest text-neutral-500">
                 {person.combined_credits?.cast?.length || 0} Credits
               </span>
@@ -56,9 +56,9 @@ export default async function PersonPage({ params }: Props) {
           {/* Photo Gallery: High contrast layout */}
           <section className="animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
             <div className="mb-6">
-              <h2 className="text-2xl font-black italic uppercase tracking-tighter border-l-4 border-red-600 pl-4">
+              {/* <h2 className="text-2xl font-black italic uppercase tracking-tighter border-l-4 border-red-600 pl-4">
                 Gallery
-              </h2>
+              </h2> */}
             </div>
             <PersonGallery images={person.images?.profiles || []} />
           </section>

@@ -5,9 +5,9 @@ import { MovieInfo } from "@/features/movies/components/MovieInfo";
 import { MovieMeta } from "@/features/movies/components/MovieMeta";
 import { MovieTrailer } from "@/features/movies/components/MovieTrailer";
 import { MovieCast } from "@/features/movies/components/MovieCast";
-import { MovieGallery } from "@/features/movies/components/MovieGallery";
 import { getMediaDetails } from "@/features/movies/api/getMediaDetails";
 import { getWatchProviders } from "@/features/services/watch-provider.service";
+import { Gallery } from "@/features/movies/components/Gallery";
 
 interface Props {
   params: Promise<{
@@ -94,7 +94,12 @@ export default async function DetailsPage({ params }: Props) {
 
         <MovieTrailer videos={media.videos?.results || []} />
 
-        <MovieGallery backdrops={media.images?.backdrops || []} />
+        {/* <Gallery backdrops={media.images?.backdrops || []} /> */}
+        <Gallery
+          backdrops={media.images?.backdrops || []}
+          mediaType={mediaType}
+          mediaId={Number(id)}
+        />
       </div>
     </main>
   );

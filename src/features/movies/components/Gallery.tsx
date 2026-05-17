@@ -43,13 +43,14 @@ export function Gallery({ backdrops, mediaId, mediaType }: Props) {
         <h2 className="text-lg md:text-2xl font-bold text-white tracking-tight border-l-4 border-yellow-500 pl-3">
           Scenes
         </h2>
-        <span className="text-xs font-semibold text-gray-500 uppercase tracking-widest hidden md:block">
-          {backdrops.length}
-        </span>
+
         <Link
           href={`/gallery/${mediaType}/${mediaId}`}
           className="text-sm font-medium text-yellow-400 hover:text-yellow-300 transition"
         >
+          <span className="text-xs font-semibold text-gray-500 uppercase tracking-widest hidden md:block">
+            {backdrops.length}
+          </span>
           View All
         </Link>
       </div>

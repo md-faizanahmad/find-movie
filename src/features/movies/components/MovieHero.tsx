@@ -40,7 +40,7 @@ export function MovieHero({
 
   return (
     // <section className="relative mt-8 h-[65vh] md:h-[85vh] w-full overflow-hidden bg-black">
-    <section className="relative pt-20 md:pt-24 h-[65vh] md:h-[85vh] w-full overflow-hidden bg-black">
+    <section className="relative pt-20 md:pt-24 lg:pt-24 h-[65vh] md:h-[85vh] w-full overflow-hidden bg-black">
       {/* 1. Base Layer: Visuals */}
       <div className="absolute inset-0 z-0">
         <Image

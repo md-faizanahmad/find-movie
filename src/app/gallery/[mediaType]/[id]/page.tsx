@@ -27,7 +27,7 @@ export default async function GalleryPage({ params }: Props) {
   if (!media) {
     notFound();
   }
-  const posterUrl = media.backdrop_path
+  const backgroundUrl = media.backdrop_path
     ? `${IMAGE_BASE}${media.backdrop_path}`
     : null;
   const images = media.images?.backdrops || [];
@@ -35,18 +35,17 @@ export default async function GalleryPage({ params }: Props) {
   return (
     <main className="relative min-h-screen overflow-hidden bg-black text-white">
       {/* Background Poster */}
-      {posterUrl && (
-        <div className="absolute inset-0 -z-10">
+      {backgroundUrl && (
+        <div className="absolute inset-0 z-0">
           <Image
-            src={posterUrl}
+            src={backgroundUrl}
             alt={media.title}
             fill
             priority
-            className="object-cover opacity-10 blur-2xl scale-110"
+            className="object-cover opacity-15 blur-xl scale-105"
           />
 
-          {/* Dark Overlay */}
-          <div className="absolute inset-0 bg-black/80" />
+          <div className="absolute inset-0 bg-black/85" />
         </div>
       )}
 

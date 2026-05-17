@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getMediaDetails } from "@/features/movies/api/getMediaDetails";
+import { GalleryGrid } from "@/components/GalleryGrid";
 
 interface Props {
   params: Promise<{
@@ -9,74 +9,39 @@ interface Props {
   }>;
 }
 
-const IMAGE_BASE = "https://image.tmdb.org/t/p/original";
-
 export default async function GalleryPage({ params }: Props) {
   const { mediaType, id } = await params;
 
-  if (mediaType !== "movie" && mediaType !== "tv") {
-    notFound();
-  }
-
-  if (!/^\d+$/.test(id)) {
+  if ((mediaType !== "movie" && mediaType !== "tv") || !/^\d+$/.test(id)) {
     notFound();
   }
 
   const media = await getMediaDetails(id, mediaType);
-
   if (!media) {
     notFound();
   }
-  const backgroundUrl = media.backdrop_path
-    ? `${IMAGE_BASE}${media.backdrop_path}`
-    : null;
-  const images = media.images?.backdrops || [];
+
+  const backdrops = media.images?.backdrops || [];
+  const title = media.title || "Gallery";
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-black text-white">
-      {/* Background Poster */}
-      {backgroundUrl && (
-        <div className="absolute inset-0 z-0">
-          <Image
-            src={backgroundUrl}
-            alt={media.title}
-            fill
-            priority
-            className="object-cover opacity-15 blur-xl scale-105"
-          />
-
-          <div className="absolute inset-0 bg-black/85" />
+    <main className="min-h-screen bg-black text-white px-4 md:px-8 py-8 md:py-12">
+      <div className="max-w-7xl mx-auto space-y-6 md:space-y-8">
+        <div>
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-black tracking-tight uppercase italic text-white leading-tight">
+            {title}{" "}
+            <span className="text-red-500 font-light not-italic">Gallery</span>
+          </h1>
+          <p className="text-xs md:text-sm font-bold text-zinc-500 uppercase tracking-widest mt-1">
+            {backdrops.length} Total Backdrops
+          </p>
         </div>
-      )}
 
-      {/* Content */}
-      <div className="relative z-10 px-4 md:px-8 py-10">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-8">
-            <h1 className="text-3xl md:text-5xl font-bold">
-              {media.title} Gallery
-            </h1>
-
-            <p className="text-zinc-400 mt-2">{images.length} Images</p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {images.map((img, i) => (
-              <div
-                key={img.file_path}
-                className="relative aspect-video overflow-hidden rounded-2xl border border-white/10"
-              >
-                <Image
-                  src={`${IMAGE_BASE}${img.file_path}`}
-                  alt={`Gallery ${i + 1}`}
-                  fill
-                  className="object-cover hover:scale-105 transition duration-500"
-                  sizes="(max-width:768px) 100vw, 33vw"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* Hand off client interactive state to separate grid element */}
+        <GalleryGrid
+          filePaths={backdrops.map((img) => img.file_path)}
+          title={title}
+        />
       </div>
     </main>
   );

@@ -8,6 +8,8 @@ import {
   Activity,
   Info,
 } from "lucide-react";
+import { WatchProviderGroups } from "@/@types/watch-provider.types";
+import { WatchProviders } from "@/components/WatchProviders";
 
 interface Props {
   title: string;
@@ -21,6 +23,8 @@ interface Props {
   status?: string;
   original_language?: string;
   popularity?: number;
+
+  watchProviders: WatchProviderGroups | null;
 }
 
 const POSTER_BASE = "https://image.tmdb.org/t/p/w500";
@@ -39,6 +43,7 @@ export function MovieInfo({
   status,
   original_language,
   popularity,
+  watchProviders,
 }: Props) {
   return (
     <section className="flex flex-col lg:flex-row gap-8 lg:gap-16 p-6 md:p-12 bg-black text-white rounded-3xl border border-white/5 shadow-2xl">
@@ -156,6 +161,11 @@ export function MovieInfo({
             ))}
           </div>
         </div>
+        {watchProviders && (
+          <div className="pt-6">
+            <WatchProviders providers={watchProviders} />
+          </div>
+        )}
       </div>
     </section>
   );

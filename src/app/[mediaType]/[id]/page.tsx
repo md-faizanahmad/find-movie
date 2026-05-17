@@ -7,6 +7,7 @@ import { MovieTrailer } from "@/features/movies/components/MovieTrailer";
 import { MovieCast } from "@/features/movies/components/MovieCast";
 import { MovieGallery } from "@/features/movies/components/MovieGallery";
 import { getMediaDetails } from "@/features/movies/api/getMediaDetails";
+import { getWatchProviders } from "@/features/services/watch-provider.service";
 
 interface Props {
   params: Promise<{
@@ -18,15 +19,30 @@ interface Props {
 export default async function DetailsPage({ params }: Props) {
   const { mediaType, id } = await params;
 
-  if (!["movie", "tv"].includes(mediaType)) {
+  // if (!["movie", "tv"].includes(mediaType)) {
+  //   notFound();
+  // }
+
+  // if (!/^\d+$/.test(id)) {
+  //   notFound();
+  // }
+  if (mediaType !== "movie" && mediaType !== "tv") {
     notFound();
   }
 
   if (!/^\d+$/.test(id)) {
     notFound();
   }
+  // const media = await getMediaDetails(id, mediaType);
+  const [media, watchProviders] = await Promise.all([
+    getMediaDetails(id, mediaType),
 
-  const media = await getMediaDetails(id, mediaType);
+    getWatchProviders({
+      mediaType,
+      mediaId: Number(id),
+      region: "IN",
+    }),
+  ]);
 
   if (!media) {
     notFound();
@@ -63,6 +79,7 @@ export default async function DetailsPage({ params }: Props) {
           status={media.status}
           original_language={media.original_language}
           popularity={media.popularity}
+          watchProviders={watchProviders}
         />
 
         <MovieMeta

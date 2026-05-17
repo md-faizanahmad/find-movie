@@ -74,34 +74,21 @@ export async function getMediaDetails(
 
     return {
       title: data.title || data.name || "",
-
       backdrop_path: data.backdrop_path ?? "",
-
       tagline: data.tagline ?? "",
-
       poster_path: data.poster_path ?? "",
-
       overview: data.overview,
-
       genres: data.genres,
-
       runtime: data.runtime || data.episode_run_time?.[0] || 0,
-
       release_date: data.release_date || data.first_air_date || "",
-
       vote_average: data.vote_average,
 
       // 🔥 NEW
       status: data.status ?? "",
-
       original_language: data.original_language ?? "",
-
       popularity: data.popularity ?? 0,
-
       credits: data.credits,
-
       videos: data.videos,
-
       images: data.images,
     };
   } catch (error) {

@@ -1,19 +1,42 @@
 export interface WatchProvider {
+  id: number;
+  name: string;
+  logoPath: string;
+}
+
+export interface WatchProviderGroups {
+  link?: string;
+
+  stream: WatchProvider[];
+
+  rent: WatchProvider[];
+
+  buy: WatchProvider[];
+
+  free: WatchProvider[];
+}
+
+export interface TMDBWatchProvider {
   provider_id: number;
   provider_name: string;
   logo_path: string;
   display_priority: number;
 }
 
-export interface WatchProviderRegion {
+export interface TMDBRegionProviders {
   link?: string;
-  flatrate?: WatchProvider[];
-  rent?: WatchProvider[];
-  buy?: WatchProvider[];
-  free?: WatchProvider[];
+
+  flatrate?: TMDBWatchProvider[];
+
+  rent?: TMDBWatchProvider[];
+
+  buy?: TMDBWatchProvider[];
+
+  free?: TMDBWatchProvider[];
 }
 
-export interface WatchProviderResponse {
+export interface TMDBWatchProviderResponse {
   id: number;
-  results: Record<string, WatchProviderRegion>;
+
+  results: Record<string, TMDBRegionProviders>;
 }

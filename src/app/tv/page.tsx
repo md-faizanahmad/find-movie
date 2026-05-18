@@ -3,13 +3,14 @@
 import { discoverTVShows } from "@/features/tv/api/discoverTVShows";
 import { searchTVShows } from "@/features/tv/api/searchTVShows";
 import { TVGrid } from "@/features/tv/components/TVGrid";
-import { TVPagination } from "@/features/tv/components/TVPagination";
+// import { TVPagination } from "@/features/tv/components/TVPagination";
 import { TVEmptyState } from "@/features/tv/components/TVEmptyState";
 import { TVHero } from "@/features/tv/components/TVHero";
 import { TVRegionFilter } from "@/features/tv/components/TVRegionFilter";
 import { ResultCounter } from "@/shared/ResultCounter";
 import { TVSortDropdown } from "@/features/tv/components/TVSortDropdown";
 import { getCurrentUser } from "@/features/Auth/lib/auth";
+import { Pagination } from "@/shared/Pagination";
 
 interface Props {
   searchParams: Promise<{
@@ -104,8 +105,8 @@ export default async function TVShowsPage({ searchParams }: Props) {
             <TVGrid shows={tvShows.results} isAuthenticated={!!user} />
 
             <div className="border-t border-white/5 pt-6">
-              <TVPagination
-                currentPage={tvShows.page}
+              <Pagination
+                page={tvShows.page}
                 totalPages={tvShows.total_pages}
                 language={language}
                 query={query}

@@ -87,7 +87,7 @@ export function UserMenu({ user, onLoginClick }: UserMenuProps) {
 
       {/* Dropdown / Bottom Sheet Menu container */}
       <div
-        className={`z-50 rounded-t-2xl border  p-8 border-white/10 bg-zinc-950/98  shadow-[0_-10px_40px_rgba(0,0,0,0.5)] md:shadow-[0_10px_40px_rgba(0,0,0,0.7)] backdrop-blur-2xl transition-all duration-300 ease-[cubic-bezier(0.32,0.94,0.6,1)]
+        className={`z-50 rounded-t-2xl border  md:p-2 lg:p-2 p-8 border-white/10 bg-zinc-950/98  shadow-[0_-10px_40px_rgba(0,0,0,0.5)] md:shadow-[0_10px_40px_rgba(0,0,0,0.7)] backdrop-blur-2xl transition-all duration-300 ease-[cubic-bezier(0.32,0.94,0.6,1)]
           fixed bottom-0 left-2 right-2 transform translate-y-full w-90
           md:absolute md:top-full md:bottom-auto md:left-auto md:right-0 md:w-48 md:mt-2 md:rounded-2xl md:translate-y-0
           ${

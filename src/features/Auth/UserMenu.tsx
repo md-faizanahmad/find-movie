@@ -77,71 +77,69 @@ export function UserMenu({ user, onLoginClick }: UserMenuProps) {
 
       {/* Dim Dark Backdrop overlay for Mobile Screen to emphasize active menu focus */}
       <div
-        className={`fixed inset-0 z-50 flex items-end justify-center px-4 pb-4 md:absolute md:inset-auto md:top-full md:right-0 md:block md:px-0 md:pb-0 ${
-          open ? "pointer-events-auto visible" : "pointer-events-none invisible"
+        className={`fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
+          open
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
         }`}
-      >
-        <div
-          className={`w-full max-w-sm overflow-hidden rounded-3xl border border-white/10 bg-zinc-950/95 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] backdrop-blur-2xl transition-all duration-300 ease-out md:mt-2 md:w-56 md:max-w-none md:rounded-2xl md:shadow-[0_10px_40px_rgba(0,0,0,0.7)] ${
+        onClick={() => setOpen(false)}
+      />
+
+      {/* Dropdown / Bottom Sheet Menu container */}
+      <div
+        className={`z-50 rounded-t-2xl border border-white/10 bg-zinc-950/98 p-2 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] md:shadow-[0_10px_40px_rgba(0,0,0,0.7)] backdrop-blur-2xl transition-all duration-300 ease-[cubic-bezier(0.32,0.94,0.6,1)]
+          /* Mobile base setup: Fixed drawer anchored to screen bottom edge */
+          fixed bottom-0 left-0 right-0 transform translate-y-full w-full
+          /* Desktop responsive override layout state */
+          md:absolute md:top-full md:bottom-auto md:left-auto md:right-0 md:w-48 md:mt-2 md:rounded-2xl md:translate-y-0
+          ${
             open
-              ? "translate-y-0 opacity-100 scale-100"
-              : "translate-y-8 opacity-0 md:translate-y-2 md:scale-95"
+              ? "translate-y-0 opacity-100 scale-100 visible"
+              : "invisible opacity-0 translate-y-full md:translate-y-2 md:scale-95"
           }`}
+      >
+        {/* Mobile Swipe/Pull Indicator notch line top center */}
+        <div className="w-12 h-1 bg-zinc-800 rounded-full mx-auto my-1.5 md:hidden" />
+
+        {/* Profile Link Option */}
+        <Link
+          href="/profile"
+          onClick={() => setOpen(false)}
+          prefetch
+          className="group flex items-center gap-3 rounded-xl px-4 py-3.5 md:py-2.5 text-base md:text-sm font-medium text-zinc-400 transition-all duration-200 hover:bg-white/5 hover:text-white active:bg-white/10"
         >
-          {/* Mobile Handle */}
-          <div className="flex justify-center pt-3 md:hidden">
-            <div className="h-1 w-10 rounded-full bg-zinc-700" />
-          </div>
+          <User className="h-4 w-4 text-zinc-500 transition-colors group-hover:text-red-400" />
+          <span>Profile</span>
+        </Link>
 
-          {/* User Info */}
-          <div className="border-b border-white/5 px-5 py-4 md:hidden">
-            <p className="text-sm font-semibold text-white">{user.firstName}</p>
+        {/* Favorites Link Option */}
+        <Link
+          href="/favorites"
+          onClick={() => setOpen(false)}
+          prefetch
+          className="group flex items-center gap-3 rounded-xl px-4 py-3.5 md:py-2.5 text-base md:text-sm font-medium text-zinc-400 transition-all duration-200 hover:bg-white/5 hover:text-white active:bg-white/10"
+        >
+          <Heart className="h-4 w-4 text-zinc-500 transition-colors group-hover:text-red-400" />
+          <span>Favorites</span>
+        </Link>
 
-            <p className="mt-1 text-xs text-zinc-500">Account menu</p>
-          </div>
+        {/* Thin Gradient Styling Divider Bar */}
+        <div className="my-2 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
 
-          {/* Menu Items */}
-          <div className="p-2">
-            <Link
-              href="/profile"
-              onClick={() => setOpen(false)}
-              prefetch
-              className="group flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium text-zinc-300 transition-all duration-200 hover:bg-white/5 hover:text-white active:scale-[0.98]"
-            >
-              <User className="h-4 w-4 text-zinc-500 transition-colors group-hover:text-red-400" />
-
-              <span>Profile</span>
-            </Link>
-
-            <Link
-              href="/favorites"
-              onClick={() => setOpen(false)}
-              prefetch
-              className="group flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium text-zinc-300 transition-all duration-200 hover:bg-white/5 hover:text-white active:scale-[0.98]"
-            >
-              <Heart className="h-4 w-4 text-zinc-500 transition-colors group-hover:text-red-400" />
-
-              <span>Favorites</span>
-            </Link>
-
-            <div className="my-2 h-px bg-white/5" />
-
-            <button
-              type="button"
-              onClick={handleLogout}
-              disabled={logoutLoading}
-              className="group flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium text-zinc-300 transition-all duration-200 hover:bg-red-500/10 hover:text-red-400 disabled:cursor-not-allowed disabled:opacity-50 active:scale-[0.98]"
-            >
-              {logoutLoading ? (
-                <Loader2 className="h-4 w-4 animate-spin text-red-400" />
-              ) : (
-                <LogOut className="h-4 w-4 text-zinc-500 transition-colors group-hover:text-red-400" />
-              )}
-
-              <span>{logoutLoading ? "Logging out..." : "Logout"}</span>
-            </button>
-          </div>
-        </div>
+        {/* Action Logout Trigger Button */}
+        <button
+          type="button"
+          onClick={handleLogout}
+          disabled={logoutLoading}
+          className="group flex w-full items-center gap-3 rounded-xl px-4 py-3.5 md:py-2.5 text-base md:text-sm font-medium text-zinc-400 transition-all duration-200 hover:bg-red-500/10 hover:text-red-400 disabled:cursor-not-allowed disabled:opacity-50 active:bg-red-500/20"
+        >
+          {logoutLoading ? (
+            <Loader2 className="h-4 w-4 animate-spin text-red-400" />
+          ) : (
+            <LogOut className="h-4 w-4 text-zinc-500 transition-colors group-hover:text-red-400" />
+          )}
+          <span>{logoutLoading ? "Logging out..." : "Logout"}</span>
+        </button>
       </div>
     </div>
   );

@@ -12,29 +12,21 @@ interface Props {
 
 export function Pagination({ page, totalPages, language, query }: Props) {
   const router = useRouter();
-
   const pathname = usePathname();
-
   const [isPending, startTransition] = useTransition();
-
   const prevPage = page > 1 ? page - 1 : 1;
-
   const nextPage = page < totalPages ? page + 1 : totalPages;
 
   const buildUrl = useMemo(() => {
     return (targetPage: number) => {
       const params = new URLSearchParams();
-
       params.set("page", String(targetPage));
-
       if (language) {
         params.set("language", language);
       }
-
       if (query) {
         params.set("query", query);
       }
-
       return `${pathname}?${params.toString()}`;
     };
   }, [language, pathname, query]);
@@ -42,12 +34,10 @@ export function Pagination({ page, totalPages, language, query }: Props) {
   // Prefetch nearby pages
   useEffect(() => {
     router.prefetch(buildUrl(nextPage));
-
     if (page > 1) {
       router.prefetch(buildUrl(prevPage));
     }
   }, [buildUrl, nextPage, page, prevPage, router]);
-
   function handleNavigate(targetPage: number) {
     startTransition(() => {
       router.push(buildUrl(targetPage), {
@@ -58,7 +48,7 @@ export function Pagination({ page, totalPages, language, query }: Props) {
 
   return (
     <nav
-      className="flex flex-col items-center justify-center gap-4 pb-8 pt-10 md:flex-row md:gap-8"
+      className="flex flex-col items-center justify-center gap-3 pb-8 pt-10 md:flex-row md:justify-between md:gap-5"
       aria-label="Pagination"
     >
       {/* Buttons */}
@@ -71,7 +61,7 @@ export function Pagination({ page, totalPages, language, query }: Props) {
         <button
           onClick={() => handleNavigate(prevPage)}
           disabled={page <= 1 || isPending}
-          className={`group flex h-12 w-12 items-center justify-center rounded-full border transition-all md:h-auto md:w-auto md:px-6 md:py-3 ${
+          className={`group flex h-12 w-12 items-center justify-center rounded-full border transition-all md:h-12 md:w-auto md:px-5 md:py-2.5 ${
             page <= 1
               ? "pointer-events-none border-neutral-800 text-neutral-700"
               : "border-neutral-700 bg-neutral-900 text-white shadow-lg hover:bg-neutral-800 active:scale-95"
@@ -79,20 +69,22 @@ export function Pagination({ page, totalPages, language, query }: Props) {
         >
           <ChevronLeftIcon />
 
-          <span className="ml-2 hidden font-semibold md:inline">Previous</span>
+          <span className="ml-2 hidden text-sm font-semibold tracking-wide md:inline">
+            Previous
+          </span>
         </button>
 
         {/* Next */}
         <button
           onClick={() => handleNavigate(nextPage)}
           disabled={page >= totalPages || isPending}
-          className={`group flex flex-1 items-center justify-center rounded-full px-8 py-3 transition-all md:flex-none md:px-10 ${
+          className={`group flex h-12 w-full items-center justify-center rounded-full px-8 py-3 transition-all sm:w-auto md:px-7 ${
             page >= totalPages
               ? "pointer-events-none bg-neutral-800 text-neutral-600"
               : "bg-red-600 text-white shadow-lg shadow-red-600/20 hover:bg-red-700 active:scale-95"
           }`}
         >
-          <span className="mr-1 text-base font-semibold">
+          <span className="mr-1 text-sm font-semibold tracking-wide">
             {isPending ? "Loading..." : "Next Page"}
           </span>
 
@@ -101,9 +93,9 @@ export function Pagination({ page, totalPages, language, query }: Props) {
       </div>
 
       {/* Status */}
-      <div className="order-1 text-sm font-medium text-neutral-500 md:order-2">
+      <div className="order-1 text-sm font-medium text-neutral-400 md:order-2">
         Page <span className="text-white">{page}</span>
-        <span className="mx-1">of</span>
+        <span className="mx-1.5 text-neutral-600">of</span>
         <span className="text-white">{totalPages.toLocaleString()}</span>
       </div>
     </nav>

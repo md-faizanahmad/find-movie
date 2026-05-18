@@ -36,11 +36,9 @@ export function usePWAInstallPrompt(): UsePWAInstallPromptReturn {
 
     if (dismissed) return;
 
-    const handleBeforeInstallPrompt = (event: Event) => {
+    const handleBeforeInstallPrompt = (event: BeforeInstallPromptEvent) => {
       event.preventDefault();
-
       setDeferredPrompt(event as BeforeInstallPromptEvent);
-
       setShow(true);
     };
 

@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/footer/Footer";
 import { NavbarServer } from "@/components/layout/navbar/NavbarServer";
 import { AuthModalProvider } from "@/features/Auth/components/AuthModalProvider";
 import { PWAInstallPrompt } from "@/components/pwa/PWAInstallPrompt";
+import { siteConfig } from "@/components/config/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,61 +25,88 @@ export const viewport: Viewport = {
   maximumScale: 1,
   userScalable: false, // Prevents accidental zooming on mobile search inputs
 };
-
 export const metadata: Metadata = {
-  metadataBase: new URL("https://find-movie-gamma.vercel.app"),
-
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: "FindMovie – Discover Trending Movies, Ratings & Details",
-    template: "%s | FindMovie",
+    default: siteConfig.title,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  applicationName: siteConfig.name,
+  keywords: [...siteConfig.keywords],
+  authors: [
+    {
+      name: siteConfig.creator,
+      url: siteConfig.links.portfolio,
+    },
+  ],
+  creator: siteConfig.creator,
+  publisher: siteConfig.name,
+  category: siteConfig.category,
+  manifest: siteConfig.pwa.manifest,
+  alternates: {
+    canonical: "/",
+  },
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  icons: {
+    icon: [
+      {
+        url: siteConfig.icons.favicon,
+      },
+      {
+        url: siteConfig.icons.icon192,
+        sizes: "192x192",
+        type: "image/png",
+      },
+      {
+        url: siteConfig.icons.icon512,
+        sizes: "512x512",
+        type: "image/png",
+      },
+    ],
+    apple: [
+      {
+        url: siteConfig.icons.apple,
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
+    shortcut: siteConfig.icons.favicon,
   },
 
-  description:
-    "Explore trending movies, top-rated films, and upcoming releases. Get detailed movie information, ratings, genres, and more on FindMovie.",
-
-  keywords: [
-    "movies",
-    "trending movies",
-    "movie ratings",
-    "film details",
-    "cinema",
-    "latest movies",
-    "FindMovie",
-    "watch trailers",
-    "actor biographies",
-    "movie discovery",
-  ],
-
-  // Essential for browser tab & bookmark styling
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png", // Recommended size 180x180
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: siteConfig.shortName,
   },
 
   openGraph: {
-    title: "FindMovie – Discover Trending Movies & Details",
-    description:
-      "Browse trending, top-rated, and upcoming movies with detailed insights, ratings, and more.",
-    url: "https://find-movie-gamma.vercel.app",
-    siteName: "FindMovie",
+    title: siteConfig.title,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    locale: siteConfig.locale,
+    type: "website",
     images: [
       {
-        url: "/og-image.png",
+        url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: "FindMovie – Movie Discovery Platform",
+        alt: siteConfig.title,
       },
     ],
-    locale: "en_US",
-    type: "website",
   },
 
   twitter: {
-    card: "summary_large_image",
-    title: "FindMovie – Discover Movies",
-    description: "Explore trending movies, ratings, and detailed insights.",
-    images: ["/og-image.png"],
-    creator: "@yourhandle", // Add your Twitter handle
+    card: siteConfig.twitter.card,
+    title: siteConfig.title,
+    description: siteConfig.description,
+    creator: siteConfig.twitter.creator,
+    images: [siteConfig.ogImage],
   },
 
   robots: {
@@ -91,6 +119,13 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
+  },
+
+  other: {
+    "mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-status-bar-style": "black-translucent",
+    "theme-color": siteConfig.theme.color,
   },
 };
 

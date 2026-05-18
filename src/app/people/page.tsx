@@ -6,8 +6,8 @@ import { PeopleEmptyState } from "@/features/people/components/PeopleEmptyState"
 import { PeopleFilters } from "@/features/people/components/PeopleFilters";
 import { PeopleGrid } from "@/features/people/components/PeopleGrid";
 import { PeopleHero } from "@/features/people/components/PeopleHero";
-import { PeoplePagination } from "@/features/people/components/PeoplePagination";
 import { TMDBPerson } from "@/features/people/types/person.types";
+import { Pagination } from "@/shared/Pagination";
 
 interface Props {
   searchParams: Promise<{
@@ -80,7 +80,7 @@ export default async function PeoplePage({ searchParams }: Props) {
           <>
             <PeopleGrid people={filteredPeople} />
 
-            <PeoplePagination
+            <Pagination
               page={page}
               totalPages={people.total_pages}
               query={query}

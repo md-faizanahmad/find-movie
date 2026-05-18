@@ -42,7 +42,6 @@ export function UserMenu({ user, onLoginClick }: UserMenuProps) {
     }
   }
 
-  // Elegant Minimalist Login Button matching the application style
   if (!user) {
     return (
       <button
@@ -65,7 +64,6 @@ export function UserMenu({ user, onLoginClick }: UserMenuProps) {
             : "border-white/10 bg-zinc-900/40 backdrop-blur-md hover:border-white/20 hover:bg-zinc-800/60"
         }`}
       >
-        {/* User Icon Avatar Placeholder */}
         <div className="flex h-5 w-5 items-center justify-center rounded-full bg-white/10 text-zinc-300 transition-colors group-hover:bg-red-500/20 group-hover:text-red-400">
           <User className="h-3 w-3" />
         </div>
@@ -77,58 +75,63 @@ export function UserMenu({ user, onLoginClick }: UserMenuProps) {
         />
       </button>
 
-      {/* Backdrop overlay for small mobile screen spaces to focus attention */}
-      {open && (
-        <div
-          className="fixed inset-0 z-40 bg-black/20 backdrop-blur-[2px] md:hidden"
-          onClick={() => setOpen(false)}
-        />
-      )}
-
-      {/* Dropdown Menu - Mobile Friendly positioning */}
-      {/* Mobile: Only fixed  */}
-      {/* Desktop: Reset to absolute */}
+      {/* Dim Dark Backdrop overlay for Mobile Screen to emphasize active menu focus */}
       <div
-        className={`z-50 mt-2 rounded-2xl border border-white/10 bg-zinc-950/95 p-1.5 shadow-[0_10px_40px_rgba(0,0,0,0.7)] backdrop-blur-2xl transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]
-    fixed bottom-4 left-4 right-4 
-    md:absolute md:bottom-auto md:left-auto md:right-0 md:top-full md:w-48
-    ${
-      open
-        ? "visible translate-y-0 opacity-100 scale-100"
-        : "invisible translate-y-4 opacity-0 scale-95 md:translate-y-2"
-    }`}
+        className={`fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
+          open
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }`}
+        onClick={() => setOpen(false)}
+      />
+
+      {/* Dropdown / Bottom Sheet Menu container */}
+      <div
+        className={`z-50 rounded-t-2xl border border-white/10 bg-zinc-950/98 p-2 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] md:shadow-[0_10px_40px_rgba(0,0,0,0.7)] backdrop-blur-2xl transition-all duration-300 ease-[cubic-bezier(0.32,0.94,0.6,1)]
+          /* Mobile base setup: Fixed drawer anchored to screen bottom edge */
+          fixed bottom-0 left-0 right-0 transform translate-y-full w-full
+          /* Desktop responsive override layout state */
+          md:absolute md:top-full md:bottom-auto md:left-auto md:right-0 md:w-48 md:mt-2 md:rounded-2xl md:translate-y-0
+          ${
+            open
+              ? "translate-y-0 opacity-100 scale-100 visible"
+              : "invisible opacity-0 translate-y-full md:translate-y-2 md:scale-95"
+          }`}
       >
-        {/* Profile Option */}
+        {/* Mobile Swipe/Pull Indicator notch line top center */}
+        <div className="w-12 h-1 bg-zinc-800 rounded-full mx-auto my-1.5 md:hidden" />
+
+        {/* Profile Link Option */}
         <Link
           href="/profile"
           onClick={() => setOpen(false)}
           prefetch
-          className="group flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-zinc-400 transition-all duration-200 hover:bg-white/5 hover:text-white active:scale-98"
+          className="group flex items-center gap-3 rounded-xl px-4 py-3.5 md:py-2.5 text-base md:text-sm font-medium text-zinc-400 transition-all duration-200 hover:bg-white/5 hover:text-white active:bg-white/10"
         >
           <User className="h-4 w-4 text-zinc-500 transition-colors group-hover:text-red-400" />
           <span>Profile</span>
         </Link>
 
-        {/* Favorites Option */}
+        {/* Favorites Link Option */}
         <Link
           href="/favorites"
           onClick={() => setOpen(false)}
           prefetch
-          className="group flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-zinc-400 transition-all duration-200 hover:bg-white/5 hover:text-white active:scale-98"
+          className="group flex items-center gap-3 rounded-xl px-4 py-3.5 md:py-2.5 text-base md:text-sm font-medium text-zinc-400 transition-all duration-200 hover:bg-white/5 hover:text-white active:bg-white/10"
         >
           <Heart className="h-4 w-4 text-zinc-500 transition-colors group-hover:text-red-400" />
           <span>Favorites</span>
         </Link>
 
-        {/* Thin Sleek Divider Line */}
-        <div className="my-1.5 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
+        {/* Thin Gradient Styling Divider Bar */}
+        <div className="my-2 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
 
-        {/* Logout Button */}
+        {/* Action Logout Trigger Button */}
         <button
           type="button"
           onClick={handleLogout}
           disabled={logoutLoading}
-          className="group flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-zinc-400 transition-all duration-200 hover:bg-red-500/10 hover:text-red-400 disabled:cursor-not-allowed disabled:opacity-50 active:scale-98"
+          className="group flex w-full items-center gap-3 rounded-xl px-4 py-3.5 md:py-2.5 text-base md:text-sm font-medium text-zinc-400 transition-all duration-200 hover:bg-red-500/10 hover:text-red-400 disabled:cursor-not-allowed disabled:opacity-50 active:bg-red-500/20"
         >
           {logoutLoading ? (
             <Loader2 className="h-4 w-4 animate-spin text-red-400" />

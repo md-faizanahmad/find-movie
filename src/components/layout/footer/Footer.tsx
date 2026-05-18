@@ -1,6 +1,7 @@
 // src/components/Footer.tsx
 import Link from "next/link";
 import { Mail, Film } from "lucide-react";
+import { PWAInstallCard } from "@/components/pwa/PWAInstallCard";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -26,7 +27,7 @@ export function Footer() {
                 actors. Explore the world of cinema with real-time data and
                 high-quality trailers.
               </p>
-
+              <PWAInstallCard />
               {/* Important Disclaimer Box */}
               <div className="rounded-xl border border-white/5 bg-neutral-900/50 p-4">
                 <p className="text-[11px] font-medium leading-normal uppercase tracking-wider text-neutral-500">
@@ -89,18 +90,6 @@ export function Footer() {
               Connect
             </h4>
             <div className="flex gap-4">
-              {/* <Link
-                href="#"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-900 border border-white/5 hover:bg-red-600 hover:text-white transition-all"
-              >
-                <Github size={18} />
-              </Link> */}
-              {/* <Link
-                href="#"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-900 border border-white/5 hover:bg-red-600 hover:text-white transition-all"
-              >
-                <Twitter size={18} />
-              </Link> */}
               <Link
                 href="mdahmad.dev@gmail.com"
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-900 border border-white/5 hover:bg-red-600 hover:text-white transition-all"

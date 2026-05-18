@@ -30,7 +30,7 @@ export function TVRegionFilter() {
   };
 
   return (
-    <div className="-mx-4 overflow-x-auto px-4 scrollbar-hide md:mx-0 md:px-0">
+    <div className="-mx-4 overflow-hidden px-4 scrollbar-hide md:mx-0 md:px-0">
       <div className="flex min-w-max items-center gap-2 pb-2 md:gap-3">
         {REGIONS.map((region) => {
           const isActive = activeLanguage === region.value;

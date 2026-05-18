@@ -4,6 +4,7 @@ import "./globals.css";
 import { Footer } from "@/components/layout/footer/Footer";
 import { NavbarServer } from "@/components/layout/navbar/NavbarServer";
 import { AuthModalProvider } from "@/features/Auth/components/AuthModalProvider";
+import { PWAInstallPrompt } from "@/components/pwa/PWAInstallPrompt";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -107,7 +108,10 @@ export default function RootLayout({
         <AuthModalProvider>
           <NavbarServer />
           {/* Added a container wrapper to ensure footer-push works if you add a footer later */}
-          <main className="grow">{children}</main>
+          <main className="grow">
+            {children}
+            <PWAInstallPrompt />
+          </main>
           <Footer />
         </AuthModalProvider>
       </body>

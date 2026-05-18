@@ -58,7 +58,7 @@ export function Pagination({ page, totalPages, language, query }: Props) {
 
   return (
     <nav
-      className="flex flex-col items-center justify-center gap-5 pb-10 pt-12 md:flex-row md:justify-between md:gap-8"
+      className="flex flex-col items-center justify-center gap-4 pb-8 pt-10 md:flex-row md:gap-8"
       aria-label="Pagination"
     >
       {/* Buttons */}

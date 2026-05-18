@@ -62,7 +62,7 @@ export default async function TVShowsPage({ searchParams }: Props) {
             <div className="hidden sm:block w-px h-6 bg-white/10 mx-1" />
 
             {/* Sort Dropdown - Priority 2 */}
-            <div className="w-full sm:w-auto mb-2">
+            <div className="w-full sm:w-auto mb-2 mt-4">
               <TVSortDropdown />
             </div>
           </div>

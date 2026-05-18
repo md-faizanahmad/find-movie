@@ -1,11 +1,8 @@
 "use client";
 
 import { Heart } from "lucide-react";
-
 import { useState } from "react";
-
 import { cn } from "@/lib/utils/cn";
-
 import { toggleFavorite } from "@/features/Auth/services/auth.client";
 
 interface FavoriteButtonProps {
@@ -13,9 +10,7 @@ interface FavoriteButtonProps {
   mediaType: string;
   initialFavorited: boolean;
   isAuthenticated: boolean;
-  // Notify parent after toggle
   onToggle?: (favorited: boolean) => void;
-  // Open auth modal if user not logged in
   onRequireAuth?: () => void;
   onOptimisticUnfavorite?: () => void;
 }
@@ -29,18 +24,13 @@ export function FavoriteButton({
   onRequireAuth,
   onOptimisticUnfavorite,
 }: FavoriteButtonProps) {
-  // Local optimistic favorite state
   const [favorited, setFavorited] = useState(initialFavorited);
-
-  // Prevent multiple rapid clicks
   const [loading, setLoading] = useState(false);
 
   async function handleToggle(e: React.MouseEvent<HTMLButtonElement>) {
-    // Prevent card link navigation when clicking favorite button
     e.preventDefault();
     e.stopPropagation();
 
-    // Require authentication
     if (!isAuthenticated) {
       onRequireAuth?.();
       return;
@@ -48,8 +38,6 @@ export function FavoriteButton({
 
     try {
       setLoading(true);
-
-      // Optimistic UI update
       const optimisticValue = !favorited;
 
       if (!optimisticValue) {
@@ -57,30 +45,21 @@ export function FavoriteButton({
       }
       setFavorited(optimisticValue);
 
-      // Toggle favorite in database
       const response = await toggleFavorite(mediaId, mediaType);
       console.log(response);
 
-      // Rollback if request failed
       if (!response.success) {
         setFavorited(!optimisticValue);
-
-        /// RollBack - This restores card if request failed.
         if (!optimisticValue) {
           onToggle?.(true);
         }
         return;
       }
 
-      // Sync with server response
       setFavorited(response.favorited);
-
-      // Notify parent component
       onToggle?.(response.favorited);
     } catch (error) {
       console.error(error);
-
-      // Rollback on unexpected error
       setFavorited((prev) => !prev);
     } finally {
       setLoading(false);
@@ -93,21 +72,29 @@ export function FavoriteButton({
       onClick={handleToggle}
       disabled={loading}
       className={cn(
-        "group flex h-11 w-11 items-center justify-center rounded-full border transition-all duration-300 cursor-pointer",
+        /* 
+          Responsive Sizing:
+          - Mobile/Base: h-8 w-8 (Compact to fit the small cards perfectly)
+          - Tablet (sm): h-9 w-9
+          - Large Screens (md): h-10 w-10
+        */
+        "group flex h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 items-center justify-center rounded-full border backdrop-blur-md transition-all duration-300 cursor-pointer active:scale-90",
 
         favorited
           ? "border-red-500/30 bg-red-500/20 text-red-500"
-          : "border-white/10 bg-black/40 text-white hover:border-white/20 hover:bg-white/10",
+          : "border-white/10 bg-black/50 text-white hover:border-white/20 hover:bg-white/10",
 
         loading && "cursor-not-allowed opacity-70",
       )}
     >
       <Heart
         className={cn(
-          "h-5 w-5 transition-all duration-300",
-
+          /* 
+            Responsive Icon Sizing:
+            - Scales smoothly alongside the parent button frame bounds
+          */
+          "h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5 transition-all duration-300",
           favorited && "scale-110 fill-red-500 text-red-500",
-
           !favorited && "group-hover:scale-110",
         )}
       />

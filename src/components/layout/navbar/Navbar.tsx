@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-import { Home, Film, Tv, Users, Clapperboard } from "lucide-react";
+import { Home, Film, Tv, Users, Clapperboard, ImageIcon } from "lucide-react";
 
 import { usePathname } from "next/navigation";
 
@@ -45,6 +45,11 @@ export function Navbar({ user }: NavbarProps) {
       name: "People",
       icon: Users,
       href: "/people",
+    },
+    {
+      name: "Gallery",
+      icon: ImageIcon,
+      href: "/gallery",
     },
   ];
 

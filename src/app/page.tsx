@@ -21,33 +21,33 @@ export default async function HomePage() {
           <MediaRow
             title="Hollywood"
             items={trending}
-            href="/movies"
+            href="/movies?with_original_language=en&page=1"
             isAuthenticated={!!user}
           />
 
           <MediaRow
             title="Bollywood"
             items={bollywood}
-            href="/movies"
+            href="/movies?with_original_language=hi&page=1"
             isAuthenticated={!!user}
           />
 
           <MediaRow
             title="South Indian"
             items={southIndian}
-            href="/movies"
+            href="/movies?with_original_language=ta&page=1"
             isAuthenticated={!!user}
           />
           <MediaRow
             title="Hollywood TV Shows"
             items={hollywoodTV}
-            href="/tv/hollywood"
+            href="/tv?with_original_language=en"
             isAuthenticated={!!user}
           />
           <MediaRow
             title="Indian TV Shows"
             items={indianTV}
-            href="/tv/indian"
+            href="/tv?with_original_language=hi"
             isAuthenticated={!!user}
           />
         </div>

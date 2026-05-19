@@ -1,19 +1,11 @@
 import { getCurrentUser } from "@/features/Auth/lib/auth";
-import { ImageCardRow } from "@/features/gallery/ImageCardRow";
 import { HeroSection } from "@/features/home/components/HeroSection";
 import { MediaRow } from "@/features/home/components/MediaRow";
 import { getHomeData } from "@/features/home/services/home.service";
-import { getGalleryRow } from "@/lib/gallery/getGalleryRow";
 
 export default async function HomePage() {
   const { trending, bollywood, southIndian, indianTV, hollywoodTV } =
     await getHomeData();
-
-  const hollywoodMovies = await getGalleryRow("hollywood-movies");
-
-  const hollywoodSeries = await getGalleryRow("hollywood-series");
-
-  const actors = await getGalleryRow("popular-actors");
 
   const heroMovie = trending?.[0] || null;
   const user = await getCurrentUser();
@@ -59,24 +51,6 @@ export default async function HomePage() {
             href="/tv?with_original_language=hi"
             isAuthenticated={!!user}
           />
-
-          {/* Gallery */}
-          <ImageCardRow
-            title={hollywoodMovies.title}
-            href={`/gallery/${hollywoodMovies.slug}`}
-            items={hollywoodMovies.items}
-          />
-          <ImageCardRow
-            title={hollywoodSeries.title}
-            href={`/gallery/${hollywoodSeries.slug}`}
-            items={hollywoodSeries.items}
-          />
-
-          <ImageCardRow
-            title={actors.title}
-            href={`/gallery/${actors.slug}`}
-            items={actors.items}
-          />
         </div>
       </div>
 
@@ -88,5 +62,3 @@ export default async function HomePage() {
     </main>
   );
 }
-
-//// update with authmodal

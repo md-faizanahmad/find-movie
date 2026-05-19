@@ -73,7 +73,7 @@ export default async function PeoplePage({ searchParams }: Props) {
           </div>
         </div>
 
-        <hr className="border-white/10" />
+        {/* <hr className="border-white/10" /> */}
 
         {/* Results */}
         {hasResults ? (

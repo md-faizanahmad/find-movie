@@ -113,8 +113,8 @@ export function Pagination({ page, totalPages, language, query }: Props) {
 function ChevronLeftIcon() {
   return (
     <svg
-      width="18"
-      height="18"
+      width="14"
+      height="14"
       fill="none"
       stroke="currentColor"
       strokeWidth="2.5"
@@ -128,8 +128,8 @@ function ChevronLeftIcon() {
 function ChevronRightIcon() {
   return (
     <svg
-      width="18"
-      height="18"
+      width="14"
+      height="14"
       fill="none"
       stroke="currentColor"
       strokeWidth="2.5"

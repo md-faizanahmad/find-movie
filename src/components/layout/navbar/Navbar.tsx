@@ -46,11 +46,11 @@ export function Navbar({ user }: NavbarProps) {
       icon: Users,
       href: "/people",
     },
-    {
-      name: "Gallery",
-      icon: ImageIcon,
-      href: "/gallery",
-    },
+    // {
+    //   name: "Gallery",
+    //   icon: ImageIcon,
+    //   href: "/gallery",
+    // },
   ];
 
   return (

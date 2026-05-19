@@ -8,6 +8,8 @@ import { MovieCast } from "@/features/movies/components/MovieCast";
 import { getMediaDetails } from "@/features/movies/api/getMediaDetails";
 import { getWatchProviders } from "@/features/services/watch-provider.service";
 import { Gallery } from "@/features/movies/components/Gallery";
+import { getMediaReviews } from "@/features/getMediaReviews";
+import { MediaReviews } from "@/features/MediaReviews";
 
 interface Props {
   params: Promise<{
@@ -34,7 +36,7 @@ export default async function DetailsPage({ params }: Props) {
     notFound();
   }
   // const media = await getMediaDetails(id, mediaType);
-  const [media, watchProviders] = await Promise.all([
+  const [media, watchProviders, reviews] = await Promise.all([
     getMediaDetails(id, mediaType),
 
     getWatchProviders({
@@ -42,6 +44,7 @@ export default async function DetailsPage({ params }: Props) {
       mediaId: Number(id),
       region: "IN",
     }),
+    getMediaReviews(mediaType, Number(id)),
   ]);
 
   if (!media) {
@@ -100,6 +103,7 @@ export default async function DetailsPage({ params }: Props) {
           mediaType={mediaType}
           mediaId={Number(id)}
         />
+        <MediaReviews reviews={reviews} />
       </div>
     </main>
   );

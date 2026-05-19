@@ -35,15 +35,6 @@ export default async function MoviesPage({ searchParams }: Props) {
 
   const page = Number(params.page || 1);
 
-  // Dynamic Fetch
-  // const movies = query
-  //   ? await searchMovies(query, page)
-  //   : await discoverMovies({
-  //       language,
-  //       sortBy: sort,
-  //       page,
-  //     });
-
   // refactor
   const movies = query
     ? await searchMovies(query, page)

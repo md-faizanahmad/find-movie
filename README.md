@@ -10,8 +10,5 @@ Users can explore trending movies, TV shows, celebrities, reviews, galleries, an
 - Detailed media pages
 - Cast and crew information
 - Person profiles and galleries
-- Reviews and ratings
-- Responsive UI
-- SEO optim
 
 

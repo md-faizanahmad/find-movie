@@ -12,8 +12,6 @@ Users can explore trending movies, TV shows, celebrities, reviews, galleries, an
 - Person profiles and galleries
 - Reviews and ratings
 - Responsive UI
-- SEO optimized pages
-
-## Tech Stack
+- SEO optim
 
 

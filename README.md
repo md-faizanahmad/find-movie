@@ -25,6 +25,3 @@ Users can explore trending movies, TV shows, celebrities, reviews, galleries, an
 
 ### APIs
 - TMDB API
-
-### Deployment
-- Vercel

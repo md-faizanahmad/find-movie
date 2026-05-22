@@ -6,5 +6,3 @@ Users can explore trending movies, TV shows, celebrities, reviews, galleries, an
 
 ## Features
 
-- Trending movies an
-

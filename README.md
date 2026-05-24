@@ -53,7 +53,7 @@ Install dependencies:
 
 bash
 npm install
-```
+
 
 Start development server:
 

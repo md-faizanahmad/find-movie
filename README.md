@@ -63,6 +63,3 @@ npm run dev
 ## Environment Variables
 
 Create a .env.local file:
-
-env
-NEXT_PUBLIC_TMDB_A

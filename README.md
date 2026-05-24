@@ -62,7 +62,7 @@ npm run dev
 
 ## Environment Variables
 
-Create a `.env.local` file:
+Create a .env.local file:
 
 env
 NEXT_PUBLIC_TMDB_API_KEY=your_api_key

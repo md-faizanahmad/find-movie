@@ -60,6 +60,6 @@ Start development server:
 bash
 npm run dev
 
-## Environment Variables
+## Environm
 
 

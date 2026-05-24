@@ -64,6 +64,6 @@ npm run dev
 
 Create a `.env.local` file:
 
-```env
+env
 NEXT_PUBLIC_TMDB_API_KEY=your_api_key
 

@@ -46,8 +46,7 @@ src/
 Clone the repository:
 
 bash
-git clone https://github.com/your-username/movie-app.git
-
+git clone https://github.com/yo
 
 Install dependencies:
 

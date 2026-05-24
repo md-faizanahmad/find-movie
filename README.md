@@ -62,4 +62,4 @@ npm run dev
 
 ## Environment Variables
 
-Create a .env.local file:
+

@@ -39,6 +39,4 @@ src/
 ├── lib/
 ├── services/
 ├── types/
-└── utils/
-
-## Installa
+└── util

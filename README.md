@@ -37,6 +37,4 @@ src/
 ├── components/
 ├── features/
 ├── lib/
-├── services/
-├── types/
-└── util
+├── serv

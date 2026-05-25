@@ -23,7 +23,5 @@ Users can explore trending movies, TV shows, celebrities, reviews, galleries, an
 - Tailwind CSS
 - Framer Motion
 
-### APIs
-- TMDB API
 
 

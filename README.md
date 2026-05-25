@@ -54,8 +54,4 @@ bash
 npm install
 
 
-Start development server:
-
-bash
-npm run dev
-
+Start development ser

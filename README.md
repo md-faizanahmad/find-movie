@@ -48,8 +48,6 @@ Clone the repository:
 bash
 
 
-Install dependencies:
-
 bash
 npm install
 

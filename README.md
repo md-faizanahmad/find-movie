@@ -41,7 +41,4 @@ src/
 ├── types/
 └── utils/
 
-## Installation
-
-Clone the repository:
-
+## Installa

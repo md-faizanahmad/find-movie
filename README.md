@@ -49,7 +49,4 @@ bash
 
 
 bash
-npm install
-
-
-Start development ser
+npm in

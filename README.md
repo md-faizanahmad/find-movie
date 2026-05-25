@@ -29,8 +29,4 @@ Users can explore trending movies, TV shows, celebrities, reviews, galleries, an
 ### Deployment
 - Vercel
 
-## Folder Structure
-
-bash
-src/
-├── 
+## Folder Structur

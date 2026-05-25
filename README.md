@@ -35,6 +35,4 @@ bash
 src/
 ├── app/
 ├── components/
-├── features/
-├── lib/
-├── serv
+├── 

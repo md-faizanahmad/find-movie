@@ -45,8 +45,3 @@ src/
 
 Clone the repository:
 
-bash
-
-
-bash
-npm in

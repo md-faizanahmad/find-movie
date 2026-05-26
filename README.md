@@ -6,7 +6,6 @@ Users can explore trending movies, TV shows, celebrities, reviews, galleries, an
 
 ## Features
 
-- Trending movies and TV shows
-- Detailed media pa
+- Trending movie
 
 

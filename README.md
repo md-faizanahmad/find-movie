@@ -16,10 +16,7 @@ Users can explore trending movies, TV shows, celebrities, reviews, galleries, an
 
 ## Tech Stack
 
-### Frontend
-- Next.js
-- React.js
-- Type
+### Fr
 
 
 

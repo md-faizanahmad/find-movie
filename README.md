@@ -1,3 +1,3 @@
 # Movie App
 
-A modern full-stack movie discovery platform bui
+A modern full-stack movie discovery platfo

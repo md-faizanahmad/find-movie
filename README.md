@@ -1,3 +1,3 @@
 # Movie App
 
-A modern full-stack movie discovery platform built with Ne
+A modern full-stack movie discovery platform built wit

@@ -1,3 +1,3 @@
 # Movie App
 
-A modern full-stack movie discover
+A modern full-stack movie

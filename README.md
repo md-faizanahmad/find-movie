@@ -63,9 +63,16 @@ npm run dev
 
 ## Environment Variables
 
-Create a `.env.local` file:
+Create a .env.local file:
 
-```env
+env
 NEXT_PUBLIC_TMDB_API_KEY=your_api_key
 TMDB_API_TOKEN=your_token
-```
+
+## Upcoming Features
+
+- Authentication system
+- Watchlist support
+- Personalized recommendations
+- Advanced filtering
+- Server-side caching improvements

@@ -72,5 +72,4 @@ TMDB_API_TOKEN=your_token
 ## Upcoming Features
 
 - Authentication system
-- Watchlist support
-- Personalized 
+- Watchlist suppor 

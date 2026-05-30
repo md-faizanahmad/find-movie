@@ -75,4 +75,4 @@ TMDB_API_TOKEN=your_token
 - Watchlist support
 - Personalized recommendations
 - Advanced filtering
-- Server-side caching improvements
+-

@@ -69,6 +69,4 @@ env
 NEXT_PUBLIC_TMDB_API_KEY=your_api_key
 TMDB_API_TOKEN=your_token
 
-## Upcoming Features
-
--
+## Upcom

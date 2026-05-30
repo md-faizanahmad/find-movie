@@ -74,5 +74,4 @@ TMDB_API_TOKEN=your_token
 - Authentication system
 - Watchlist support
 - Personalized recommendations
-- Advanced filtering
--
+- Adv

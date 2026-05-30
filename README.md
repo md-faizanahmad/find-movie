@@ -61,9 +61,7 @@ bash
 npm run dev
 
 
-## Environment Variables
-
-Create a .env.loca
+## Environment Varia
 
 
 

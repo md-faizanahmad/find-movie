@@ -61,7 +61,4 @@ bash
 npm run dev
 
 
-## Environment Varia
-
-
 

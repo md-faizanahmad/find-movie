@@ -45,11 +45,6 @@ src/
 git clone https://github.com/your-username/movie-app.git
 
 
-Install dependenc
-
-npm install
-
-
 
 
 

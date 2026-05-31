@@ -41,10 +41,3 @@ src/
 ├── types/
 └── utils/
 
-## Installation
-git clone https://github.com/your-username/movie-app.git
-
-
-
-
-

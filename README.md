@@ -31,7 +31,7 @@ Users can explore trending movies, TV shows, celebrities, reviews, galleries, an
 
 ## Folder Structure
 
-```bash
+bash
 src/
 ├── app/
 ├── components/

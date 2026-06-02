@@ -21,7 +21,7 @@ export default function PrivacyPolicyPage() {
 
         <section className="space-y-4">
           <p>
-            Welcome to <strong>Your Website Name</strong>. Your privacy is
+            Welcome to <strong>Find Movie</strong>. Your privacy is
             important to us. This Privacy Policy explains how we collect, use,
             disclose, and safeguard your information when you use our website
             and services.

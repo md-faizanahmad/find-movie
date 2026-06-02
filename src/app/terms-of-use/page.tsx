@@ -21,7 +21,7 @@ export default function TermsOfUsePage() {
 
         <section className="space-y-4">
           <p>
-            Welcome to <strong>Your Website Name</strong>. By accessing or using
+            Welcome to <strong>Find Movie</strong>. By accessing or using
             this website, you agree to be bound by these Terms of Use. If you do
             not agree with any part of these terms, please do not use our
             services.

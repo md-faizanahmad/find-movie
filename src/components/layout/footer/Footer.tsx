@@ -1,6 +1,6 @@
 // src/components/Footer.tsx
 import Link from "next/link";
-import { Mail, Film } from "lucide-react";
+import { Mail, Film, MessageSquareMore } from "lucide-react";
 import { PWAInstallCard } from "@/components/pwa/PWAInstallCard";
 
 export function Footer() {
@@ -95,6 +95,13 @@ export function Footer() {
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-900 border border-white/5 hover:bg-red-600 hover:text-white transition-all"
               >
                 <Mail size={18} />
+              </Link>
+
+              <Link
+                href="instagram.com/webgrowth_studio"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-900 border border-white/5 hover:bg-red-600 hover:text-white transition-all"
+              >
+                <MessageSquareMore size={18} />
               </Link>
             </div>
             <p className="text-xs">

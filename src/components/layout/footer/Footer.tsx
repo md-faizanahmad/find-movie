@@ -124,11 +124,14 @@ export function Footer() {
             educational purposes.
           </p>
           <div className="flex gap-6 text-[11px] uppercase tracking-widest font-bold">
-            <Link href="#" className="hover:text-white">
+            <Link href="/privacy-policy" className="hover:text-white">
               Privacy Policy
             </Link>
-            <Link href="#" className="hover:text-white">
+            <Link href="/terms-of-use" className="hover:text-white">
               Terms of Use
+            </Link>
+            <Link href="/disclaimer" className="hover:text-white">
+              Disclaimer
             </Link>
           </div>
         </div>

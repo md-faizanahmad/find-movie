@@ -101,6 +101,12 @@ export function Footer() {
               Powered by{" "}
               <span className="text-white font-medium">TMDB API</span>
             </p>
+            <p className="text-xs">
+              Design & Developed by{" "}
+              <span className="text-white font-medium">
+                <Link href="https://agency.mdfaizanahmad.in">WebGrowth Studio</Link>
+              </span>
+            </p>
           </div>
         </div>
 

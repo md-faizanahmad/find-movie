@@ -18,9 +18,7 @@ Users can explore trending movies, TV shows, celebrities, reviews, galleries, an
 
 ### Frontend
 - Next.js
-- React.js
-- TypeScript
-- Tailwind 
+
 
 
 

@@ -20,11 +20,7 @@ Users can explore trending movies, TV shows, celebrities, reviews, galleries, an
 - Next.js
 - React.js
 - TypeScript
-- Tailwind CSS
-- Framer Motion
-
-### APIs
-- TMDB API
+- Tailwind 
 
 
 

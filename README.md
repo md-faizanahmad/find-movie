@@ -14,10 +14,7 @@ Users can explore trending movies, TV shows, celebrities, reviews, galleries, an
 - Responsive UI
 - SEO optimized pages
 
-## Tech Stack
 
-### Frontend
-- Next.js
 
 
 

@@ -35,7 +35,5 @@ bash
 src/
 ├── app/
 ├── components/
-├── features/
-├── lib/
-├── services/
+├── fe
 

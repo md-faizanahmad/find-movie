@@ -38,6 +38,4 @@ src/
 ├── features/
 ├── lib/
 ├── services/
-├── types/
-└── utils/
 

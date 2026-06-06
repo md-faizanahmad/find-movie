@@ -9,10 +9,7 @@ Users can explore trending movies, TV shows, celebrities, reviews, galleries, an
 - Trending movies and TV shows
 - Detailed media pages
 - Cast and crew information
-- Person profiles and galleries
-- Reviews and ratings
-- Resp
-
+- Person profiles and galleri
 
 
 

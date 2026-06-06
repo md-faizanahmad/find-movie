@@ -2,4 +2,3 @@
 
 A modern full-stack movie discovery platform built with Next.js, TypeScript, and TMDB API.
 
-Users can explore tre

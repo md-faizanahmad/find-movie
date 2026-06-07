@@ -36,5 +36,25 @@ src/
 ├── services/
 ├── types/
 └── utils/
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/your-username/movie-app.git
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start development server:
+
+```bash
+npm run dev
+```
 ### Deployment
 - Vercel

@@ -253,7 +253,7 @@ export default function PrivacyPolicyPage() {
                 href="mailto:md.faizan.ahmad.web@gmail.com"
                 className="text-red-400 hover:text-red-300 hover:underline transition-colors focus:outline-none focus:ring-1 focus:ring-red-500 rounded px-0.5"
               >
-                md.faizan.ahmad.web@gmail.com
+                {/* md.faizan.ahmad.web@gmail.com */}
               </a>
             </p>
           </address>

@@ -55,17 +55,17 @@ export function HeroSection({ backdropPath, isLoading = false }: Props) {
         <div className="max-w-4xl animate-in fade-in slide-in-from-bottom-12 duration-1000">
           <div className="mb-4 flex items-center gap-2">
             <span className="h-px w-8 bg-red-600" />
-            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-red-500 md:text-xs">
+            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-yellow-500 md:text-xs">
               Exclusive Premiere
             </span>
           </div>
 
           <h1 className="mb-4 text-5xl font-black tracking-tighter text-white md:text-7xl lg:text-8xl">
-            The <span className="text-red-600">Ultimate</span> <br />{" "}
-            Storytelling.
+            The <span className="text-red-600 font-semibold">ULTIMATE</span>
+            <br /> Storytelling.
           </h1>
 
-          <p className="mb-10 max-w-xl text-base font-medium leading-relaxed text-neutral-400 md:text-xl md:leading-loose">
+          <p className="mb-10 max-w-xl text-base font-medium leading-relaxed text-neutral-400 md:text-xl ">
             Experience the next generation of cinema. Stream award-winning
             originals and blockbuster hits in stunning quality.
           </p>

@@ -113,7 +113,7 @@ export function MediaRow({
             </div>
 
             <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500 transition-colors group-hover:text-zinc-200 md:text-xs">
-              View All
+              Explore All
             </span>
 
             {/* Bottom subtle glow on hover */}

@@ -1,20 +1,14 @@
 "use client";
 
 import Link from "next/link";
-
-import { Home, Film, Tv, Users, Clapperboard, ImageIcon } from "lucide-react";
-
+import { Home, Film, Tv, Users } from "lucide-react";
 import { usePathname } from "next/navigation";
-
 import { cn } from "@/lib/utils/cn";
-
 import { NavbarUser } from "./navbar.types";
-
 import { UserMenu } from "@/features/Auth/UserMenu";
-
 import { useAuthModal } from "@/features/Auth/hooks/use-auth-modal";
-
 import { AuthModal } from "@/features/Auth/components/AuthModal";
+import Image from "next/image";
 
 interface NavbarProps {
   user: NavbarUser | null;
@@ -46,11 +40,6 @@ export function Navbar({ user }: NavbarProps) {
       icon: Users,
       href: "/people",
     },
-    // {
-    //   name: "Gallery",
-    //   icon: ImageIcon,
-    //   href: "/gallery",
-    // },
   ];
 
   return (
@@ -61,13 +50,19 @@ export function Navbar({ user }: NavbarProps) {
           {/* Logo */}
           <Link href="/" className="group">
             <div className="flex items-center gap-3">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-red-600 transition-transform group-hover:scale-110">
-                <Clapperboard className="h-5 w-5 text-white" />
+              <div className="relative h-9 w-9 overflow-hidden rounded-xl transition-transform group-hover:scale-110">
+                <Image
+                  src="/brand.png"
+                  alt="FindMovie"
+                  fill
+                  priority
+                  className="object-cover"
+                />
               </div>
 
               <h1 className="text-lg font-black tracking-tighter text-white md:text-xl">
                 FIND
-                <span className="text-red-600">MOVIE</span>
+                <span className="text-yellow-600">MOVIE</span>
               </h1>
             </div>
           </Link>

@@ -1,38 +1,25 @@
 "use client";
 
 import Link from "next/link";
-
 import Image from "next/image";
-
 import { Star } from "lucide-react";
-
 import { FavoriteButton } from "@/features/favorites/components/FavoriteButton";
-
 import { Media } from "../services/home.service";
 
 interface ProtectedMediaCardProps {
   item: Media;
-
   href: string;
-
   isLocked?: boolean;
-
   isAuthenticated: boolean;
-
   isFavorited?: boolean;
-
   onRequireAuth: () => void;
 }
 
 export function ProtectedMediaCard({
   item,
-
   href,
-
   isLocked = false,
-
   isAuthenticated,
-
   isFavorited = false,
 
   onRequireAuth,

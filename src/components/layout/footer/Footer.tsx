@@ -1,7 +1,8 @@
 // src/components/Footer.tsx
 import Link from "next/link";
-import { Mail, Film, MessageSquareMore } from "lucide-react";
+import { Mail, MessageSquareMore } from "lucide-react";
 import { PWAInstallCard } from "@/components/pwa/PWAInstallCard";
+import Image from "next/image";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -13,8 +14,14 @@ export function Footer() {
           {/* Brand & Disclaimer Column */}
           <div className="col-span-1 space-y-6 md:col-span-2">
             <Link href="/" className="flex items-center gap-2 text-white">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-red-600">
-                <Film size={18} className="text-white" />
+              <div className="relative h-9 w-9 overflow-hidden rounded-xl transition-transform group-hover:scale-110">
+                <Image
+                  src="/brand.png"
+                  alt="FindMovie"
+                  fill
+                  priority
+                  className="object-cover"
+                />
               </div>
               <span className="text-xl font-black uppercase tracking-tighter">
                 FIND<span className="text-red-600">MOVIE</span>
@@ -111,7 +118,9 @@ export function Footer() {
             <p className="text-xs">
               Design & Developed by{" "}
               <span className="text-white font-medium">
-                <Link href="https://agency.mdfaizanahmad.in">WebGrowth Studio</Link>
+                <Link href="https://agency.mdfaizanahmad.in">
+                  WebGrowth Studio
+                </Link>
               </span>
             </p>
           </div>

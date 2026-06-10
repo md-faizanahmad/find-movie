@@ -62,7 +62,7 @@ export function Navbar({ user }: NavbarProps) {
 
               <h1 className="text-lg font-black tracking-tighter text-white md:text-xl">
                 FIND
-                <span className="text-yellow-600">MOVIE</span>
+                <span className="text-red-600">MOVIE</span>
               </h1>
             </div>
           </Link>

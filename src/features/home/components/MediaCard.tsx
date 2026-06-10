@@ -191,12 +191,22 @@ export function MediaCard({ item, isAuthenticated = false }: MediaCardProps) {
             </div>
             <div className="flex  items-center justify-center ">
               {/* <Heart className="h-4 w-4" /> */}
-              <FavoriteButton
+              {/* <FavoriteButton
                 mediaId={item.id}
                 mediaType={item.mediaType}
                 initialFavorited={item.isFavorited ?? false}
                 isAuthenticated={isAuthenticated}
-              />
+              /> */}
+              {isAuthenticated && (
+                <div className="flex items-center justify-center">
+                  <FavoriteButton
+                    mediaId={item.id}
+                    mediaType={item.mediaType}
+                    initialFavorited={item.isFavorited ?? false}
+                    isAuthenticated={isAuthenticated}
+                  />
+                </div>
+              )}
             </div>
           </div>
 

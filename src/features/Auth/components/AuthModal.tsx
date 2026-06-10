@@ -50,7 +50,7 @@ export function AuthModal({
         {/* Heading */}
         {step !== "success" && (
           <div className="mb-8">
-            <h2 className="text-3xl font-black text-white">
+            <h2 className="text-3xl  font-black text-white">
               {step === "login" ? "Welcome Back" : "Verify OTP"}
             </h2>
 

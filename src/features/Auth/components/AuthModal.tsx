@@ -8,22 +8,14 @@ import { AuthStep } from "../types/auth-modal.types";
 
 interface AuthModalProps {
   isOpen: boolean;
-
   onClose: () => void;
-
   step: AuthStep;
-
   email: string;
-
   loading: boolean;
-
   error: string | null;
-
   onRequestOtp: (payload: {
     fullName: string;
-
     email: string;
-
     birthYear: number;
   }) => Promise<void>;
 
@@ -32,19 +24,12 @@ interface AuthModalProps {
 
 export function AuthModal({
   isOpen,
-
   onClose,
-
   step,
-
   email,
-
   loading,
-
   error,
-
   onRequestOtp,
-
   onVerifyOtp,
 }: AuthModalProps) {
   if (!isOpen) {
@@ -57,7 +42,7 @@ export function AuthModal({
         {/* Close */}
         <button
           onClick={onClose}
-          className="absolute right-4 top-4 rounded-full p-2 text-neutral-500 transition-colors hover:bg-white/5 hover:text-white"
+          className="absolute right-4 top-4 cursor-pointer rounded-full p-2 text-neutral-500 transition-colors hover:bg-white/5 hover:text-white"
         >
           <X className="h-5 w-5" />
         </button>

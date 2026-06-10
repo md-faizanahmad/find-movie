@@ -4,29 +4,17 @@ import { useState } from "react";
 
 interface LoginFormProps {
   loading: boolean;
-
   error: string | null;
-
   onSubmit: (payload: {
     fullName: string;
-
     email: string;
-
     birthYear: number;
   }) => Promise<void>;
 }
 
-export function LoginForm({
-  loading,
-
-  error,
-
-  onSubmit,
-}: LoginFormProps) {
+export function LoginForm({ loading, error, onSubmit }: LoginFormProps) {
   const [fullName, setFullName] = useState("");
-
   const [email, setEmail] = useState("");
-
   const [birthYear, setBirthYear] = useState("");
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -88,7 +76,7 @@ export function LoginForm({
       <button
         type="submit"
         disabled={loading}
-        className="w-full rounded-2xl bg-red-600 px-4 py-3 text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-red-500 disabled:cursor-not-allowed disabled:opacity-50"
+        className="w-full rounded-2xl cursor-pointer bg-red-600 px-4 py-3 text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-red-500 disabled:cursor-not-allowed disabled:opacity-50"
       >
         {loading ? "Sending OTP..." : "Continue"}
       </button>

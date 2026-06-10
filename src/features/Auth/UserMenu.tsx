@@ -46,7 +46,7 @@ export function UserMenu({ user, onLoginClick }: UserMenuProps) {
     return (
       <button
         onClick={onLoginClick}
-        className="relative overflow-hidden rounded-full bg-red-600 px-5 py-2 text-xs font-black uppercase tracking-widest text-white shadow-[0_4px_20px_rgba(220,38,38,0.3)] transition-all duration-300 hover:scale-105 hover:bg-red-500 active:scale-95"
+        className="relative overflow-hidden cursor-pointer rounded-full bg-red-600 px-5 py-2 text-xs font-black uppercase tracking-widest text-white shadow-[0_4px_20px_rgba(220,38,38,0.3)] transition-all duration-300 hover:scale-105 hover:bg-red-500 active:scale-95"
       >
         Login
       </button>

@@ -53,7 +53,7 @@ npm install
 
 Start development server:
 
-```bash
+bash
 npm run dev
 
 ### Deployment

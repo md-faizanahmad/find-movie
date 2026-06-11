@@ -27,6 +27,7 @@ Responsive UI
 - TMDB API
 
 ## Folder Structure
+
 bash
 src/
 ├── app/

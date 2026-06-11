@@ -55,6 +55,6 @@ Start development server:
 
 ```bash
 npm run dev
-```
+
 ### Deployment
 - Vercel

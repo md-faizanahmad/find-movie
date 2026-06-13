@@ -173,11 +173,11 @@ export function MediaCard({ item, isAuthenticated = false }: MediaCardProps) {
               src={imageUrl}
               alt={item.title}
               fill
-              className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-[0.8]"
+              className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-[0.4]"
             />
           ) : (
             <div className="flex h-full items-center justify-center text-neutral-700">
-              {/* <PlayCircle size={40} strokeWidth={1.5} /> */}
+              <PlayCircle size={40} strokeWidth={1.5} />
             </div>
           )}
 
@@ -225,9 +225,9 @@ export function MediaCard({ item, isAuthenticated = false }: MediaCardProps) {
           </div>
 
           {/* Hover Play Icon (Center) */}
-          <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          {/* <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
             <PlayCircle className="h-12 w-12 text-white/80" strokeWidth={1} />
-          </div>
+          </div> */}
         </div>
       </Link>
     </div>

@@ -25,13 +25,13 @@ export function PWAInstallCard() {
           className="absolute right-3 top-3 z-10 rounded-full p-2 text-zinc-500 transition hover:bg-white/5 hover:text-white"
           aria-label="Close install prompt"
         >
-          <X className="size-4" />
+          <X className="size-6" />
         </button>
 
         <div className="relative flex flex-col gap-5 p-5">
           {/* App Info */}
           <div className="flex items-center gap-4">
-            <div className="relative size-16 overflow-hidden rounded-2xl border border-white/10 bg-zinc-900">
+            <div className="relative size-16 overflow-hidden rounded-2xl ">
               <Image
                 src="/brand.png"
                 alt="FindMovie"
@@ -55,7 +55,7 @@ export function PWAInstallCard() {
 
                 <span>•</span>
 
-                <span>PWA App</span>
+                <span>Web App</span>
               </div>
             </div>
           </div>

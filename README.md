@@ -27,6 +27,7 @@ Responsive UI
 - TMDB API
 
 ## Folder Structure
+
 bash
 src/
 ├── app/
@@ -41,20 +42,20 @@ src/
 
 Clone the repository:
 
-```bash
+bash
 git clone https://github.com/your-username/movie-app.git
-```
+
 
 Install dependencies:
 
-```bash
+bash
 npm install
-```
+
 
 Start development server:
 
-```bash
+bash
 npm run dev
-```
+
 ### Deployment
 - Vercel

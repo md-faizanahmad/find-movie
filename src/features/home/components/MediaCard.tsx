@@ -162,7 +162,7 @@ export function MediaCard({ item, isAuthenticated = false }: MediaCardProps) {
 
       <Link
         href={`/${item.mediaType}/${item.id}`}
-        className={`relative block transition-transform duration-500 ease-out sm:group-hover:scale-[1.03] ${
+        className={`relative block transition-transform cursor-pointer duration-500 ease-out sm:group-hover:scale-[1.03] ${
           isLocked ? "pointer-events-none" : ""
         }`}
       >

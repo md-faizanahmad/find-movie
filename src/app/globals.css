@@ -7,3 +7,16 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.animate-gradient {
+  animation: gradientMove 4s linear infinite;
+}

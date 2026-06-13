@@ -34,19 +34,26 @@ export function MediaRow({
 
   return (
     <section className="group/row py-6 px-6 md:py-12 md:px-8">
-      <div className="mb-5 flex items-end justify-between px-6 md:px-8 lg:px-8">
-        <h2 className="text-xl font-bold tracking-tight text-red-800 md:text-2xl lg:text-3xl">
-          {title}
-        </h2>
+      <div className="mb-5 flex items-center justify-between px-4 md:px-6 lg:px-8">
+        <div className="relative">
+          {/* Blur Background */}
+          <div className="absolute inset-0 rounded-2xl bg-red-500/10 blur-2xl" />
+
+          <h2 className="relative inline-block rounded-2xl border border-white/10 bg-white/5 px-4 py-2 text-lg font-extrabold tracking-tight backdrop-blur-xl md:text-2xl lg:text-3xl">
+            <span className="animate-gradient bg-linear-to-r from-red-600 via-white to-red-500 bg-size-[200%_auto] bg-clip-text text-transparent">
+              {title}
+            </span>
+          </h2>
+        </div>
 
         <Link
           href={href}
-          className="flex items-center gap-1 text-xs font-bold uppercase tracking-widest text-gray-500 transition-colors hover:text-red-500 md:text-sm"
+          className="group flex items-center gap-1 text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 transition-colors hover:text-red-500 md:text-sm"
         >
           Explore All
           <ChevronRight
             size={16}
-            className="transition-transform group-hover/row:translate-x-1"
+            className="transition-transform duration-300 group-hover:translate-x-1"
           />
         </Link>
       </div>

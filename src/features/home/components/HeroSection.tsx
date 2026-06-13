@@ -53,12 +53,12 @@ export function HeroSection({ backdropPath, isLoading = false }: Props) {
       {/* Content Layer - Adjusted to justify-center to avoid SearchBar overlap */}
       <div className="relative z-10 flex h-full w-full flex-col items-start justify-center px-6 md:px-16 lg:px-24">
         <div className="max-w-4xl animate-in fade-in slide-in-from-bottom-12 duration-1000">
-          <div className="mb-4 flex items-center gap-2">
+          {/* <div className="mb-4 flex items-center gap-2">
             <span className="h-px w-8 bg-red-600" />
             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-yellow-500 md:text-xs">
               Exclusive Premiere
             </span>
-          </div>
+          </div> */}
 
           <h1 className="mb-4 text-5xl font-black tracking-tighter text-white md:text-7xl lg:text-8xl">
             The <span className="text-red-600 font-semibold">ULTIMATE</span>

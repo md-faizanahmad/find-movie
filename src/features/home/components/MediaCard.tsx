@@ -173,11 +173,11 @@ export function MediaCard({ item, isAuthenticated = false }: MediaCardProps) {
               src={imageUrl}
               alt={item.title}
               fill
-              className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-[0.4]"
+              className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-[0.8]"
             />
           ) : (
             <div className="flex h-full items-center justify-center text-neutral-700">
-              <PlayCircle size={40} strokeWidth={1.5} />
+              {/* <PlayCircle size={40} strokeWidth={1.5} /> */}
             </div>
           )}
 

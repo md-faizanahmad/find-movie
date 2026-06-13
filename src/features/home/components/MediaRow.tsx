@@ -34,13 +34,13 @@ export function MediaRow({
 
   return (
     <section className="group/row py-6 px-6 md:py-12 md:px-8">
-      <div className="mb-5 flex items-center justify-between px-4 md:px-6 lg:px-8">
+      <div className="mb-4 flex items-center justify-between px-3 sm:px-4 md:px-5 lg:px-6">
         <div className="relative">
-          {/* Blur Background */}
-          <div className="absolute inset-0 rounded-2xl bg-red-500/10 blur-2xl" />
+          {/* Glow */}
+          <div className="absolute -inset-2 rounded-xl bg-red-500/10 blur-xl" />
 
-          <h2 className="relative inline-block rounded-2xl border border-white/10 bg-white/5 px-4 py-2 text-lg font-extrabold tracking-tight backdrop-blur-xl md:text-2xl lg:text-3xl">
-            <span className="animate-gradient bg-linear-to-r from-red-600 via-white to-red-500 bg-size-[200%_auto] bg-clip-text text-transparent">
+          <h2 className="relative inline-flex items-center rounded-lg border border-white/5 bg-white/[0.03] px-3 py-1.5 backdrop-blur-md">
+            <span className="animate-gradient bg-gradient-to-r from-red-600 via-white to-red-500 bg-[length:200%_100%] bg-clip-text text-sm font-semibold tracking-wide text-transparent sm:text-base">
               {title}
             </span>
           </h2>
@@ -48,11 +48,11 @@ export function MediaRow({
 
         <Link
           href={href}
-          className="group flex items-center gap-1 text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 transition-colors hover:text-red-500 md:text-sm"
+          className="group flex items-center gap-1 text-[11px] font-semibold uppercase tracking-[0.15em] text-neutral-500 transition-colors hover:text-red-500 sm:text-xs"
         >
           Explore All
           <ChevronRight
-            size={16}
+            size={14}
             className="transition-transform duration-300 group-hover:translate-x-1"
           />
         </Link>

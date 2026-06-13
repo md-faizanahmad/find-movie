@@ -20,3 +20,15 @@ html {
 .animate-gradient {
   animation: gradientMove 4s linear infinite;
 }
+@keyframes gradientMove {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 200% 50%;
+  }
+}
+
+.animate-gradient {
+  animation: gradientMove 5s linear infinite;
+}

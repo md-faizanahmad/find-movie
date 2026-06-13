@@ -153,7 +153,7 @@ export function MediaCard({ item, isAuthenticated = false }: MediaCardProps) {
           <p className="mb-4 text-xs font-bold text-white">Adult Content</p>
           <button
             onClick={() => authModal.openModal()}
-            className="rounded-lg bg-white px-3 py-1.5 text-xs font-black text-black transition active:scale-95"
+            className="rounded-lg bg-white px-3 cursor-pointer py-1.5 text-xs font-black text-black transition active:scale-95"
           >
             Login
           </button>

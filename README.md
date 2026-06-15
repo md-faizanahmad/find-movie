@@ -20,7 +20,7 @@ SEO optimized pages
 Next.js
 React.js
 TypeScript
-- Tailwind CSS
+Tailwind CSS
 - Framer Motion
 
 ### APIs

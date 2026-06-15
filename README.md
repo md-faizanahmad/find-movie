@@ -12,7 +12,7 @@ Cast and crew information
 Person profiles and galleries
 Reviews and ratings
 Responsive UI
-- SEO optimized pages
+SEO optimized pages
 
 ## Tech Stack
 

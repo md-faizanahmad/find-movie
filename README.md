@@ -17,7 +17,7 @@ SEO optimized pages
 ## Tech Stack
 
 ### Frontend
-- Next.js
+Next.js
 - React.js
 - TypeScript
 - Tailwind CSS

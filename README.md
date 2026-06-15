@@ -18,7 +18,7 @@ SEO optimized pages
 
 ### Frontend
 Next.js
-- React.js
+React.js
 - TypeScript
 - Tailwind CSS
 - Framer Motion

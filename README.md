@@ -21,7 +21,7 @@ Next.js
 React.js
 TypeScript
 Tailwind CSS
-- Framer Motion
+Framer Motion
 
 ### APIs
 - TMDB API

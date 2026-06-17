@@ -12,16 +12,15 @@ Cast and crew information
 Person profiles and galleries
 Reviews and ratings
 Responsive UI
-- SEO optimized pages
+SEO optimized pages
 
 ## Tech Stack
 
 ### Frontend
-- Next.js
-- React.js
-- TypeScript
-- Tailwind CSS
-- Framer Motion
+Next.js
+React.js
+TypeScript
+Tailwind CSS
 
 ### APIs
 - TMDB API

@@ -26,13 +26,11 @@ export default async function MoviesPage({ searchParams }: Props) {
   const params = await searchParams;
   const user = await getCurrentUser();
   // const language = params.language || "en";
+
   // refactor
   const withOriginalLanguage = params.with_original_language || "en";
-
   const sort = params.sort || "popularity.desc";
-
   const query = params.query || "";
-
   const page = Number(params.page || 1);
 
   // refactor

@@ -25,7 +25,7 @@ export function PeopleHero({ people }: Props) {
         <div className="max-w-5xl space-y-6">
           <h1 className="text-4xl font-black tracking-tighter sm:text-5xl md:text-7xl lg:text-8xl uppercase italic leading-[0.9]">
             Discover <br className="hidden md:block" />
-            <span className="text-amber-500">Actors & Actresses</span>
+            <span className="text-red-500">Actors & Actresses</span>
           </h1>
 
           <p className="mx-auto max-w-2xl text-balance text-sm font-medium text-neutral-300 md:text-xl md:leading-relaxed">

@@ -94,7 +94,7 @@ export function PeopleFilters() {
       {hasFilters && (
         <button
           onClick={resetFilters}
-          className="flex h-12 items-center justify-center gap-2 rounded-xl border border-red-600/20 bg-red-600/10 px-6 text-xs font-black uppercase tracking-widest text-red-500 transition-all hover:bg-red-600 hover:text-white active:scale-95 md:w-auto"
+          className="flex h-12 items-center cursor-pointer justify-center gap-2 rounded-xl border border-red-600/20 bg-red-600/10 px-6 text-xs font-black uppercase tracking-widest text-red-500 transition-all hover:bg-red-600 hover:text-white active:scale-95 md:w-auto"
         >
           <X size={14} />
           Reset

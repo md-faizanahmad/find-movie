@@ -31,9 +31,9 @@ export function PeopleFilters() {
   }
 
   return (
-    <div className="flex flex-col gap-4 md:flex-row md:items-end">
+    <div className="flex flex-col gap-6 md:flex-row md:items-end">
       {/* Department Filter */}
-      <div className="w-full md:w-60">
+      <div className="w-full md:w-50">
         <label className="mb-2 block text-[10px] font-black uppercase  tracking-widest text-neutral-500 sr-only">
           Department
         </label>
@@ -62,7 +62,7 @@ export function PeopleFilters() {
       </div>
 
       {/* Gender Filter */}
-      <div className="w-full md:w-60">
+      <div className="w-full md:w-50">
         <label className="mb-2 block text-[10px]  font-black uppercase tracking-widest text-neutral-500 sr-only">
           Gender
         </label>

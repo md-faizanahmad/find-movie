@@ -1,12 +1,10 @@
-// features/people/components/PeopleEmptyState.tsx
-
 import { Users } from "lucide-react";
 
 export function PeopleEmptyState() {
   return (
-    <div className="flex flex-col items-center justify-center rounded-3xl border border-white/10 bg-neutral-950 px-6 py-20 text-center">
-      <div className="rounded-full bg-neutral-900 p-5">
-        <Users className="h-10 w-10 text-neutral-500" />
+    <div className="flex flex-col items-center justify-center rounded-3xl   px-6 py-20 text-center">
+      <div className="rounded-full bg-neutral-900 p-4">
+        <Users className="h-8 w-8 text-neutral-500" />
       </div>
 
       <h2 className="mt-6 text-2xl font-bold text-white">No People Found</h2>

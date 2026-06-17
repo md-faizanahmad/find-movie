@@ -34,14 +34,14 @@ export function PeopleFilters() {
     <div className="flex flex-col gap-4 md:flex-row md:items-end">
       {/* Department Filter */}
       <div className="w-full md:w-60">
-        <label className="mb-2 block text-[10px] font-black uppercase tracking-[0.2em] text-neutral-500">
+        <label className="mb-2 block text-[10px] font-black uppercase  tracking-widest text-neutral-500 sr-only">
           Department
         </label>
         <div className="relative">
           <select
             value={department}
             onChange={(e) => updateFilter("department", e.target.value)}
-            className="h-12 w-full appearance-none rounded-xl border border-white/10 bg-neutral-900 px-4 text-sm font-bold uppercase tracking-widest text-white outline-none transition-all focus:border-red-600 focus:ring-1 focus:ring-red-600"
+            className="h-12 w-full appearance-none cursor-pointer rounded-xl border border-white/10 bg-neutral-900 px-4 text-sm font-bold uppercase tracking-widest text-white outline-none transition-all focus:border-red-600 focus:ring-1 focus:ring-red-600"
           >
             <option value="">All Departments</option>
             {DEPARTMENTS.map((item) => (
@@ -63,7 +63,7 @@ export function PeopleFilters() {
 
       {/* Gender Filter */}
       <div className="w-full md:w-60">
-        <label className="mb-2 block text-[10px] font-black uppercase tracking-[0.2em] text-neutral-500">
+        <label className="mb-2 block text-[10px] font-black uppercase tracking-widest text-neutral-500 sr-only">
           Gender
         </label>
         <div className="relative">

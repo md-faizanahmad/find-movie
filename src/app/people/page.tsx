@@ -55,7 +55,7 @@ export default async function PeoplePage({ searchParams }: Props) {
           {/* Left Side: Title and TOTAL Count */}
           <div className="space-y-1">
             <h5 className="text-2xl font-black uppercase tracking-tighter md:text-4xl">
-              {query ? `Results for "${query}"` : "Popular People"}
+              {query ? `Results for "${query}"` : "Popular Celebs"}
             </h5>
             <p className="text-sm font-medium text-neutral-400 md:text-base">
               {/* Using people.total_results for the global count */}

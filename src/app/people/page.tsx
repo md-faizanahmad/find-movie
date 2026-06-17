@@ -49,7 +49,7 @@ export default async function PeoplePage({ searchParams }: Props) {
       {/* Hero */}
       <PeopleHero people={people.results.slice(0, 5)} />
 
-      <section className="relative z-20 -mt-20 space-y-8 px-4 pb-20 md:px-10 lg:px-14">
+      <section className="relative z-20 -mt-24 space-y-8 px-4 pb-20 md:px-10 lg:px-14">
         {/* Responsive Header & Filters Container */}
         <div className="flex flex-col gap-6 mt-10 md:flex-row md:items-end md:justify-between">
           {/* Left Side: Title and TOTAL Count */}

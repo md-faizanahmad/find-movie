@@ -48,7 +48,7 @@ export function PeopleFilters() {
               <option
                 key={item}
                 value={item}
-                className="bg-neutral-900 text-white"
+                className="bg-neutral-900 text-white cursor-pointer"
               >
                 {item}
               </option>
@@ -63,21 +63,21 @@ export function PeopleFilters() {
 
       {/* Gender Filter */}
       <div className="w-full md:w-60">
-        <label className="mb-2 block text-[10px] font-black uppercase tracking-widest text-neutral-500 sr-only">
+        <label className="mb-2 block text-[10px]  font-black uppercase tracking-widest text-neutral-500 sr-only">
           Gender
         </label>
         <div className="relative">
           <select
             value={gender}
             onChange={(e) => updateFilter("gender", e.target.value)}
-            className="h-12 w-full appearance-none rounded-xl border border-white/10 bg-neutral-900 px-4 text-sm font-bold uppercase tracking-widest text-white outline-none transition-all focus:border-red-600 focus:ring-1 focus:ring-red-600"
+            className="h-12 w-full appearance-none cursor-pointer rounded-xl border border-white/10 bg-neutral-900 px-4 text-sm font-bold uppercase tracking-widest text-white outline-none transition-all focus:border-red-600 focus:ring-1 focus:ring-red-600"
           >
             <option value="">All Genders</option>
             {GENDERS.map((item) => (
               <option
                 key={item.value}
                 value={item.value}
-                className="bg-neutral-900 text-white"
+                className="bg-neutral-900 text-white cursor-pointer"
               >
                 {item.label}
               </option>

@@ -254,9 +254,9 @@ export function MovieInfo({
   return (
     <section className="mx-auto w-full max-w-6xl p-4 md:p-8 lg:p-10 bg-black text-white rounded-2xl border border-white/5 shadow-2xl flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
       {/* Left Column: Poster & Quick Stats */}
-      <div className="w-full max-w-[280px] sm:max-w-[300px] lg:max-w-[320px] mx-auto lg:mx-0 shrink-0 space-y-4">
+      <div className="w-full max-w-70 sm:max-w-75 lg:max-w-[320px] mx-auto lg:mx-0 shrink-0 space-y-4">
         {poster_path && (
-          <div className="relative aspect-[2/3] overflow-hidden rounded-xl border border-white/10 shadow-xl transition-all duration-300 hover:border-white/20">
+          <div className="relative aspect-2/3 overflow-hidden rounded-xl border border-white/10 shadow-xl transition-all duration-300 hover:border-white/20">
             <Image
               src={`${POSTER_BASE}${poster_path}`}
               alt={title}
@@ -403,7 +403,7 @@ function Spec({
   value: string;
 }) {
   return (
-    <div className="flex items-center gap-2.5 min-w-[140px]">
+    <div className="flex items-center gap-2.5 min-w-35">
       <div className="text-zinc-500 shrink-0">{icon}</div>
       <div className="min-w-0">
         <p className="text-[9px] uppercase font-bold text-zinc-500 tracking-wider">

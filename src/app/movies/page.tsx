@@ -61,13 +61,13 @@ export default async function MoviesPage({ searchParams }: Props) {
 
             <div className="mx-1 mb-1 hidden h-6 w-px bg-white/10 sm:block" />
 
-            <div className="w-full sm:w-auto mt-4">
+            <div className="w-full sm:w-auto mt-2">
               <SortDropdown />
             </div>
           </div>
 
           {/* Result Counter */}
-          <div className="order-1 shrink-0 md:order-2">
+          <div className="order-1 shrink-0 md:order-2 mt-1">
             <div className="flex items-center justify-center gap-2 rounded-xl border border-white/5 bg-white/5 px-4 py-2 md:justify-end md:border-none md:bg-transparent md:px-0">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-red-600" />
 

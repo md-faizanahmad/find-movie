@@ -1,7 +1,6 @@
 # Movie App
 
 A modern full-stack movie discovery platform built with Next.js, TypeScript, and TMDB API
-
 Users can explore trending movies, TV shows, celebrities, reviews, galleries, and detailed media information through a fast and responsive interface.
 
 ## Features
@@ -17,12 +16,14 @@ SEO optimized pages
 ## Tech Stack
 
 ### Frontend
+
 Next.js
 React.js
 TypeScript
 Tailwind CSS
 
 ### APIs
+
 - TMDB API
 
 ## Folder Structure
@@ -44,12 +45,10 @@ Clone the repository:
 bash
 git clone https://github.com/your-username/movie-app.git
 
-
 Install dependencies:
 
 bash
 npm install
-
 
 Start development server:
 
@@ -57,4 +56,5 @@ bash
 npm run dev
 
 ### Deployment
+
 - Vercel

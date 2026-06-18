@@ -176,7 +176,7 @@ export function PeopleFilters() {
           onClick={() =>
             setOpenDropdown(openDropdown === "dept" ? null : "dept")
           }
-          className={`flex h-12 w-full items-center justify-between rounded-xl border px-4 text-xs font-bold uppercase tracking-widest transition-all outline-none
+          className={`flex h-12 w-full cursor-pointer items-center justify-between rounded-xl border px-4 text-xs font-bold uppercase tracking-widest transition-all outline-none
             ${
               openDropdown === "dept"
                 ? "border-red-600 bg-neutral-900 text-white ring-1 ring-red-600"
@@ -186,7 +186,7 @@ export function PeopleFilters() {
           <span className="truncate">{selectedDeptLabel}</span>
           <ChevronDown
             size={16}
-            className={`text-red-500 transition-transform duration-200 ${openDropdown === "dept" ? "rotate-180" : ""}`}
+            className={`text-red-500 cursor-pointer transition-transform duration-200 ${openDropdown === "dept" ? "rotate-180" : ""}`}
           />
         </button>
 
@@ -194,7 +194,7 @@ export function PeopleFilters() {
           <div className="absolute z-50 mt-2 w-full rounded-xl border border-white/10 bg-neutral-950 p-1.5 shadow-xl backdrop-blur-md animate-in fade-in slide-in-from-top-1 duration-150">
             <button
               onClick={() => updateFilter("department", "")}
-              className={`flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-xs font-semibold uppercase tracking-wider transition-colors
+              className={`flex w-full cursor-pointer items-center justify-between rounded-lg px-3 py-2.5 text-xs font-semibold uppercase tracking-wider transition-colors
                 ${!departmentValue ? "bg-red-600/10 text-red-400" : "text-neutral-400 hover:bg-white/5 hover:text-white"}`}
             >
               All Departments
@@ -204,7 +204,7 @@ export function PeopleFilters() {
               <button
                 key={item}
                 onClick={() => updateFilter("department", item)}
-                className={`flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-xs font-semibold uppercase tracking-wider transition-colors
+                className={`flex w-full cursor-pointer items-center justify-between rounded-lg px-3 py-2.5 text-xs font-semibold uppercase tracking-wider transition-colors
                   ${departmentValue === item ? "bg-red-600/10 text-red-400" : "text-neutral-400 hover:bg-white/5 hover:text-white"}`}
               >
                 {item}
@@ -222,7 +222,7 @@ export function PeopleFilters() {
           onClick={() =>
             setOpenDropdown(openDropdown === "gender" ? null : "gender")
           }
-          className={`flex h-12 w-full items-center justify-between rounded-xl border px-4 text-xs font-bold uppercase tracking-widest transition-all outline-none
+          className={`flex h-12 w-full cursor-pointer items-center justify-between rounded-xl border px-4 text-xs font-bold uppercase tracking-widest transition-all outline-none
             ${
               openDropdown === "gender"
                 ? "border-red-600 bg-neutral-900 text-white ring-1 ring-red-600"
@@ -232,7 +232,7 @@ export function PeopleFilters() {
           <span className="truncate">{selectedGenderLabel}</span>
           <ChevronDown
             size={16}
-            className={`text-red-500 transition-transform duration-200 ${openDropdown === "gender" ? "rotate-180" : ""}`}
+            className={`text-red-500 cursor-pointer transition-transform duration-200 ${openDropdown === "gender" ? "rotate-180" : ""}`}
           />
         </button>
 
@@ -240,7 +240,7 @@ export function PeopleFilters() {
           <div className="absolute z-50 mt-2 w-full rounded-xl border border-white/10 bg-neutral-950 p-1.5 shadow-xl backdrop-blur-md animate-in fade-in slide-in-from-top-1 duration-150">
             <button
               onClick={() => updateFilter("gender", "")}
-              className={`flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-xs font-semibold uppercase tracking-wider transition-colors
+              className={`flex w-full cursor-pointer items-center justify-between rounded-lg px-3 py-2.5 text-xs font-semibold uppercase tracking-wider transition-colors
                 ${!genderValue ? "bg-red-600/10 text-red-400" : "text-neutral-400 hover:bg-white/5 hover:text-white"}`}
             >
               All Genders
@@ -250,7 +250,7 @@ export function PeopleFilters() {
               <button
                 key={item.value}
                 onClick={() => updateFilter("gender", item.value)}
-                className={`flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-xs font-semibold uppercase tracking-wider transition-colors
+                className={`flex w-full cursor-pointer items-center justify-between rounded-lg px-3 py-2.5 text-xs font-semibold uppercase tracking-wider transition-colors
                   ${genderValue === item.value ? "bg-red-600/10 text-red-400" : "text-neutral-400 hover:bg-white/5 hover:text-white"}`}
               >
                 {item.label}
@@ -265,7 +265,7 @@ export function PeopleFilters() {
       {hasFilters && (
         <button
           onClick={resetFilters}
-          className="flex h-12 items-center justify-center gap-2 rounded-xl border border-red-600/20 bg-red-600/10 px-5 text-xs font-black uppercase tracking-widest text-red-500 transition-all hover:bg-red-600 hover:text-white active:scale-95 max-md:w-full"
+          className="flex h-12 items-center cursor-pointer justify-center gap-2 rounded-xl border border-red-600/20 bg-red-600/10 px-5 text-xs font-black uppercase tracking-widest text-red-500 transition-all hover:bg-red-600 hover:text-white active:scale-95 max-md:w-full"
         >
           <X size={14} />
           Reset

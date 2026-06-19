@@ -29,7 +29,7 @@ export function PersonGallery({ images }: Props) {
       <section>
         <h2 className="mb-6 text-2xl font-bold">Gallery</h2>
 
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-6">
           {images.slice(0, 8).map((image, index) => {
             const imageUrl = `${IMAGE_BASE_URL}/w500${image.file_path}`;
             const fullImageUrl = `${IMAGE_BASE_URL}/original${image.file_path}`;

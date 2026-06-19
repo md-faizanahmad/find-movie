@@ -21,13 +21,13 @@ export function PersonHero({ person }: Props) {
 
   return (
     <section className="relative border-b border-white/10 bg-black">
-      <div className="absolute inset-0 bg-gradient-to-b from-neutral-900/40 to-black" />
+      <div className="absolute inset-0 bg-linear-to-b from-neutral-900/40 to-black" />
 
       <div className="relative mx-auto max-w-7xl px-5 py-10 md:px-8 md:py-20">
         {/* Back */}
         <button
           onClick={() => router.back()}
-          className="mb-10 inline-flex items-center gap-2 text-sm text-neutral-400 transition-colors hover:text-white"
+          className="mb-10 inline-flex cursor-pointer font-semibold items-center gap-2 text-sm text-neutral-400 transition-colors hover:text-white"
         >
           <ChevronLeft className="h-4 w-4" />
           Back
@@ -35,7 +35,7 @@ export function PersonHero({ person }: Props) {
 
         <div className="grid gap-10 md:grid-cols-[280px_1fr] md:items-end lg:grid-cols-[320px_1fr]">
           {/* Portrait */}
-          <div className="relative mx-auto aspect-[2/3] w-56 overflow-hidden rounded-2xl bg-neutral-900 ring-1 ring-white/10 md:mx-0 md:w-full">
+          <div className="relative mx-auto aspect-2/3 w-56 overflow-hidden rounded-2xl bg-neutral-900 ring-1 ring-white/10 md:mx-0 md:w-full">
             {imageUrl ? (
               <Image
                 src={imageUrl}

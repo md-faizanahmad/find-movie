@@ -62,11 +62,11 @@ export function PersonHero({ person }: Props) {
               {person.name}
             </h1>
 
-            <div className="mt-8">
+            <div className="mt-6">
               <PersonMeta person={person} />
             </div>
 
-            <div className="mt-8 border-t border-white/10 pt-6">
+            <div className="mt-6 border-t border-white/10 pt-6">
               <PersonAliases aliases={person.also_known_as} />
             </div>
           </div>

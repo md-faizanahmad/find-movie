@@ -3,26 +3,17 @@ interface Props {
 }
 
 export function PersonAliases({ aliases }: Props) {
-  if (!aliases?.length) {
-    return null;
-  }
+  if (!aliases?.length) return null;
 
   return (
-    <div className="mt-8 hidden max-w-2xl md:block">
-      <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.25em] text-neutral-500">
+    <div className="max-w-3xl">
+      <p className="mb-2 text-xs uppercase tracking-[0.3em] text-neutral-500">
         Also Known As
       </p>
 
-      <div className="flex flex-wrap gap-2">
-        {aliases.slice(0, 6).map((alias) => (
-          <span
-            key={alias}
-            className="rounded-xl border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-neutral-300 backdrop-blur-md"
-          >
-            {alias}
-          </span>
-        ))}
-      </div>
+      <p className="text-sm leading-7 text-neutral-400">
+        {aliases.slice(0, 6).join(" • ")}
+      </p>
     </div>
   );
 }

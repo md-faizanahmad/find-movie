@@ -27,7 +27,7 @@ export function PersonHero({ person }: Props) {
         {/* Back */}
         <button
           onClick={() => router.back()}
-          className="mb-10 inline-flex cursor-pointer font-semibold items-center gap-2 text-sm text-neutral-400 transition-colors hover:text-white"
+          className="mb-10 inline-flex cursor-pointer font-b items-center gap-2 text-sm text-neutral-400 transition-colors hover:text-white"
         >
           <ChevronLeft className="h-4 w-4" />
           Back

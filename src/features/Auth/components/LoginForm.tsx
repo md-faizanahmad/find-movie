@@ -16,9 +16,23 @@ export function LoginForm({ loading, error, onSubmit }: LoginFormProps) {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [birthYear, setBirthYear] = useState("");
+  const [birthYearError, setBirthYearError] = useState("");
 
+  // async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  //   event.preventDefault();
+
+  //   await onSubmit({
+  //     fullName,
+  //     email,
+  //     birthYear: Number(birthYear),
+  //   });
+  // }
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    if (birthYearError) {
+      return;
+    }
 
     await onSubmit({
       fullName,
@@ -27,6 +41,21 @@ export function LoginForm({ loading, error, onSubmit }: LoginFormProps) {
     });
   }
 
+  function validateBirthYear(value: string) {
+    const year = Number(value);
+    const currentYear = new Date().getFullYear();
+
+    if (!value) {
+      setBirthYearError("");
+      return;
+    }
+
+    if (currentYear - year < 18) {
+      setBirthYearError("Must be 18+");
+    } else {
+      setBirthYearError("");
+    }
+  }
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       <div>
@@ -38,7 +67,11 @@ export function LoginForm({ loading, error, onSubmit }: LoginFormProps) {
           type="text"
           required
           value={fullName}
-          onChange={(event) => setFullName(event.target.value)}
+          // onChange={(event) => setFullName(event.target.value)}
+          onChange={(event) => {
+            const value = event.target.value.replace(/[^a-zA-Z\s]/g, "");
+            setFullName(value);
+          }}
           className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none transition-colors focus:border-red-500"
         />
       </div>
@@ -62,13 +95,28 @@ export function LoginForm({ loading, error, onSubmit }: LoginFormProps) {
           Birth Year
         </label>
 
-        <input
+        {/* <input
           type="number"
           required
           value={birthYear}
           onChange={(event) => setBirthYear(event.target.value)}
           className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none transition-colors focus:border-red-500"
+        /> */}
+        <input
+          type="number"
+          required
+          value={birthYear}
+          onChange={(event) => {
+            const value = event.target.value;
+            setBirthYear(value);
+            validateBirthYear(value);
+          }}
+          className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none transition-colors focus:border-red-500"
         />
+
+        {birthYearError && (
+          <p className="mt-1 text-sm text-red-500">{birthYearError}</p>
+        )}
       </div>
 
       {error && <p className="text-sm text-red-500">{error}</p>}

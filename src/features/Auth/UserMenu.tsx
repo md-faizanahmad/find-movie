@@ -58,16 +58,18 @@ export function UserMenu({ user, onLoginClick }: UserMenuProps) {
       {/* Trigger Button - Glassmorphic Pill Style */}
       <button
         onClick={() => setOpen((prev) => !prev)}
-        className={`group flex items-center gap-2.5 rounded-full border px-4 py-2 text-xs font-bold tracking-wide text-white transition-all duration-300 active:scale-95 ${
+        className={`group flex cursor-pointer items-center gap-2.5 rounded-full border px-4 py-2 text-xs font-bold tracking-wide text-white transition-all duration-300 active:scale-95 ${
           open
             ? "border-red-500/40 bg-zinc-900/90 shadow-[0_0_20px_rgba(220,38,38,0.15)]"
             : "border-white/10 bg-zinc-900/40 backdrop-blur-md hover:border-white/20 hover:bg-zinc-800/60"
         }`}
       >
-        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-white/10 text-zinc-300 transition-colors group-hover:bg-red-500/20 group-hover:text-red-400">
+        <div className="flex h-5 w-5 cursor-pointer items-center justify-center rounded-full bg-white/10 text-zinc-300 transition-colors group-hover:bg-red-500/20 group-hover:text-red-400">
           <User className="h-3 w-3" />
         </div>
-        <span className="max-w-25 truncate">{user.firstName}</span>
+        <span className="max-w-25 truncate cursor-pointer">
+          {user.firstName}
+        </span>
         <ChevronDown
           className={`h-3.5 w-3.5 text-zinc-400 transition-transform duration-300 ease-out group-hover:text-white ${
             open ? "rotate-180 text-red-400" : ""
@@ -129,7 +131,7 @@ export function UserMenu({ user, onLoginClick }: UserMenuProps) {
           type="button"
           onClick={handleLogout}
           disabled={logoutLoading}
-          className="group flex w-full items-center gap-3 rounded-xl px-4 py-3.5 md:py-2.5 text-base md:text-sm font-medium text-zinc-400 transition-all duration-200 hover:bg-red-500/10 hover:text-red-400 disabled:cursor-not-allowed disabled:opacity-50 active:bg-red-500/20"
+          className="group cursor-pointer flex w-full items-center gap-3 rounded-xl px-4 py-3.5 md:py-2.5 text-base md:text-sm font-medium text-zinc-400 transition-all duration-200 hover:bg-red-500/10 hover:text-red-400 disabled:cursor-not-allowed disabled:opacity-50 active:bg-red-500/20"
         >
           {logoutLoading ? (
             <Loader2 className="h-4 w-4 animate-spin text-red-400" />

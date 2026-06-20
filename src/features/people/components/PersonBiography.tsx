@@ -95,18 +95,32 @@ export function PersonBiography({ biography }: Props) {
 
   return (
     <section className="max-w-4xl">
-      <h2 className="mb-6 text-2xl font-semibold text-white md:text-3xl">
+      <h2 className="mb-6 text-2xl font-semibold tracking-tight text-white md:text-3xl">
         Biography
       </h2>
 
       <details className="group">
-        <summary className="cursor-pointer text-sm text-neutral-400 marker:text-neutral-600">
-          Read full biography
+        <summary className="list-none cursor-pointer">
+          <div className="space-y-4">
+            <p className="line-clamp-4 whitespace-pre-line leading-8 text-neutral-300 group-open:hidden">
+              {biography}
+            </p>
+
+            <span className="inline-flex text-sm font-medium text-neutral-400 transition-colors hover:text-white">
+              Read full biography
+            </span>
+          </div>
         </summary>
 
-        <p className="mt-6 whitespace-pre-line leading-8 text-neutral-300">
-          {biography}
-        </p>
+        <div className="mt-4 border-l border-white/10 pl-6">
+          <p className="whitespace-pre-line leading-8 text-neutral-300">
+            {biography}
+          </p>
+
+          <span className="mt-4 inline-flex text-sm font-medium text-neutral-400">
+            Show less
+          </span>
+        </div>
       </details>
     </section>
   );

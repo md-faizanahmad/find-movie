@@ -51,7 +51,7 @@ export function LoginForm({ loading, error, onSubmit }: LoginFormProps) {
     }
 
     if (currentYear - year < 18) {
-      setBirthYearError("Must be 18+");
+      setBirthYearError("You must be at least 18 years old");
     } else {
       setBirthYearError("");
     }

@@ -4,21 +4,15 @@ import { useState } from "react";
 
 interface VerifyOtpFormProps {
   email: string;
-
   loading: boolean;
-
   error: string | null;
-
   onSubmit: (otp: string) => Promise<void>;
 }
 
 export function VerifyOtpForm({
   email,
-
   loading,
-
   error,
-
   onSubmit,
 }: VerifyOtpFormProps) {
   const [otp, setOtp] = useState("");
@@ -33,7 +27,6 @@ export function VerifyOtpForm({
     <form onSubmit={handleSubmit} className="space-y-5">
       <div>
         <p className="text-sm text-neutral-400">OTP sent to</p>
-
         <p className="mt-1 font-semibold text-white">{email}</p>
       </div>
 

@@ -1,13 +1,9 @@
 "use client";
 
 import { ReactNode, useMemo } from "react";
-
 import { AuthModal } from "./AuthModal";
-
 import { AuthModalContext } from "@/context/auth-modal.context";
-
 import { useAuthModalState } from "../hooks/use-auth-modal-state";
-
 import { useAuthActions } from "../hooks/use-auth-actions";
 
 interface AuthModalProviderProps {
@@ -25,24 +21,17 @@ export function AuthModalProvider({ children }: AuthModalProviderProps) {
 
   const authActions = useAuthActions({
     email: authState.email,
-
     setEmail: authState.setEmail,
-
     setStep: authState.setStep,
-
     setLoading: authState.setLoading,
-
     setError: authState.setError,
-
     closeModal: authState.closeModal,
   });
 
   const value = useMemo(
     () => ({
       isOpen: authState.isOpen,
-
       openModal: authState.openModal,
-
       closeModal: authState.closeModal,
     }),
     [authState.isOpen],

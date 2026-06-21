@@ -106,22 +106,22 @@ export function PersonHero({ person }: Props) {
     : null;
 
   return (
-    <section className="relative border-b border-white/10 bg-black">
-      <div className="absolute inset-0 bg-linear-to-b from-neutral-900/40 to-black" />
+    <section className="relative overflow-hidden bg-black">
+      <div className="absolute inset-0 bg-gradient-to-b from-neutral-900/30 to-black" />
 
-      <div className="relative mx-auto max-w-7xl px-5 py-10 md:px-8 md:py-20">
+      <div className="relative mx-auto max-w-7xl px-5 pt-6 pb-10 md:px-8 md:pt-10 md:pb-16">
         {/* Back */}
         <button
           onClick={() => router.back()}
-          className="mb-10 inline-flex cursor-pointer font-b items-center gap-2 text-sm text-neutral-400 transition-colors hover:text-white"
+          className="mb-6 inline-flex items-center gap-2 text-sm text-neutral-500 transition-colors hover:text-white"
         >
           <ChevronLeft className="h-4 w-4" />
           Back
         </button>
 
-        <div className="grid gap-10 md:grid-cols-[280px_1fr] md:items-end lg:grid-cols-[320px_1fr]">
+        <div className="grid gap-6 md:grid-cols-[300px_1fr] md:items-center lg:grid-cols-[340px_1fr] lg:gap-12">
           {/* Portrait */}
-          <div className="relative mx-auto aspect-2/3 w-56 overflow-hidden rounded-2xl bg-neutral-900 ring-1 ring-white/10 md:mx-0 md:w-full">
+          <div className="relative mx-auto aspect-[2/3] w-64 overflow-hidden rounded-2xl bg-neutral-900 ring-1 ring-white/10 md:mx-0 md:w-full">
             {imageUrl ? (
               <Image
                 src={imageUrl}
@@ -129,7 +129,7 @@ export function PersonHero({ person }: Props) {
                 fill
                 priority
                 className="object-cover"
-                sizes="(max-width:768px) 224px, 320px"
+                sizes="(max-width:768px) 256px, 340px"
               />
             ) : (
               <div className="flex h-full items-center justify-center text-neutral-700">
@@ -139,21 +139,47 @@ export function PersonHero({ person }: Props) {
           </div>
 
           {/* Content */}
-          <div className="text-center md:text-left">
-            <p className="text-xs font-medium uppercase tracking-[0.35em] text-neutral-500">
-              {person.known_for_department || "Talent"}
-            </p>
-
-            <h1 className="mt-3 text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+          <div className="relative text-center md:text-left">
+            {/* Large Background Name */}
+            <div
+              aria-hidden
+              className="
+                pointer-events-none
+                absolute
+                -top-6
+                left-1/2
+                -translate-x-1/2
+                whitespace-nowrap
+                text-[3.5rem]
+                font-black
+                uppercase
+                tracking-tight
+                text-white/3
+                md:left-0
+                md:translate-x-0
+                md:text-[7rem]
+                lg:text-[9rem]
+              "
+            >
               {person.name}
-            </h1>
-
-            <div className="mt-6">
-              <PersonMeta person={person} />
             </div>
 
-            <div className="mt-6 border-t border-white/10 pt-6">
-              <PersonAliases aliases={person.also_known_as} />
+            <div className="relative">
+              <p className="text-xs font-medium uppercase tracking-[0.35em] text-neutral-500">
+                {person.known_for_department || "Talent"}
+              </p>
+
+              <h1 className="mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
+                {person.name}
+              </h1>
+
+              <div className="mt-6">
+                <PersonMeta person={person} />
+              </div>
+
+              <div className="mt-6 border-t border-white/10 pt-6">
+                <PersonAliases aliases={person.also_known_as} />
+              </div>
             </div>
           </div>
         </div>

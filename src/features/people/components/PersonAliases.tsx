@@ -42,7 +42,15 @@ export function PersonAliases({ aliases }: Props) {
       </p>
 
       <p className="text-sm leading-7 text-neutral-400">
-        {aliases.slice(0, 6).join(" • ")}
+        {/* {aliases.slice(0, 6).join(" • ")} */}
+        {aliases.slice(0, 6).map((alias) => (
+          <span
+            key={alias}
+            className="rounded-xl border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-neutral-300 backdrop-blur-md"
+          >
+            {alias}
+          </span>
+        ))}
       </p>
     </div>
   );

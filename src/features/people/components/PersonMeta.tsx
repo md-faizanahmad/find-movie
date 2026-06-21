@@ -117,7 +117,7 @@
 //   );
 // }
 //////////////////////////////////////// new design
-import { Calendar, Film, MapPin } from "lucide-react";
+import { Film, MapPin, Calendar } from "lucide-react";
 
 interface CombinedCredits {
   cast?: unknown[];
@@ -169,47 +169,33 @@ export function PersonMeta({ person }: Props) {
   const knownCredits = person.combined_credits?.cast?.length ?? 0;
 
   return (
-    <div className="mt-8 grid gap-8 sm:grid-cols-3">
+    <div className="mt-8 flex flex-col items-center gap-4 text-center md:items-start md:text-left">
       {person.birthday && (
-        <div>
-          <div className="mb-3 flex items-center gap-2 text-neutral-500">
-            <Calendar className="h-4 w-4" />
+        <div className="flex items-center gap-2 text-neutral-300">
+          <Calendar className="h-4 w-4 text-neutral-500" />
 
-            <span className="text-xs uppercase tracking-[0.25em]">Born</span>
-          </div>
+          <span>
+            {formatDate(person.birthday)}
 
-          <p className="text-base text-white">{formatDate(person.birthday)}</p>
-
-          {age && (
-            <p className="mt-1 text-sm text-neutral-400">{age} years old</p>
-          )}
+            {age && (
+              <span className="ml-2 text-neutral-500">({age} years old)</span>
+            )}
+          </span>
         </div>
       )}
 
       {person.place_of_birth && (
-        <div>
-          <div className="mb-3 flex items-center gap-2 text-neutral-500">
-            <MapPin className="h-4 w-4" />
+        <div className="flex items-center gap-2 text-neutral-300">
+          <MapPin className="h-4 w-4 text-neutral-500" />
 
-            <span className="text-xs uppercase tracking-[0.25em]">
-              Place of Birth
-            </span>
-          </div>
-
-          <p className="text-base text-white">{person.place_of_birth}</p>
+          <span>{person.place_of_birth}</span>
         </div>
       )}
 
-      <div>
-        <div className="mb-3 flex items-center gap-2 text-neutral-500">
-          <Film className="h-4 w-4" />
+      <div className="flex items-center gap-2 text-neutral-300">
+        <Film className="h-4 w-4 text-neutral-500" />
 
-          <span className="text-xs uppercase tracking-[0.25em]">Credits</span>
-        </div>
-
-        <p className="text-base text-white">{knownCredits}</p>
-
-        <p className="mt-1 text-sm text-neutral-400">Known appearances</p>
+        <span>{knownCredits.toLocaleString()} Credits</span>
       </div>
     </div>
   );

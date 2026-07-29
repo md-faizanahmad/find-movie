@@ -1,4 +1,4 @@
-<img src/>
+<img src="https://find-movie-gamma.vercel.app/brand.png" />
 
 
 # Movie App

@@ -5,7 +5,7 @@
     width="120"
   />
 
-  <h1>🎬 Movie App</h1>
+  <h1>🎬 Find</h1>
 
   <p>
     A modern full-stack movie discovery platform built with

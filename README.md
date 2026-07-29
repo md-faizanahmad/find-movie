@@ -1,37 +1,61 @@
-<img src="https://find-movie-gamma.vercel.app/brand.png" />
+<div align="center">
+  <img
+    src="https://find-movie-gamma.vercel.app/brand.png"
+    alt="Movie App Logo"
+    width="120"
+  />
 
+  <h1>🎬 Movie App</h1>
 
-# Movie App
+  <p>
+    A modern full-stack movie discovery platform built with
+    <strong>Next.js</strong>, <strong>TypeScript</strong>, and the
+    <strong>TMDB API</strong>.
+    Explore trending movies, TV shows, celebrities, reviews, galleries,
+    and detailed media information through a fast, responsive, and
+    SEO-friendly interface.
+  </p>
+</div>
 
-A modern full-stack movie discovery platform built with Next.js, TypeScript, and TMDB API
-Users can explore trending movies, TV shows, celebrities, reviews, galleries, and detailed media information through a fast and responsive interface.
+---
 
-## Features
+<h2>✨ Features</h2>
 
-Trending movies and TV shows
-Detailed media pages
-Cast and crew information
-Person profiles and galleries
-Reviews and ratings
-Responsive UI
-SEO optimized pages
+<ul>
+  <li>🎥 Discover trending movies and TV shows</li>
+  <li>📄 Detailed movie & TV information</li>
+  <li>🎭 Cast and crew profiles</li>
+  <li>👤 Celebrity pages with biographies</li>
+  <li>🖼️ Image galleries and media</li>
+  <li>⭐ User ratings and reviews</li>
+  <li>📱 Fully responsive design</li>
+  <li>🚀 Fast performance with SEO optimization</li>
+</ul>
 
-## Tech Stack
+---
 
-### Frontend
+<h2>🛠️ Tech Stack</h2>
 
-Next.js
-React.js
-TypeScript
-Tailwind CSS
+<h3>Frontend</h3>
 
-### APIs
+<ul>
+  <li>Next.js</li>
+  <li>React.js</li>
+  <li>TypeScript</li>
+  <li>Tailwind CSS</li>
+</ul>
 
-- TMDB API
+<h3>API</h3>
 
-## Folder Structure
+<ul>
+  <li>TMDB API</li>
+</ul>
 
-bash
+---
+
+<h2>📁 Folder Structure</h2>
+
+<pre>
 src/
 ├── app/
 ├── components/
@@ -40,24 +64,40 @@ src/
 ├── services/
 ├── types/
 └── utils/
+</pre>
 
-## Installation
+---
 
-Clone the repository:
+<h2>⚡ Installation</h2>
 
-bash
+<p><strong>Clone the repository</strong></p>
+
+```bash
 git clone https://github.com/your-username/movie-app.git
+```
 
-Install dependencies:
+<p><strong>Install dependencies</strong></p>
 
-bash
+```bash
 npm install
+```
 
-Start development server:
+<p><strong>Start the development server</strong></p>
 
-bash
+```bash
 npm run dev
+```
 
-### Deployment
+---
 
-- Vercel
+<h2>🚀 Deployment</h2>
+
+<ul>
+  <li>Vercel</li>
+</ul>
+
+---
+
+<div align="center">
+  <p>Built with ❤️ using Next.js & TypeScript</p>
+</div>

@@ -6,7 +6,7 @@ src="https://find-movie-gamma.vercel.app/brand.png"
   />
 
   <h3>🎬 Find Movie Web App</h3>
-
+<a href="https://find-movie-gamma.vercel.app"> Live <a/>
   <p>
     A modern full-stack movie discovery platform built with
     <strong>Next.js</strong>, <strong>TypeScript</strong>, and the

@@ -1,6 +1,6 @@
 <div align="center">
   <img
-    src="https://find-movie-gamma.vercel.app/brand.png"
+src="https://find-movie-gamma.vercel.app/brand.png"
     alt="Movie App Logo"
     width="120"
   />

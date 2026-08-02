@@ -5,7 +5,7 @@ src="https://find-movie-gamma.vercel.app/brand.png"
     width="120"
   />
 
-  <h1>🎬 Find Movie Web App</h1>
+  <h3>🎬 Find Movie Web App</h3>
 
   <p>
     A modern full-stack movie discovery platform built with

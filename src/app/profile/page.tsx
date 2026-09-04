@@ -156,7 +156,7 @@ export default async function ProfilePage() {
           <div className="mt-8 flex flex-wrap gap-6">
             <div>
               <p className="text-xs uppercase tracking-[0.2em] text-zinc-500">
-                Saved Titles
+                Saved Title
               </p>
 
               <p className="mt-1 text-2xl font-semibold text-white">

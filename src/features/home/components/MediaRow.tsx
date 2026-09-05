@@ -39,8 +39,8 @@ export function MediaRow({
           {/* Glow */}
           <div className="absolute -inset-2 rounded-xl bg-red-500/10 blur-xl" />
 
-          <h2 className="relative inline-flex items-center rounded-lg border border-white/5 bg-white/[0.03] px-3 py-1.5 backdrop-blur-md">
-            <span className="animate-gradient bg-gradient-to-r from-red-600 via-white to-red-500 bg-[length:200%_100%] bg-clip-text text-sm font-semibold tracking-wide text-transparent sm:text-base">
+          <h2 className="relative inline-flex items-center rounded-lg border border-white/5 bg-white/3 px-3 py-1.5 backdrop-blur-md">
+            <span className="animate-gradient bg-linear-to-r from-red-600 via-white to-red-500 bg-size-[200%_100%] bg-clip-text text-sm font-semibold tracking-wide text-transparent sm:text-base">
               {title}
             </span>
           </h2>

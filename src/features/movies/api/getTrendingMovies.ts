@@ -39,7 +39,7 @@
 ////////// Better Optimz
 import { TMDBMovie, PaginatedResponse } from "@/@types/movie.types";
 import { apiClient } from "@/lib/api/client";
-import { env } from "@/lib/config/env";
+
 interface GetTrendingMoviesParams {
   page?: number;
 }

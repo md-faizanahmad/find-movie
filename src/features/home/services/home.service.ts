@@ -7,9 +7,9 @@ import { getTrendingMovies } from "@/features/movies/api/getTrendingMovies";
 import { getBollywoodMovies } from "@/features/movies/api/getBollywoodMovies";
 import { getSouthMovies } from "@/features/movies/api/getSouthMovies";
 import { getIndianTVShows } from "@/features/movies/api/getIndianTVShows";
-import { mergeAndSort } from "@/lib/utils/mergeAndSort";
 import { getHollywoodTVShows } from "@/features/movies/api/getHollywoodTVShows";
-// import { isAdultContent } from "@/lib/isAdultContent";
+
+import { mergeAndSort } from "@/lib/utils/mergeAndSort";
 /* -------------------------------------------------------------------------- */
 /*                                NORMALIZED TYPE                             */
 /* -------------------------------------------------------------------------- */

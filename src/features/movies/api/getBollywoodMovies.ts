@@ -1,8 +1,45 @@
+// // src/features/movies/services/getBollywoodMovies.ts
+
+// import { TMDBMovie, PaginatedResponse } from "@/@types/movie.types";
+// import { apiClient } from "@/lib/api/client";
+// import { env } from "@/lib/config/env";
+// import { emptyResponse } from "@/lib/utils/emptyResponse";
+
+// interface Params {
+//   page?: number;
+// }
+
+// export async function getBollywoodMovies(
+//   params: Params = {},
+// ): Promise<PaginatedResponse<TMDBMovie>> {
+//   const { page = 1 } = params;
+
+//   try {
+//     const res = await apiClient.get<PaginatedResponse<TMDBMovie>>(
+//       "/discover/movie",
+//       {
+//         params: {
+//           api_key: env.TMDB_API_KEY,
+//           page,
+//           with_original_language: "hi",
+//           region: "IN",
+//           sort_by: "popularity.desc",
+//         },
+//       },
+//     );
+
+//     return res.data;
+//   } catch (error) {
+//     console.warn("Bollywood fallback");
+//     return emptyResponse();
+//   }
+// }
+
+/////////// Using Fetch and cach
 // src/features/movies/services/getBollywoodMovies.ts
 
 import { TMDBMovie, PaginatedResponse } from "@/@types/movie.types";
 import { apiClient } from "@/lib/api/client";
-import { env } from "@/lib/config/env";
 import { emptyResponse } from "@/lib/utils/emptyResponse";
 
 interface Params {
@@ -19,18 +56,18 @@ export async function getBollywoodMovies(
       "/discover/movie",
       {
         params: {
-          api_key: env.TMDB_API_KEY,
           page,
           with_original_language: "hi",
           region: "IN",
           sort_by: "popularity.desc",
         },
+        revalidate: 3600,
       },
     );
 
     return res.data;
   } catch (error) {
-    console.warn("Bollywood fallback");
+    console.warn("Bollywood fallback", error);
     return emptyResponse();
   }
 }

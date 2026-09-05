@@ -31,7 +31,7 @@
 //   throw new Error("TMDB_BASE_URL is missing");
 // }
 
-/////////// Fetch
+/////////// Fetch , for Optimz
 import { env } from "../config/env";
 
 if (typeof window !== "undefined") {

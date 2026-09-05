@@ -48,7 +48,7 @@ export function Navbar({ user }: NavbarProps) {
       <header className="fixed top-0 z-50 w-full border-b border-white/5 bg-black/60 backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-8 lg:px-12">
           {/* Logo */}
-          <Link href="/" className="group">
+          <Link href="/" prefetch={false} className="group">
             <div className="flex items-center gap-3">
               <div className="relative h-9 w-9 overflow-hidden rounded-xl transition-transform group-hover:scale-110">
                 <Image
@@ -80,6 +80,7 @@ export function Navbar({ user }: NavbarProps) {
                   <Link
                     key={item.name}
                     href={item.href}
+                    prefetch={false}
                     className={cn(
                       "relative text-sm font-bold uppercase tracking-widest transition-all hover:text-white",
                       isActive ? "text-white" : "text-neutral-500",
@@ -121,6 +122,7 @@ export function Navbar({ user }: NavbarProps) {
               <Link
                 key={item.name}
                 href={item.href}
+                prefetch={false}
                 className="group flex flex-col items-center gap-1.5"
               >
                 <div

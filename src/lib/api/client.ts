@@ -44,7 +44,10 @@ interface RequestConfig {
 }
 
 function buildUrl(path: string, params?: RequestConfig["params"]): string {
-  const url = new URL(path, env.TMDB_BASE_URL);
+  const baseUrl = env.TMDB_BASE_URL.replace(/\/$/, "");
+  const cleanPath = path.replace(/^\//, "");
+
+  const url = new URL(`${baseUrl}/${cleanPath}`);
 
   url.searchParams.set("api_key", env.TMDB_API_KEY);
 

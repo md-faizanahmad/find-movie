@@ -47,6 +47,7 @@ export function MediaRow({
         </div>
 
         <Link
+          prefetch={false}
           href={href}
           className="group flex items-center gap-1 text-[11px] font-semibold uppercase tracking-[0.15em] text-neutral-500 transition-colors hover:text-red-500 sm:text-xs"
         >
@@ -104,6 +105,7 @@ export function MediaRow({
 
           <Link
             href={href}
+            prefetch={false}
             className="
     relative flex aspect-2/3 flex-none snap-start 
     w-35 sm:w-45 md:w-55 lg:w-60

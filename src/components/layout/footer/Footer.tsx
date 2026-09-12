@@ -59,6 +59,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/movies"
+                  prefetch={false}
                   className="hover:text-red-500 transition-colors"
                 >
                   Movies
@@ -67,6 +68,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/tv"
+                  prefetch={false}
                   className="hover:text-red-500 transition-colors"
                 >
                   TV Shows
@@ -75,6 +77,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/people"
+                  prefetch={false}
                   className="hover:text-red-500 transition-colors"
                 >
                   Actors

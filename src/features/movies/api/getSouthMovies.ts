@@ -40,22 +40,18 @@
 
 //// Fetch optimz
 // src/features/movies/services/getSouthMovies.ts
-
 import { TMDBMovie, PaginatedResponse } from "@/@types/movie.types";
 import { apiClient } from "@/lib/api/client";
 import { emptyResponse } from "@/lib/utils/emptyResponse";
 
-type SouthLanguage = "ta" | "te" | "ml" | "kn";
-
 interface Params {
   page?: number;
-  language: SouthLanguage;
 }
 
 export async function getSouthMovies(
-  params: Params,
+  params: Params = {},
 ): Promise<PaginatedResponse<TMDBMovie>> {
-  const { page = 1, language } = params;
+  const { page = 1 } = params;
 
   try {
     const res = await apiClient.get<PaginatedResponse<TMDBMovie>>(
@@ -63,7 +59,7 @@ export async function getSouthMovies(
       {
         params: {
           page,
-          with_original_language: language,
+          with_original_language: "ta|te|ml|kn",
           region: "IN",
           sort_by: "popularity.desc",
         },
@@ -73,7 +69,7 @@ export async function getSouthMovies(
 
     return res.data;
   } catch (error) {
-    console.warn(`South (${language}) fallback`);
+    console.warn("South Indian fallback");
     return emptyResponse();
   }
 }

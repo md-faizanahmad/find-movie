@@ -6,6 +6,8 @@ import { NavbarServer } from "@/components/layout/navbar/NavbarServer";
 import { AuthModalProvider } from "@/features/Auth/components/AuthModalProvider";
 import { PWAInstallPrompt } from "@/components/pwa/PWAInstallPrompt";
 import { siteConfig } from "@/components/config/site";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -140,6 +142,8 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}
     >
       <body className="bg-black text-white selection:bg-red-600/30 min-h-screen font-sans antialiased overflow-x-hidden">
+        <Analytics />
+        <SpeedInsights />
         <AuthModalProvider>
           <NavbarServer />
           {/* Added a container wrapper to ensure footer-push works if you add a footer later */}

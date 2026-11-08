@@ -1,6 +1,7 @@
 // app/api/tmdb/[...path]/route.ts
 
 import { NextRequest, NextResponse } from "next/server";
+import { checkBotId } from "botid/server";
 
 const API_KEY = process.env.TMDB_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3";
@@ -9,12 +10,15 @@ export async function GET(
   req: NextRequest,
   context: { params: Promise<{ path: string[] }> },
 ) {
-  const { path } = await context.params; // ✅ IMPORTANT
+  const verification = await checkBotId();
 
+  if (verification.isBot) {
+    return NextResponse.json({ error: "Access denied" }, { status: 403 });
+  }
+  const { path } = await context.params; // ✅ IMPORTANT
   const endpoint = path.join("/");
 
   const searchParams = req.nextUrl.searchParams.toString();
-
   const url = `${BASE_URL}/${endpoint}?api_key=${API_KEY}&${searchParams}`;
 
   try {
@@ -30,7 +34,6 @@ export async function GET(
     }
 
     const data = await res.json();
-
     return NextResponse.json(data);
   } catch {
     return NextResponse.json(
